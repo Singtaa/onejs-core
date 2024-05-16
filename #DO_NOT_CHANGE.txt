@@ -1,0 +1,3 @@
+This onejs-core folder is managed by OneJS. It may get overriden during OneJS version updates. If you make any changes in here and would like to keep them, please back them up!
+
+However, you may replace this folder with the actual repository at https://github.com/DragonGround/onejs-core if that fits your workflow better. OneJS won't delete/replace any folder with a .git folder inside.
