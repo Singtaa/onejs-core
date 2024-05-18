@@ -13,7 +13,7 @@ interface TypeRef<T> {
 
 declare namespace CS {
     namespace UnityEngine {
-        interface GameObject { // Augment GameObject using `interface` isntead of `class`
+        interface GameObject { // Augment GameObject using `interface` instead of `class`
             // public GetComponent ($type: System.Type) : UnityEngine.Component
             // public GetComponent ($type: string) : UnityEngine.Component
             public GetComponent<T extends CS.UnityEngine.Component>(type: TypeRef<T>): T
