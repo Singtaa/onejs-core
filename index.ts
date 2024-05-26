@@ -1,3 +1,13 @@
+// Typings here are used to avoid conflict with user-generated app.d.ts
+
+declare namespace CS.OneJS.Dom {
+    interface Dom {
+
+    }
+}
+
+declare var document: any;
+
 export const tmp = 123
 
 export function h(type: any, props: any, ...children: (CS.OneJS.Dom.Dom | string)[]): CS.OneJS.Dom.Dom {
