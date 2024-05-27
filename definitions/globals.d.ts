@@ -1,18 +1,3 @@
-declare namespace CS.OneJS {
-    namespace Dom {
-        interface Dom {
-
-        }
-        interface Document {
-
-        }
-    }
-
-    interface Resource {
-
-    }
-}
-
 declare global {
     interface Console {
         assert(condition?: boolean, ...data: any[]): void;

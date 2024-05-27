@@ -1,4 +1,3 @@
-
 declare module "UnityEngine" {
     export = CS.UnityEngine;
 }
@@ -12,6 +11,9 @@ interface TypeRef<T> {
 }
 
 declare namespace CS {
+    namespace UnityEngine {
+
+    }
     namespace UnityEngine.UIElements {
         interface IChangeEvent {
         }

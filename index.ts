@@ -8,6 +8,7 @@
 
 declare var document: any
 
+// OneJS's own h function. Use this to quickly create elements in jsx-like syntax
 export function h(type: any, props: any, ...children: any[]): any {
     const element = typeof type === "string" ? document.createElement(type) : type;
 
