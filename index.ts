@@ -1,21 +1,12 @@
 /// <reference path="./definitions/app.d.ts" />
 /// <reference path="./definitions/onejs.d.ts" />
-/// <reference path="./definitions/globals.d.ts" />
 /// <reference path="./definitions/jsx.d.ts" />
 /// <reference path="./definitions/puerts.d.ts" />
 /// <reference path="./definitions/unity.d.ts" />
 /// <reference path="./definitions/unity-engine.d.ts" />
 /// <reference path="./definitions/proto-overrides.d.ts" />
 
-// Typings here are used to avoid conflict with user-generated app.d.ts
-
-// declare namespace CS.OneJS.Dom {
-//     interface Dom {
-
-//     }
-// }
-
-declare var document: any
+declare var document: CS.OneJS.Dom.Document
 
 // OneJS's own h function. Use this to quickly create elements in jsx-like syntax
 export function h(type: any, props: any, ...children: any[]): any {
