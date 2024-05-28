@@ -2,7 +2,6 @@
 /// <reference path="./definitions/onejs.d.ts" />
 /// <reference path="./definitions/jsx.d.ts" />
 /// <reference path="./definitions/puerts.d.ts" />
-/// <reference path="./definitions/unity.d.ts" />
 /// <reference path="./definitions/unity-engine.d.ts" />
 /// <reference path="./definitions/proto-overrides.d.ts" />
 

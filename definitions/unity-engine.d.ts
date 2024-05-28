@@ -1,10 +1,3 @@
-declare module "UnityEngine" {
-    export = CS.UnityEngine;
-}
-
-declare module "UnityEngine/UIElements" {
-    export = CS.UnityEngine.UIElements;
-}
 
 interface TypeRef<T> {
     runtimeType: Function;
