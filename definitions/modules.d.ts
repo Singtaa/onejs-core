@@ -18,7 +18,7 @@ declare module "UnityEngine/UIElements" {
     export = CS.UnityEngine.UIElements;
 }
 
-declare module "@Unity/Mathematics" {
+declare module "Unity/Mathematics" {
     export = CS.Unity.Mathematics;
 }
 

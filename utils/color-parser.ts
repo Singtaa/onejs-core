@@ -1,8 +1,7 @@
-/// <reference types="../definitions/app.d.ts" />
-
-import { float4, float3, quaternion } from "@Unity/Mathematics"
+// import { float4, float3, quaternion } from "Unity/Mathematics" // JSR prepends a "./" to this, which messes things up
 // import { Color } from "UnityEngine" // TODO Somehow this bypasses unity-import-transform and leads to esbuild error
 
+type float4 = CS.Unity.Mathematics.float4
 const { float4: f4, float3: f3, PI } = CS.Unity.Mathematics.math
 const { Color } = CS.UnityEngine
 

@@ -1,6 +1,8 @@
-/// <reference types="../definitions/app.d.ts" />
+// import { float2, float3, float4 } from "Unity/Mathematics" // JSR prepends a "./" to this, which messes things up
 
-import { float2, float3, float4 } from "@Unity/Mathematics"
+type float2 = CS.Unity.Mathematics.float2
+type float3 = CS.Unity.Mathematics.float3
+type float4 = CS.Unity.Mathematics.float4
 
 const { clamp, float2: f2, float3: f3, float4: f4 } = CS.Unity.Mathematics.math
 
