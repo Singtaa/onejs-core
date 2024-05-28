@@ -1,9 +1,9 @@
-/// <reference path="./definitions/app.d.ts" />
-/// <reference path="./definitions/onejs.d.ts" />
-/// <reference path="./definitions/jsx.d.ts" />
-/// <reference path="./definitions/puerts.d.ts" />
-/// <reference path="./definitions/unity-engine.d.ts" />
-/// <reference path="./definitions/proto-overrides.d.ts" />
+/// <reference types="./definitions/app.d.ts" />
+/// <reference types="./definitions/onejs.d.ts" />
+/// <reference types="./definitions/jsx.d.ts" />
+/// <reference types="./definitions/puerts.d.ts" />
+/// <reference types="./definitions/unity-engine.d.ts" />
+/// <reference types="./definitions/proto-overrides.d.ts" />
 
 declare var document: CS.OneJS.Dom.Document
 
