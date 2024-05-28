@@ -1,3 +1,12 @@
+/// <reference path="./definitions/app.d.ts" />
+/// <reference path="./definitions/onejs.d.ts" />
+/// <reference path="./definitions/globals.d.ts" />
+/// <reference path="./definitions/jsx.d.ts" />
+/// <reference path="./definitions/puerts.d.ts" />
+/// <reference path="./definitions/unity.d.ts" />
+/// <reference path="./definitions/unity-engine.d.ts" />
+/// <reference path="./definitions/proto-overrides.d.ts" />
+
 // Typings here are used to avoid conflict with user-generated app.d.ts
 
 // declare namespace CS.OneJS.Dom {
