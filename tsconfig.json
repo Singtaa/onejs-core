@@ -2,7 +2,7 @@
     "compilerOptions": {
         "paths": {
             "Unity/Mathematics": [
-                "./definitions/app.d.ts"
+                "./definitions/modules.d.ts"
             ]
         },
         "lib": [
