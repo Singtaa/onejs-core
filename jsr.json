@@ -1,8 +1,10 @@
 {
     "name": "@onejs/core",
-    "version": "0.1.16",
+    "version": "0.1.17",
     "exports": {
         ".": "./index.ts",
-        "./utils": "./index.ts"
+        "./utils": "./index.ts",
+        "./uss-transform-plugin.cjs": "./uss-transform-plugin.cjs",
+        "./onejs-tw-config.cjs": "./onejs-tw-config.cjs"
       }
 }
