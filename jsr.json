@@ -1,6 +1,6 @@
 {
     "name": "@onejs/core",
-    "version": "0.1.11",
+    "version": "0.1.12",
     "exports": {
         ".": "./index.ts",
         "./utils": "./index.ts"
