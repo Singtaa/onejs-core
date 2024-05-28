@@ -3,8 +3,8 @@
         "lib": [
             "esnext"
         ],
-        "allowImportingTsExtensions": true,
-        "noEmit": true,
+        "module": "esnext",
+        "moduleResolution": "Bundler",
         "types": [],
         "typeRoots": [
             "./definitions"
