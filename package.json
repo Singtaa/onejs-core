@@ -1,6 +1,10 @@
 {
-  "dependencies": {
-    "css-flatten": "^2.0.0",
-    "css-simple-parser": "^3.0.0"
-  }
+    "dependencies": {
+        "css-flatten": "^2.0.0",
+        "css-simple-parser": "^3.0.0"
+    },
+    "exports": {
+        "./uss-transform-plugin.cjs": "./dist/uss-transform-plugin.cjs",
+        "./onejs-tw-config.cjs": "./onejs-tw-config.cjs"
+    }
 }
