@@ -25,7 +25,6 @@ declare global {
 
     var document: CS.OneJS.Dom.Document;
     var resource: CS.OneJS.Resource;
-    var self: any;
 
     function atob(encodedData: string): string;
     function btoa(rawData: string): string;
