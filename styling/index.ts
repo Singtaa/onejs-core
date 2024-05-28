@@ -63,6 +63,13 @@ function _processTemplate(props, strings: TemplateStringsArray, values: any[]) {
 //     }
 // }
 
+/**
+ * Similar to the Emotion api, this function takes a template string and returns 
+ * a class name that can be used to style an element.
+ * @param strings 
+ * @param values 
+ * @returns 
+ */
 export const emo = function (strings: TemplateStringsArray, ...values: any[]): string {
     let style = values.reduce((result, expr, index) => {
         const value = expr
