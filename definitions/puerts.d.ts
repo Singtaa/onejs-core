@@ -29,11 +29,3 @@ declare namespace puer {
     
     function require(name: string): any;
 }
-
-import puerts = puer;
-
-// compat 1.4- version
-// 兼容1.4-版本，不需要可以注释掉
-declare module "puerts" {
-    export = puerts;
-}

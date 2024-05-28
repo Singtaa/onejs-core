@@ -65,4 +65,10 @@ declare module "OneJS/Dom" {
     export = CS.OneJS.Dom
 }
 
+import puerts = puer;
+
+declare module "puerts" {
+    export = puerts;
+}
+
 export { };
