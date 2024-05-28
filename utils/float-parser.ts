@@ -1,6 +1,6 @@
 /// <reference types="../definitions/app.d.ts" />
 
-import { float2, float3, float4 } from "Unity/Mathematics"
+import { float2, float3, float4 } from "@Unity/Mathematics"
 
 const { clamp, float2: f2, float3: f3, float4: f4 } = CS.Unity.Mathematics.math
 
