@@ -1,13 +1,10 @@
 {
     "compilerOptions": {
-        "paths": {
-            "Unity/Mathematics": [
-                "./definitions/modules.d.ts"
-            ]
-        },
         "lib": [
             "esnext"
         ],
+        "allowImportingTsExtensions": true,
+        "noEmit": true,
         "types": [],
         "typeRoots": [
             "./definitions"
