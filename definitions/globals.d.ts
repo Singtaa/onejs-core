@@ -53,4 +53,16 @@ declare global {
 
 }
 
+declare module "OneJS" {
+    export = CS.OneJS
+}
+
+declare module "OneJS/Utils" {
+    export = CS.OneJS.Utils
+}
+
+declare module "OneJS/Dom" {
+    export = CS.OneJS.Dom
+}
+
 export { };

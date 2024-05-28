@@ -10,23 +10,9 @@
  * public get wordSpacing(): any;
  * public set wordSpacing(value: any);
  */
-declare module "OneJS" {
-    export = CS.OneJS
-}
-
-declare module "OneJS/Utils" {
-    export = CS.OneJS.Utils
-}
 
 type VisualElement = CS.UnityEngine.UIElements.VisualElement;
 
-declare module "OneJS/Dom" {
-    export = CS.OneJS.Dom
-
-    // export interface Dom<T extends VisualElement = VisualElement> extends CS.OneJS.Dom.Dom {
-    //     ve: T
-    // }
-}
 
 type StyleEnum<T> = CS.UnityEngine.UIElements.StyleEnum$1<T>;
 type Align = CS.UnityEngine.UIElements.Align;
