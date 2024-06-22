@@ -9,10 +9,10 @@ declare var document: CS.OneJS.Dom.Document
 
 /**
  * OneJS's own h function. Use this to quickly create elements in jsx-like syntax
- * @param type 
- * @param props 
- * @param children 
- * @returns 
+ * @param type
+ * @param props
+ * @param children
+ * @returns
  */
 export function h(type: any, props: any, ...children: any[]): any {
     const element = typeof type === "string" ? document.createElement(type) : type;
@@ -41,3 +41,4 @@ export function h(type: any, props: any, ...children: any[]): any {
 }
 
 export { emo } from "./styling/index"
+export { useEventfulState } from "./hooks/eventful"
