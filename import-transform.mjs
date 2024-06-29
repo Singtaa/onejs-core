@@ -10,7 +10,7 @@ export const importTransformPlugin = {
 		});
 
 		// Second pass: Transform all JS and TSX files
-		build.onLoad({ filter: /\.(js|tsx)$/ }, async (args) => {
+		build.onLoad({ filter: /\.(js|jsx|ts|tsx)$/ }, async (args) => {
 			let contents = await fs.promises.readFile(args.path, "utf8");
 
 			// Transform Unity imports
