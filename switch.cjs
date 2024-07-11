@@ -8,9 +8,9 @@ const { rimraf } = require('rimraf')
 const fsp = fs.promises
 
 const backends = [
-    { name: "QuickJS", tgzUrl: "https://github.com/Tencent/puerts/releases/download/Unity_v2.0.5/PuerTS_Quickjs_2.0.5.tgz" },
-    { name: "V8", tgzUrl: "https://github.com/Tencent/puerts/releases/download/Unity_v2.0.5/PuerTS_V8_2.0.5.tgz" },
-    { name: "NodeJS", tgzUrl: "https://github.com/Tencent/puerts/releases/download/Unity_v2.0.5/PuerTS_Nodejs_2.0.5.tgz" }
+    { name: "QuickJS", tgzUrl: "https://github.com/Tencent/puerts/releases/download/Unity_v2.1.0/PuerTS_Quickjs_2.1.0.tgz" },
+    { name: "V8", tgzUrl: "https://github.com/Tencent/puerts/releases/download/Unity_v2.1.0/PuerTS_V8_2.1.0.tgz" },
+    { name: "NodeJS", tgzUrl: "https://github.com/Tencent/puerts/releases/download/Unity_v2.1.0/PuerTS_Nodejs_2.1.0.tgz" }
 ]
 
 const args = process.argv.slice(2)

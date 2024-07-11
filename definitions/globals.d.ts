@@ -28,3 +28,7 @@ declare const onejs: {
 
     subscribe(eventName: string, handler: () => void): () => void
 }
+
+declare function require(name: string): any
+
+declare const resource: CS.OneJS.Resource
