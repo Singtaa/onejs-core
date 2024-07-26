@@ -1,4 +1,7 @@
 {
+    "name": "onejs-core",
+    "description": "The JS part of OneJS, a Unity3D UI framework and Scripting Engine.",
+    "version": "0.3.5",
     "dependencies": {
         "css-flatten": "^2.0.0",
         "css-simple-parser": "^3.0.0"

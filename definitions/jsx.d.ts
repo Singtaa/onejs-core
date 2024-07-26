@@ -57,6 +57,7 @@ type PointerStationaryEvent = CS.UnityEngine.UIElements.PointerStationaryEvent;
 type PointerUpEvent = CS.UnityEngine.UIElements.PointerUpEvent;
 type ScrollViewMode = CS.UnityEngine.UIElements.ScrollViewMode;
 type ScrollerVisibility = CS.UnityEngine.UIElements.ScrollerVisibility;
+type TouchScrollBehavior = CS.UnityEngine.UIElements.ScrollView.TouchScrollBehavior;
 type TooltipEvent = CS.UnityEngine.UIElements.TooltipEvent;
 type TransitionCancelEvent = CS.UnityEngine.UIElements.TransitionCancelEvent;
 type TransitionEndEvent = CS.UnityEngine.UIElements.TransitionEndEvent;
@@ -427,7 +428,7 @@ declare namespace JSX {
         "vertical-scroller-visibility"?: ScrollerVisibility
         "horizontal-page-size"?: number
         "vertical-page-size"?: number
-        // "touch-scroll-behavior"?: TouchScrollBehavior
+        "touch-scroll-behavior"?: TouchScrollBehavior
         "scroll-deceleration-rate"?: number
         "elasticity"?: number
     }
