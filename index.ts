@@ -1,11 +1,5 @@
-/// <reference types="./definitions/app.d.ts" />
-/// <reference types="./definitions/onejs.d.ts" />
-/// <reference types="./definitions/jsx.d.ts" />
-/// <reference types="./definitions/puerts.d.ts" />
-/// <reference types="./definitions/unity-engine.d.ts" />
-/// <reference types="./definitions/proto-overrides.d.ts" />
-
-declare var document: CS.OneJS.Dom.Document
+import { DocumentWrapper } from "./dom/document";
+import { DomWrapper } from "./dom/dom";
 
 /**
  * OneJS's own h function. Use this to quickly create elements in jsx-like syntax
@@ -41,4 +35,15 @@ export function h(type: any, props: any, ...children: any[]): any {
 }
 
 export { emo } from "./styling/index"
-export { useEventfulState } from "./hooks/eventful"
+
+declare global {
+    interface Document extends DocumentWrapper {}
+    interface Element extends DomWrapper {
+        classname: string
+        nodeType: number
+        ve: CS.UnityEngine.UIElements.VisualElement
+    }
+}
+
+// @ts-ignore
+globalThis.document = new DocumentWrapper(___document)

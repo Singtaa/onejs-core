@@ -1,9 +1,14 @@
 {
     "name": "onejs-core",
-    "description": "The JS part of OneJS, a Unity3D UI framework and Scripting Engine.",
-    "version": "0.3.5",
+    "description": "The JS part of OneJS, a UI framework and Scripting Engine for Unity.",
+    "version": "0.3.6",
+    "main": "dist/index.js",
+    "types": "typings.d.ts",
     "dependencies": {
         "css-flatten": "^2.0.0",
         "css-simple-parser": "^3.0.0"
+    },
+    "devDependencies": {
+        "tailwindcss": "^3.4.7"
     }
 }

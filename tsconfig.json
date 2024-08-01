@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "lib": [
+            "esnext"
+        ],
+        "outDir": "./dist",
+        "moduleResolution": "node",
+        "jsx": "react",
+        "jsxFactory": "h",
+        "jsxFragmentFactory": "Fragment",
+        "skipLibCheck": false,
+        "forceConsistentCasingInFileNames": true,
+        "declaration": true,
+        "typeRoots": [
+            "./definitions"
+        ],
+    },
+    "include": [
+        "./**/*"
+    ],
+    "exclude": [
+        "./node_modules",
+        "./dist",
+        "./typings.d.ts"
+    ]
+}

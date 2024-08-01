@@ -51764,6 +51764,7 @@ declare namespace CS {
             public get firstChild(): OneJS.Dom.Dom;
             public get parentNode(): OneJS.Dom.Dom;
             public get nextSibling(): OneJS.Dom.Dom;
+            public get nodeType(): number;
             public get Id(): string;
             public set Id(value: string);
             public get key(): string;
@@ -51816,6 +51817,7 @@ declare namespace CS {
             public clearRuntimeStyleSheets () : void
             public createElement ($tagName: string) : OneJS.Dom.Dom
             public createElement ($tagName: string, $options: OneJS.Dom.ElementCreationOptions) : OneJS.Dom.Dom
+            public createElementNS ($ns: string, $tagName: string, $options: OneJS.Dom.ElementCreationOptions) : OneJS.Dom.Dom
             public createTextNode ($text: string) : OneJS.Dom.Dom
             public getElementById ($id: string) : OneJS.Dom.Dom
             public querySelectorAll ($selector: string) : System.Array$1<OneJS.Dom.Dom>

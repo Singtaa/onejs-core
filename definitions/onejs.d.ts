@@ -17,7 +17,8 @@ type VisualElement = CS.UnityEngine.UIElements.VisualElement;
 type float2 = CS.Unity.Mathematics.float2;
 type float3 = CS.Unity.Mathematics.float3;
 type float4 = CS.Unity.Mathematics.float4;
-
+type Sprite = CS.UnityEngine.Sprite;
+type Texture = CS.UnityEngine.Texture;
 
 type StyleEnum<T> = CS.UnityEngine.UIElements.StyleEnum$1<T>;
 type Align = CS.UnityEngine.UIElements.Align;
