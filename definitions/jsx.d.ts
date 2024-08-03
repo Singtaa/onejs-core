@@ -523,7 +523,7 @@ declare global {
             dropdownfield: DropdownField
 
             // /* OneJS Custom */
-            // gradientrect: GradientRect
+            gradientrect: GradientRect
             // flipbook: Flipbook
             // simplelistview: SimpleListView
         }

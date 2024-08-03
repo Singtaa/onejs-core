@@ -2,9 +2,7 @@
     "compilerOptions": {
         "target": "esnext",
         "module": "esnext",
-        "lib": [
-            "esnext"
-        ],
+        "lib": [ "esnext" ],
         "outDir": "./dist",
         "moduleResolution": "node",
         "jsx": "react",
@@ -13,9 +11,7 @@
         "skipLibCheck": false,
         "forceConsistentCasingInFileNames": true,
         "declaration": true,
-        "typeRoots": [
-            "./definitions"
-        ],
+        "typeRoots": [ "./definitions" ],
     },
     "include": [
         "./**/*"

@@ -209,6 +209,16 @@ declare namespace CS {
         (x: T, y: T) : number; 
         Invoke?: (x: T, y: T) => number;
         }
+        interface Action$3<T1, T2, T3>
+        { 
+        (arg1: T1, arg2: T2, arg3: T3) : void; 
+        Invoke?: (arg1: T1, arg2: T2, arg3: T3) => void;
+        }
+        interface Action$4<T1, T2, T3, T4>
+        { 
+        (arg1: T1, arg2: T2, arg3: T3, arg4: T4) : void; 
+        Invoke?: (arg1: T1, arg2: T2, arg3: T3, arg4: T4) => void;
+        }
         class MarshalByRefObject extends System.Object
         {
             protected [__keep_incompatibility]: never;
@@ -18688,6 +18698,128 @@ declare namespace CS {
         class Event extends System.Object
         {
             protected [__keep_incompatibility]: never;
+            public get rawType(): UnityEngine.EventType;
+            /** The mouse position.
+            */
+            public get mousePosition(): UnityEngine.Vector2;
+            public set mousePosition(value: UnityEngine.Vector2);
+            /** The relative movement of the mouse compared to last event.
+            */
+            public get delta(): UnityEngine.Vector2;
+            public set delta(value: UnityEngine.Vector2);
+            /** The type of pointer that created this event (for example, mouse, touch screen, pen).
+            */
+            public get pointerType(): UnityEngine.PointerType;
+            public set pointerType(value: UnityEngine.PointerType);
+            /** Which mouse button was pressed.
+            */
+            public get button(): number;
+            public set button(value: number);
+            /** Which modifier keys are held down.
+            */
+            public get modifiers(): UnityEngine.EventModifiers;
+            public set modifiers(value: UnityEngine.EventModifiers);
+            /** How hard pen pressure is applied, normalized between 0 (no pressure) and 1 (maximum pressure).
+            */
+            public get pressure(): number;
+            public set pressure(value: number);
+            /** Specifies the rotation of the pen around its axis, expressed in radians. The default value is 0.
+            */
+            public get twist(): number;
+            public set twist(value: number);
+            /** Specifies the angle of the pen relative to the X and Y axes, expressed in radians.
+            */
+            public get tilt(): UnityEngine.Vector2;
+            public set tilt(value: UnityEngine.Vector2);
+            /** Specifies the state of the pen. For example, whether the pen is in contact with the screen or tablet, whether the pen is inverted, and whether buttons are pressed.
+            */
+            public get penStatus(): UnityEngine.PenStatus;
+            public set penStatus(value: UnityEngine.PenStatus);
+            /** How many consecutive mouse clicks have we received.
+            */
+            public get clickCount(): number;
+            public set clickCount(value: number);
+            /** The character typed.
+            */
+            public get character(): number;
+            public set character(value: number);
+            /** The raw key code for keyboard events.
+            */
+            public get keyCode(): UnityEngine.KeyCode;
+            public set keyCode(value: UnityEngine.KeyCode);
+            /** Index of display that the event belongs to.
+            */
+            public get displayIndex(): number;
+            public set displayIndex(value: number);
+            /** The type of event.
+            */
+            public get type(): UnityEngine.EventType;
+            public set type(value: UnityEngine.EventType);
+            /** The name of an ExecuteCommand or ValidateCommand Event.
+            */
+            public get commandName(): string;
+            public set commandName(value: string);
+            /** Is Shift held down? (Read Only)
+            */
+            public get shift(): boolean;
+            public set shift(value: boolean);
+            /** Is Control key held down? (Read Only)
+            */
+            public get control(): boolean;
+            public set control(value: boolean);
+            /** Is Alt/Option key held down? (Read Only)
+            */
+            public get alt(): boolean;
+            public set alt(value: boolean);
+            /** Is Command/Windows key held down? (Read Only)
+            */
+            public get command(): boolean;
+            public set command(value: boolean);
+            /** Is Caps Lock on? (Read Only)
+            */
+            public get capsLock(): boolean;
+            public set capsLock(value: boolean);
+            /** Is the current keypress on the numeric keyboard? (Read Only)
+            */
+            public get numeric(): boolean;
+            public set numeric(value: boolean);
+            /** Is the current keypress a function key? (Read Only)
+            */
+            public get functionKey(): boolean;
+            /** The current event that's being processed right now.
+            */
+            public static get current(): UnityEngine.Event;
+            public static set current(value: UnityEngine.Event);
+            /** Is this event a keyboard event? (Read Only)
+            */
+            public get isKey(): boolean;
+            /** Is this event a mouse event? (Read Only)
+            */
+            public get isMouse(): boolean;
+            public get isScrollWheel(): boolean;
+            /** Get a filtered event type for a given control ID.
+            * @param $controlID The ID of the control you are querying from.
+            */
+            public GetTypeForControl ($controlID: number) : UnityEngine.EventType
+            /** Get the next queued [Event] from the event system.
+            * @param $outEvent Next Event.
+            */
+            public static PopEvent ($outEvent: UnityEngine.Event) : boolean
+            /** Returns the current number of events that are stored in the event queue.
+            * @returns Current number of events currently in the event queue. 
+            */
+            public static GetEventCount () : number
+            /** Create a keyboard event.
+            * @param $key A string representing keyboard keys and modifiers.
+            * @returns A new Event with EventType.KeyDown and the requested KeyCode and optional EventModifier. 
+            */
+            public static KeyboardEvent ($key: string) : UnityEngine.Event
+            /** Use this event.
+            */
+            public Use () : void
+            public constructor ()
+            public constructor ($displayIndex: number)
+            public constructor ($other: UnityEngine.Event)
         }
         /** Options for specifying the state of the pen. For example, whether the pen is in contact with the screen or tablet, whether the pen is inverted, and whether buttons are pressed. You can combine states using bitwise OR operators.
         */
@@ -18698,6 +18830,92 @@ declare namespace CS {
         class Font extends UnityEngine.Object
         {
             protected [__keep_incompatibility]: never;
+            /** The material used for the font display.
+            */
+            public get material(): UnityEngine.Material;
+            public set material(value: UnityEngine.Material);
+            public get fontNames(): System.Array$1<string>;
+            public set fontNames(value: System.Array$1<string>);
+            /** Is the font a dynamic font.
+            */
+            public get dynamic(): boolean;
+            /** The ascent of the font.
+            */
+            public get ascent(): number;
+            /** The default size of the font.
+            */
+            public get fontSize(): number;
+            /** Access an array of all characters contained in the font texture.
+            */
+            public get characterInfo(): System.Array$1<UnityEngine.CharacterInfo>;
+            public set characterInfo(value: System.Array$1<UnityEngine.CharacterInfo>);
+            /** The line height of the font.
+            */
+            public get lineHeight(): number;
+            public static add_textureRebuilt ($value: System.Action$1<UnityEngine.Font>) : void
+            public static remove_textureRebuilt ($value: System.Action$1<UnityEngine.Font>) : void
+            /** Creates a Font object which lets you render a font installed on the user machine.
+            * @param $fontname The name of the OS font to use for this font object.
+            * @param $size The default character size of the generated font.
+            * @param $fontnames Am array of names of OS fonts to use for this font object. When rendering characters using this font object, the first font which is installed on the machine, which contains the requested character will be used.
+            * @returns The generate Font object. 
+            */
+            public static CreateDynamicFontFromOSFont ($fontname: string, $size: number) : UnityEngine.Font
+            /** Creates a Font object which lets you render a font installed on the user machine.
+            * @param $fontname The name of the OS font to use for this font object.
+            * @param $size The default character size of the generated font.
+            * @param $fontnames Am array of names of OS fonts to use for this font object. When rendering characters using this font object, the first font which is installed on the machine, which contains the requested character will be used.
+            * @returns The generate Font object. 
+            */
+            public static CreateDynamicFontFromOSFont ($fontnames: System.Array$1<string>, $size: number) : UnityEngine.Font
+            /** Returns the maximum number of verts that the text generator may return for a given string.
+            * @param $str Input string.
+            */
+            public static GetMaxVertsForString ($str: string) : number
+            /** Does this font have a specific character?
+            * @param $c The character to check for.
+            * @returns Whether or not the font has the character specified. 
+            */
+            public HasCharacter ($c: number) : boolean
+            /** Get names of fonts installed on the machine.
+            * @returns An array of the names of all fonts installed on the machine. 
+            */
+            public static GetOSInstalledFontNames () : System.Array$1<string>
+            /** Gets the file paths of the fonts that are installed on the operating system.
+            * @returns An array of the file paths of all fonts installed on the machine. 
+            */
+            public static GetPathsToOSFonts () : System.Array$1<string>
+            /** Get rendering info for a specific character.
+            * @param $ch The character you need rendering information for.
+            * @param $info Returns the CharacterInfo struct with the rendering information for the character (if available).
+            * @param $size The size of the character (default value of zero will use font default size).
+            * @param $style The style of the character.
+            */
+            public GetCharacterInfo ($ch: number, $info: $Ref<UnityEngine.CharacterInfo>, $size: number, $style: UnityEngine.FontStyle) : boolean
+            /** Get rendering info for a specific character.
+            * @param $ch The character you need rendering information for.
+            * @param $info Returns the CharacterInfo struct with the rendering information for the character (if available).
+            * @param $size The size of the character (default value of zero will use font default size).
+            * @param $style The style of the character.
+            */
+            public GetCharacterInfo ($ch: number, $info: $Ref<UnityEngine.CharacterInfo>, $size: number) : boolean
+            /** Get rendering info for a specific character.
+            * @param $ch The character you need rendering information for.
+            * @param $info Returns the CharacterInfo struct with the rendering information for the character (if available).
+            * @param $size The size of the character (default value of zero will use font default size).
+            * @param $style The style of the character.
+            */
+            public GetCharacterInfo ($ch: number, $info: $Ref<UnityEngine.CharacterInfo>) : boolean
+            /** Request characters to be added to the font texture (dynamic fonts only).
+            * @param $characters The characters which are needed to be in the font texture.
+            * @param $size The size of the requested characters (the default value of zero will use the font's default size).
+            * @param $style The style of the requested characters.
+            */
+            public RequestCharactersInTexture ($characters: string, $size: number, $style: UnityEngine.FontStyle) : void
+            public RequestCharactersInTexture ($characters: string, $size: number) : void
+            public RequestCharactersInTexture ($characters: string) : void
+            public constructor ()
+            public constructor ($name: string)
         }
         /** Font Style applied to GUI Texts, Text Meshes or GUIStyles.
         */
@@ -18716,6 +18934,2893 @@ declare namespace CS {
         class Touch extends System.ValueType
         {
             protected [__keep_incompatibility]: never;
+        }
+        /** Types of UnityGUI input and processing events.
+        */
+        enum EventType
+        { MouseDown = 0, MouseUp = 1, MouseMove = 2, MouseDrag = 3, KeyDown = 4, KeyUp = 5, ScrollWheel = 6, Repaint = 7, Layout = 8, DragUpdated = 9, DragPerform = 10, DragExited = 15, Ignore = 11, Used = 12, ValidateCommand = 13, ExecuteCommand = 14, ContextClick = 16, MouseEnterWindow = 20, MouseLeaveWindow = 21, TouchDown = 30, TouchUp = 31, TouchMove = 32, TouchEnter = 33, TouchLeave = 34, TouchStationary = 35, mouseDown = 0, mouseUp = 1, mouseMove = 2, mouseDrag = 3, keyDown = 4, keyUp = 5, scrollWheel = 6, repaint = 7, layout = 8, dragUpdated = 9, dragPerform = 10, ignore = 11, used = 12 }
+        /** Pointer types.
+        */
+        enum PointerType
+        { Mouse = 0, Touch = 1, Pen = 2 }
+        /** The GUI class is the interface for Unity's GUI with manual positioning.
+        */
+        class GUI extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            /** Applies a global tint to the GUI. The tint affects backgrounds and text colors.
+            */
+            public static get color(): UnityEngine.Color;
+            public static set color(value: UnityEngine.Color);
+            /** Global tinting color for all background elements rendered by the GUI.
+            */
+            public static get backgroundColor(): UnityEngine.Color;
+            public static set backgroundColor(value: UnityEngine.Color);
+            /** Tinting color for all text rendered by the GUI.
+            */
+            public static get contentColor(): UnityEngine.Color;
+            public static set contentColor(value: UnityEngine.Color);
+            /** Returns true if any controls changed the value of the input data.
+            */
+            public static get changed(): boolean;
+            public static set changed(value: boolean);
+            /** Is the GUI enabled?
+            */
+            public static get enabled(): boolean;
+            public static set enabled(value: boolean);
+            /** The sorting depth of the currently executing GUI behaviour.
+            */
+            public static get depth(): number;
+            public static set depth(value: number);
+            /** The global skin to use.
+            */
+            public static get skin(): UnityEngine.GUISkin;
+            public static set skin(value: UnityEngine.GUISkin);
+            /** The GUI transform matrix.
+            */
+            public static get matrix(): UnityEngine.Matrix4x4;
+            public static set matrix(value: UnityEngine.Matrix4x4);
+            /** The tooltip of the control the mouse is currently over, or which has keyboard focus. (Read Only).
+            */
+            public static get tooltip(): string;
+            public static set tooltip(value: string);
+            /** Set the name of the next control.
+            */
+            public static SetNextControlName ($name: string) : void
+            /** Get the name of named control that has focus.
+            */
+            public static GetNameOfFocusedControl () : string
+            /** Move keyboard focus to a named control.
+            * @param $name Name set using SetNextControlName.
+            */
+            public static FocusControl ($name: string) : void
+            /** Make a window draggable.
+            * @param $position The part of the window that can be dragged. This is clipped to the actual window.
+            */
+            public static DragWindow ($position: UnityEngine.Rect) : void
+            /** Bring a specific window to front of the floating windows.
+            * @param $windowID The identifier used when you created the window in the Window call.
+            */
+            public static BringWindowToFront ($windowID: number) : void
+            /** Bring a specific window to back of the floating windows.
+            * @param $windowID The identifier used when you created the window in the Window call.
+            */
+            public static BringWindowToBack ($windowID: number) : void
+            /** Make a window become the active window.
+            * @param $windowID The identifier used when you created the window in the Window call.
+            */
+            public static FocusWindow ($windowID: number) : void
+            /** Remove focus from all windows.
+            */
+            public static UnfocusWindow () : void
+            /** Make a text or texture label on screen.
+            * @param $position Rectangle on the screen to use for the label.
+            * @param $text Text to display on the label.
+            * @param $image Texture to display on the label.
+            * @param $content Text, image and tooltip for this label.
+            * @param $style The style to use. If left out, the label style from the current GUISkin is used.
+            */
+            public static Label ($position: UnityEngine.Rect, $text: string) : void
+            /** Make a text or texture label on screen.
+            * @param $position Rectangle on the screen to use for the label.
+            * @param $text Text to display on the label.
+            * @param $image Texture to display on the label.
+            * @param $content Text, image and tooltip for this label.
+            * @param $style The style to use. If left out, the label style from the current GUISkin is used.
+            */
+            public static Label ($position: UnityEngine.Rect, $image: UnityEngine.Texture) : void
+            /** Make a text or texture label on screen.
+            * @param $position Rectangle on the screen to use for the label.
+            * @param $text Text to display on the label.
+            * @param $image Texture to display on the label.
+            * @param $content Text, image and tooltip for this label.
+            * @param $style The style to use. If left out, the label style from the current GUISkin is used.
+            */
+            public static Label ($position: UnityEngine.Rect, $content: UnityEngine.GUIContent) : void
+            /** Make a text or texture label on screen.
+            * @param $position Rectangle on the screen to use for the label.
+            * @param $text Text to display on the label.
+            * @param $image Texture to display on the label.
+            * @param $content Text, image and tooltip for this label.
+            * @param $style The style to use. If left out, the label style from the current GUISkin is used.
+            */
+            public static Label ($position: UnityEngine.Rect, $text: string, $style: UnityEngine.GUIStyle) : void
+            /** Make a text or texture label on screen.
+            * @param $position Rectangle on the screen to use for the label.
+            * @param $text Text to display on the label.
+            * @param $image Texture to display on the label.
+            * @param $content Text, image and tooltip for this label.
+            * @param $style The style to use. If left out, the label style from the current GUISkin is used.
+            */
+            public static Label ($position: UnityEngine.Rect, $image: UnityEngine.Texture, $style: UnityEngine.GUIStyle) : void
+            /** Make a text or texture label on screen.
+            * @param $position Rectangle on the screen to use for the label.
+            * @param $text Text to display on the label.
+            * @param $image Texture to display on the label.
+            * @param $content Text, image and tooltip for this label.
+            * @param $style The style to use. If left out, the label style from the current GUISkin is used.
+            */
+            public static Label ($position: UnityEngine.Rect, $content: UnityEngine.GUIContent, $style: UnityEngine.GUIStyle) : void
+            /** Draw a texture within a rectangle.
+            * @param $position Rectangle on the screen to draw the texture within.
+            * @param $image Texture to display.
+            * @param $scaleMode How to scale the image when the aspect ratio of it doesn't fit the aspect ratio to be drawn within.
+            * @param $alphaBlend Whether to apply alpha blending when drawing the image (enabled by default).
+            * @param $imageAspect Aspect ratio to use for the source image. If 0 (the default), the aspect ratio from the image is used.  Pass in w/h for the desired aspect ratio.  This allows the aspect ratio of the source image to be adjusted without changing the pixel width and height.
+            */
+            public static DrawTexture ($position: UnityEngine.Rect, $image: UnityEngine.Texture) : void
+            /** Draw a texture within a rectangle.
+            * @param $position Rectangle on the screen to draw the texture within.
+            * @param $image Texture to display.
+            * @param $scaleMode How to scale the image when the aspect ratio of it doesn't fit the aspect ratio to be drawn within.
+            * @param $alphaBlend Whether to apply alpha blending when drawing the image (enabled by default).
+            * @param $imageAspect Aspect ratio to use for the source image. If 0 (the default), the aspect ratio from the image is used.  Pass in w/h for the desired aspect ratio.  This allows the aspect ratio of the source image to be adjusted without changing the pixel width and height.
+            */
+            public static DrawTexture ($position: UnityEngine.Rect, $image: UnityEngine.Texture, $scaleMode: UnityEngine.ScaleMode) : void
+            /** Draw a texture within a rectangle.
+            * @param $position Rectangle on the screen to draw the texture within.
+            * @param $image Texture to display.
+            * @param $scaleMode How to scale the image when the aspect ratio of it doesn't fit the aspect ratio to be drawn within.
+            * @param $alphaBlend Whether to apply alpha blending when drawing the image (enabled by default).
+            * @param $imageAspect Aspect ratio to use for the source image. If 0 (the default), the aspect ratio from the image is used.  Pass in w/h for the desired aspect ratio.  This allows the aspect ratio of the source image to be adjusted without changing the pixel width and height.
+            */
+            public static DrawTexture ($position: UnityEngine.Rect, $image: UnityEngine.Texture, $scaleMode: UnityEngine.ScaleMode, $alphaBlend: boolean) : void
+            /** Draw a texture within a rectangle.
+            * @param $position Rectangle on the screen to draw the texture within.
+            * @param $image Texture to display.
+            * @param $scaleMode How to scale the image when the aspect ratio of it doesn't fit the aspect ratio to be drawn within.
+            * @param $alphaBlend Whether to apply alpha blending when drawing the image (enabled by default).
+            * @param $imageAspect Aspect ratio to use for the source image. If 0 (the default), the aspect ratio from the image is used.  Pass in w/h for the desired aspect ratio.  This allows the aspect ratio of the source image to be adjusted without changing the pixel width and height.
+            */
+            public static DrawTexture ($position: UnityEngine.Rect, $image: UnityEngine.Texture, $scaleMode: UnityEngine.ScaleMode, $alphaBlend: boolean, $imageAspect: number) : void
+            /** Draws a border with rounded corners within a rectangle. The texture is used to pattern the border.  Note that this method only works on shader model 2.5 and above.
+            * @param $position Rectangle on the screen to draw the texture within.
+            * @param $image Texture to display.
+            * @param $scaleMode How to scale the image when the aspect ratio of it doesn't fit the aspect ratio to be drawn within.
+            * @param $alphaBlend Whether to apply alpha blending when drawing the image (enabled by default).
+            * @param $imageAspect Aspect ratio to use for the source image. If 0 (the default), the aspect ratio from the image is used.  Pass in w/h for the desired aspect ratio.  This allows the aspect ratio of the source image to be adjusted without changing the pixel width and height.
+            * @param $color A tint color to apply on the texture.
+            * @param $borderWidth The width of the border. If 0, the full texture is drawn.
+            * @param $borderWidths The width of the borders (left, top, right and bottom). If Vector4.zero, the full texture is drawn.
+            * @param $borderRadius The radius for rounded corners. If 0, corners will not be rounded.
+            * @param $borderRadiuses The radiuses for rounded corners (top-left, top-right, bottom-right and bottom-left). If Vector4.zero, corners will not be rounded.
+            */
+            public static DrawTexture ($position: UnityEngine.Rect, $image: UnityEngine.Texture, $scaleMode: UnityEngine.ScaleMode, $alphaBlend: boolean, $imageAspect: number, $color: UnityEngine.Color, $borderWidth: number, $borderRadius: number) : void
+            /** Draws a border with rounded corners within a rectangle. The texture is used to pattern the border.  Note that this method only works on shader model 2.5 and above.
+            * @param $position Rectangle on the screen to draw the texture within.
+            * @param $image Texture to display.
+            * @param $scaleMode How to scale the image when the aspect ratio of it doesn't fit the aspect ratio to be drawn within.
+            * @param $alphaBlend Whether to apply alpha blending when drawing the image (enabled by default).
+            * @param $imageAspect Aspect ratio to use for the source image. If 0 (the default), the aspect ratio from the image is used.  Pass in w/h for the desired aspect ratio.  This allows the aspect ratio of the source image to be adjusted without changing the pixel width and height.
+            * @param $color A tint color to apply on the texture.
+            * @param $borderWidth The width of the border. If 0, the full texture is drawn.
+            * @param $borderWidths The width of the borders (left, top, right and bottom). If Vector4.zero, the full texture is drawn.
+            * @param $borderRadius The radius for rounded corners. If 0, corners will not be rounded.
+            * @param $borderRadiuses The radiuses for rounded corners (top-left, top-right, bottom-right and bottom-left). If Vector4.zero, corners will not be rounded.
+            */
+            public static DrawTexture ($position: UnityEngine.Rect, $image: UnityEngine.Texture, $scaleMode: UnityEngine.ScaleMode, $alphaBlend: boolean, $imageAspect: number, $color: UnityEngine.Color, $borderWidths: UnityEngine.Vector4, $borderRadius: number) : void
+            public static DrawTexture ($position: UnityEngine.Rect, $image: UnityEngine.Texture, $scaleMode: UnityEngine.ScaleMode, $alphaBlend: boolean, $imageAspect: number, $color: UnityEngine.Color, $borderWidths: UnityEngine.Vector4, $borderRadiuses: UnityEngine.Vector4) : void
+            /** Draw a texture within a rectangle with the given texture coordinates.
+            * @param $position Rectangle on the screen to draw the texture within.
+            * @param $image Texture to display.
+            * @param $texCoords How to scale the image when the aspect ratio of it doesn't fit the aspect ratio to be drawn within.
+            * @param $alphaBlend Whether to alpha blend the image on to the display (the default). If false, the picture is drawn on to the display.
+            */
+            public static DrawTextureWithTexCoords ($position: UnityEngine.Rect, $image: UnityEngine.Texture, $texCoords: UnityEngine.Rect) : void
+            /** Draw a texture within a rectangle with the given texture coordinates.
+            * @param $position Rectangle on the screen to draw the texture within.
+            * @param $image Texture to display.
+            * @param $texCoords How to scale the image when the aspect ratio of it doesn't fit the aspect ratio to be drawn within.
+            * @param $alphaBlend Whether to alpha blend the image on to the display (the default). If false, the picture is drawn on to the display.
+            */
+            public static DrawTextureWithTexCoords ($position: UnityEngine.Rect, $image: UnityEngine.Texture, $texCoords: UnityEngine.Rect, $alphaBlend: boolean) : void
+            /** Create a Box on the GUI Layer.
+            * @param $position Rectangle on the screen to use for the box.
+            * @param $text Text to display on the box.
+            * @param $image Texture to display on the box.
+            * @param $content Text, image and tooltip for this box.
+            * @param $style The style to use. If left out, the box style from the current GUISkin is used.
+            */
+            public static Box ($position: UnityEngine.Rect, $text: string) : void
+            /** Create a Box on the GUI Layer.
+            * @param $position Rectangle on the screen to use for the box.
+            * @param $text Text to display on the box.
+            * @param $image Texture to display on the box.
+            * @param $content Text, image and tooltip for this box.
+            * @param $style The style to use. If left out, the box style from the current GUISkin is used.
+            */
+            public static Box ($position: UnityEngine.Rect, $image: UnityEngine.Texture) : void
+            /** Create a Box on the GUI Layer.
+            * @param $position Rectangle on the screen to use for the box.
+            * @param $text Text to display on the box.
+            * @param $image Texture to display on the box.
+            * @param $content Text, image and tooltip for this box.
+            * @param $style The style to use. If left out, the box style from the current GUISkin is used.
+            */
+            public static Box ($position: UnityEngine.Rect, $content: UnityEngine.GUIContent) : void
+            /** Create a Box on the GUI Layer.
+            * @param $position Rectangle on the screen to use for the box.
+            * @param $text Text to display on the box.
+            * @param $image Texture to display on the box.
+            * @param $content Text, image and tooltip for this box.
+            * @param $style The style to use. If left out, the box style from the current GUISkin is used.
+            */
+            public static Box ($position: UnityEngine.Rect, $text: string, $style: UnityEngine.GUIStyle) : void
+            /** Create a Box on the GUI Layer.
+            * @param $position Rectangle on the screen to use for the box.
+            * @param $text Text to display on the box.
+            * @param $image Texture to display on the box.
+            * @param $content Text, image and tooltip for this box.
+            * @param $style The style to use. If left out, the box style from the current GUISkin is used.
+            */
+            public static Box ($position: UnityEngine.Rect, $image: UnityEngine.Texture, $style: UnityEngine.GUIStyle) : void
+            /** Create a Box on the GUI Layer.
+            * @param $position Rectangle on the screen to use for the box.
+            * @param $text Text to display on the box.
+            * @param $image Texture to display on the box.
+            * @param $content Text, image and tooltip for this box.
+            * @param $style The style to use. If left out, the box style from the current GUISkin is used.
+            */
+            public static Box ($position: UnityEngine.Rect, $content: UnityEngine.GUIContent, $style: UnityEngine.GUIStyle) : void
+            /** Make a single press button. The user clicks them and something happens immediately.
+            * @param $position Rectangle on the screen to use for the button.
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @returns true when the users clicks the button. 
+            */
+            public static Button ($position: UnityEngine.Rect, $text: string) : boolean
+            /** Make a single press button. The user clicks them and something happens immediately.
+            * @param $position Rectangle on the screen to use for the button.
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @returns true when the users clicks the button. 
+            */
+            public static Button ($position: UnityEngine.Rect, $image: UnityEngine.Texture) : boolean
+            /** Make a single press button. The user clicks them and something happens immediately.
+            * @param $position Rectangle on the screen to use for the button.
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @returns true when the users clicks the button. 
+            */
+            public static Button ($position: UnityEngine.Rect, $content: UnityEngine.GUIContent) : boolean
+            /** Make a single press button. The user clicks them and something happens immediately.
+            * @param $position Rectangle on the screen to use for the button.
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @returns true when the users clicks the button. 
+            */
+            public static Button ($position: UnityEngine.Rect, $text: string, $style: UnityEngine.GUIStyle) : boolean
+            /** Make a single press button. The user clicks them and something happens immediately.
+            * @param $position Rectangle on the screen to use for the button.
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @returns true when the users clicks the button. 
+            */
+            public static Button ($position: UnityEngine.Rect, $image: UnityEngine.Texture, $style: UnityEngine.GUIStyle) : boolean
+            /** Make a single press button. The user clicks them and something happens immediately.
+            * @param $position Rectangle on the screen to use for the button.
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @returns true when the users clicks the button. 
+            */
+            public static Button ($position: UnityEngine.Rect, $content: UnityEngine.GUIContent, $style: UnityEngine.GUIStyle) : boolean
+            /** Make a button that is active as long as the user holds it down.
+            * @param $position Rectangle on the screen to use for the button.
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @returns True when the users clicks the button. 
+            */
+            public static RepeatButton ($position: UnityEngine.Rect, $text: string) : boolean
+            /** Make a button that is active as long as the user holds it down.
+            * @param $position Rectangle on the screen to use for the button.
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @returns True when the users clicks the button. 
+            */
+            public static RepeatButton ($position: UnityEngine.Rect, $image: UnityEngine.Texture) : boolean
+            /** Make a button that is active as long as the user holds it down.
+            * @param $position Rectangle on the screen to use for the button.
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @returns True when the users clicks the button. 
+            */
+            public static RepeatButton ($position: UnityEngine.Rect, $content: UnityEngine.GUIContent) : boolean
+            /** Make a button that is active as long as the user holds it down.
+            * @param $position Rectangle on the screen to use for the button.
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @returns True when the users clicks the button. 
+            */
+            public static RepeatButton ($position: UnityEngine.Rect, $text: string, $style: UnityEngine.GUIStyle) : boolean
+            /** Make a button that is active as long as the user holds it down.
+            * @param $position Rectangle on the screen to use for the button.
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @returns True when the users clicks the button. 
+            */
+            public static RepeatButton ($position: UnityEngine.Rect, $image: UnityEngine.Texture, $style: UnityEngine.GUIStyle) : boolean
+            /** Make a button that is active as long as the user holds it down.
+            * @param $position Rectangle on the screen to use for the button.
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @returns True when the users clicks the button. 
+            */
+            public static RepeatButton ($position: UnityEngine.Rect, $content: UnityEngine.GUIContent, $style: UnityEngine.GUIStyle) : boolean
+            /** Make a single-line text field where the user can edit a string.
+            * @param $position Rectangle on the screen to use for the text field.
+            * @param $text Text to edit. The return value of this function should be assigned back to the string as shown in the example.
+            * @param $maxLength The maximum length of the string. If left out, the user can type for ever and ever.
+            * @param $style The style to use. If left out, the textField style from the current GUISkin is used.
+            * @returns The edited string. 
+            */
+            public static TextField ($position: UnityEngine.Rect, $text: string) : string
+            /** Make a single-line text field where the user can edit a string.
+            * @param $position Rectangle on the screen to use for the text field.
+            * @param $text Text to edit. The return value of this function should be assigned back to the string as shown in the example.
+            * @param $maxLength The maximum length of the string. If left out, the user can type for ever and ever.
+            * @param $style The style to use. If left out, the textField style from the current GUISkin is used.
+            * @returns The edited string. 
+            */
+            public static TextField ($position: UnityEngine.Rect, $text: string, $maxLength: number) : string
+            /** Make a single-line text field where the user can edit a string.
+            * @param $position Rectangle on the screen to use for the text field.
+            * @param $text Text to edit. The return value of this function should be assigned back to the string as shown in the example.
+            * @param $maxLength The maximum length of the string. If left out, the user can type for ever and ever.
+            * @param $style The style to use. If left out, the textField style from the current GUISkin is used.
+            * @returns The edited string. 
+            */
+            public static TextField ($position: UnityEngine.Rect, $text: string, $style: UnityEngine.GUIStyle) : string
+            /** Make a single-line text field where the user can edit a string.
+            * @param $position Rectangle on the screen to use for the text field.
+            * @param $text Text to edit. The return value of this function should be assigned back to the string as shown in the example.
+            * @param $maxLength The maximum length of the string. If left out, the user can type for ever and ever.
+            * @param $style The style to use. If left out, the textField style from the current GUISkin is used.
+            * @returns The edited string. 
+            */
+            public static TextField ($position: UnityEngine.Rect, $text: string, $maxLength: number, $style: UnityEngine.GUIStyle) : string
+            /** Make a text field where the user can enter a password.
+            * @param $position Rectangle on the screen to use for the text field.
+            * @param $password Password to edit. The return value of this function should be assigned back to the string as shown in the example.
+            * @param $maskChar Character to mask the password with.
+            * @param $maxLength The maximum length of the string. If left out, the user can type for ever and ever.
+            * @param $style The style to use. If left out, the textField style from the current GUISkin is used.
+            * @returns The edited password. 
+            */
+            public static PasswordField ($position: UnityEngine.Rect, $password: string, $maskChar: number) : string
+            /** Make a text field where the user can enter a password.
+            * @param $position Rectangle on the screen to use for the text field.
+            * @param $password Password to edit. The return value of this function should be assigned back to the string as shown in the example.
+            * @param $maskChar Character to mask the password with.
+            * @param $maxLength The maximum length of the string. If left out, the user can type for ever and ever.
+            * @param $style The style to use. If left out, the textField style from the current GUISkin is used.
+            * @returns The edited password. 
+            */
+            public static PasswordField ($position: UnityEngine.Rect, $password: string, $maskChar: number, $maxLength: number) : string
+            /** Make a text field where the user can enter a password.
+            * @param $position Rectangle on the screen to use for the text field.
+            * @param $password Password to edit. The return value of this function should be assigned back to the string as shown in the example.
+            * @param $maskChar Character to mask the password with.
+            * @param $maxLength The maximum length of the string. If left out, the user can type for ever and ever.
+            * @param $style The style to use. If left out, the textField style from the current GUISkin is used.
+            * @returns The edited password. 
+            */
+            public static PasswordField ($position: UnityEngine.Rect, $password: string, $maskChar: number, $style: UnityEngine.GUIStyle) : string
+            /** Make a text field where the user can enter a password.
+            * @param $position Rectangle on the screen to use for the text field.
+            * @param $password Password to edit. The return value of this function should be assigned back to the string as shown in the example.
+            * @param $maskChar Character to mask the password with.
+            * @param $maxLength The maximum length of the string. If left out, the user can type for ever and ever.
+            * @param $style The style to use. If left out, the textField style from the current GUISkin is used.
+            * @returns The edited password. 
+            */
+            public static PasswordField ($position: UnityEngine.Rect, $password: string, $maskChar: number, $maxLength: number, $style: UnityEngine.GUIStyle) : string
+            /** Make a Multi-line text area where the user can edit a string.
+            * @param $position Rectangle on the screen to use for the text field.
+            * @param $text Text to edit. The return value of this function should be assigned back to the string as shown in the example.
+            * @param $maxLength The maximum length of the string. If left out, the user can type for ever and ever.
+            * @param $style The style to use. If left out, the textArea style from the current GUISkin is used.
+            * @returns The edited string. 
+            */
+            public static TextArea ($position: UnityEngine.Rect, $text: string) : string
+            /** Make a Multi-line text area where the user can edit a string.
+            * @param $position Rectangle on the screen to use for the text field.
+            * @param $text Text to edit. The return value of this function should be assigned back to the string as shown in the example.
+            * @param $maxLength The maximum length of the string. If left out, the user can type for ever and ever.
+            * @param $style The style to use. If left out, the textArea style from the current GUISkin is used.
+            * @returns The edited string. 
+            */
+            public static TextArea ($position: UnityEngine.Rect, $text: string, $maxLength: number) : string
+            /** Make a Multi-line text area where the user can edit a string.
+            * @param $position Rectangle on the screen to use for the text field.
+            * @param $text Text to edit. The return value of this function should be assigned back to the string as shown in the example.
+            * @param $maxLength The maximum length of the string. If left out, the user can type for ever and ever.
+            * @param $style The style to use. If left out, the textArea style from the current GUISkin is used.
+            * @returns The edited string. 
+            */
+            public static TextArea ($position: UnityEngine.Rect, $text: string, $style: UnityEngine.GUIStyle) : string
+            /** Make a Multi-line text area where the user can edit a string.
+            * @param $position Rectangle on the screen to use for the text field.
+            * @param $text Text to edit. The return value of this function should be assigned back to the string as shown in the example.
+            * @param $maxLength The maximum length of the string. If left out, the user can type for ever and ever.
+            * @param $style The style to use. If left out, the textArea style from the current GUISkin is used.
+            * @returns The edited string. 
+            */
+            public static TextArea ($position: UnityEngine.Rect, $text: string, $maxLength: number, $style: UnityEngine.GUIStyle) : string
+            /** Make an on/off toggle button.
+            * @param $position Rectangle on the screen to use for the button.
+            * @param $value Is this button on or off?
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the toggle style from the current GUISkin is used.
+            * @returns The new value of the button. 
+            */
+            public static Toggle ($position: UnityEngine.Rect, $value: boolean, $text: string) : boolean
+            /** Make an on/off toggle button.
+            * @param $position Rectangle on the screen to use for the button.
+            * @param $value Is this button on or off?
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the toggle style from the current GUISkin is used.
+            * @returns The new value of the button. 
+            */
+            public static Toggle ($position: UnityEngine.Rect, $value: boolean, $image: UnityEngine.Texture) : boolean
+            /** Make an on/off toggle button.
+            * @param $position Rectangle on the screen to use for the button.
+            * @param $value Is this button on or off?
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the toggle style from the current GUISkin is used.
+            * @returns The new value of the button. 
+            */
+            public static Toggle ($position: UnityEngine.Rect, $value: boolean, $content: UnityEngine.GUIContent) : boolean
+            /** Make an on/off toggle button.
+            * @param $position Rectangle on the screen to use for the button.
+            * @param $value Is this button on or off?
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the toggle style from the current GUISkin is used.
+            * @returns The new value of the button. 
+            */
+            public static Toggle ($position: UnityEngine.Rect, $value: boolean, $text: string, $style: UnityEngine.GUIStyle) : boolean
+            /** Make an on/off toggle button.
+            * @param $position Rectangle on the screen to use for the button.
+            * @param $value Is this button on or off?
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the toggle style from the current GUISkin is used.
+            * @returns The new value of the button. 
+            */
+            public static Toggle ($position: UnityEngine.Rect, $value: boolean, $image: UnityEngine.Texture, $style: UnityEngine.GUIStyle) : boolean
+            /** Make an on/off toggle button.
+            * @param $position Rectangle on the screen to use for the button.
+            * @param $value Is this button on or off?
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the toggle style from the current GUISkin is used.
+            * @returns The new value of the button. 
+            */
+            public static Toggle ($position: UnityEngine.Rect, $value: boolean, $content: UnityEngine.GUIContent, $style: UnityEngine.GUIStyle) : boolean
+            public static Toggle ($position: UnityEngine.Rect, $id: number, $value: boolean, $content: UnityEngine.GUIContent, $style: UnityEngine.GUIStyle) : boolean
+            /** Make a toolbar.
+            * @param $position Rectangle on the screen to use for the toolbar.
+            * @param $selected The index of the selected button.
+            * @param $texts An array of strings to show on the toolbar buttons.
+            * @param $images An array of textures on the toolbar buttons.
+            * @param $contents An array of text, image and tooltips for the toolbar buttons.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $buttonSize Determines how toolbar button size is calculated.
+            * @returns The index of the selected button. 
+            */
+            public static Toolbar ($position: UnityEngine.Rect, $selected: number, $texts: System.Array$1<string>) : number
+            /** Make a toolbar.
+            * @param $position Rectangle on the screen to use for the toolbar.
+            * @param $selected The index of the selected button.
+            * @param $texts An array of strings to show on the toolbar buttons.
+            * @param $images An array of textures on the toolbar buttons.
+            * @param $contents An array of text, image and tooltips for the toolbar buttons.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $buttonSize Determines how toolbar button size is calculated.
+            * @returns The index of the selected button. 
+            */
+            public static Toolbar ($position: UnityEngine.Rect, $selected: number, $images: System.Array$1<UnityEngine.Texture>) : number
+            /** Make a toolbar.
+            * @param $position Rectangle on the screen to use for the toolbar.
+            * @param $selected The index of the selected button.
+            * @param $texts An array of strings to show on the toolbar buttons.
+            * @param $images An array of textures on the toolbar buttons.
+            * @param $contents An array of text, image and tooltips for the toolbar buttons.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $buttonSize Determines how toolbar button size is calculated.
+            * @returns The index of the selected button. 
+            */
+            public static Toolbar ($position: UnityEngine.Rect, $selected: number, $contents: System.Array$1<UnityEngine.GUIContent>) : number
+            /** Make a toolbar.
+            * @param $position Rectangle on the screen to use for the toolbar.
+            * @param $selected The index of the selected button.
+            * @param $texts An array of strings to show on the toolbar buttons.
+            * @param $images An array of textures on the toolbar buttons.
+            * @param $contents An array of text, image and tooltips for the toolbar buttons.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $buttonSize Determines how toolbar button size is calculated.
+            * @returns The index of the selected button. 
+            */
+            public static Toolbar ($position: UnityEngine.Rect, $selected: number, $texts: System.Array$1<string>, $style: UnityEngine.GUIStyle) : number
+            /** Make a toolbar.
+            * @param $position Rectangle on the screen to use for the toolbar.
+            * @param $selected The index of the selected button.
+            * @param $texts An array of strings to show on the toolbar buttons.
+            * @param $images An array of textures on the toolbar buttons.
+            * @param $contents An array of text, image and tooltips for the toolbar buttons.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $buttonSize Determines how toolbar button size is calculated.
+            * @returns The index of the selected button. 
+            */
+            public static Toolbar ($position: UnityEngine.Rect, $selected: number, $images: System.Array$1<UnityEngine.Texture>, $style: UnityEngine.GUIStyle) : number
+            /** Make a toolbar.
+            * @param $position Rectangle on the screen to use for the toolbar.
+            * @param $selected The index of the selected button.
+            * @param $texts An array of strings to show on the toolbar buttons.
+            * @param $images An array of textures on the toolbar buttons.
+            * @param $contents An array of text, image and tooltips for the toolbar buttons.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $buttonSize Determines how toolbar button size is calculated.
+            * @returns The index of the selected button. 
+            */
+            public static Toolbar ($position: UnityEngine.Rect, $selected: number, $contents: System.Array$1<UnityEngine.GUIContent>, $style: UnityEngine.GUIStyle) : number
+            public static Toolbar ($position: UnityEngine.Rect, $selected: number, $contents: System.Array$1<UnityEngine.GUIContent>, $style: UnityEngine.GUIStyle, $buttonSize: UnityEngine.GUI.ToolbarButtonSize) : number
+            /** Make a grid of buttons.
+            * @param $position Rectangle on the screen to use for the grid.
+            * @param $selected The index of the selected grid button.
+            * @param $texts An array of strings to show on the grid buttons.
+            * @param $images An array of textures on the grid buttons.
+            * @param $contents An array of text, image and tooltips for the grid button.
+            * @param $xCount How many elements to fit in the horizontal direction. The controls will be scaled to fit unless the style defines a fixedWidth to use.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @returns The index of the selected button. 
+            */
+            public static SelectionGrid ($position: UnityEngine.Rect, $selected: number, $texts: System.Array$1<string>, $xCount: number) : number
+            /** Make a grid of buttons.
+            * @param $position Rectangle on the screen to use for the grid.
+            * @param $selected The index of the selected grid button.
+            * @param $texts An array of strings to show on the grid buttons.
+            * @param $images An array of textures on the grid buttons.
+            * @param $contents An array of text, image and tooltips for the grid button.
+            * @param $xCount How many elements to fit in the horizontal direction. The controls will be scaled to fit unless the style defines a fixedWidth to use.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @returns The index of the selected button. 
+            */
+            public static SelectionGrid ($position: UnityEngine.Rect, $selected: number, $images: System.Array$1<UnityEngine.Texture>, $xCount: number) : number
+            /** Make a grid of buttons.
+            * @param $position Rectangle on the screen to use for the grid.
+            * @param $selected The index of the selected grid button.
+            * @param $texts An array of strings to show on the grid buttons.
+            * @param $images An array of textures on the grid buttons.
+            * @param $contents An array of text, image and tooltips for the grid button.
+            * @param $xCount How many elements to fit in the horizontal direction. The controls will be scaled to fit unless the style defines a fixedWidth to use.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @returns The index of the selected button. 
+            */
+            public static SelectionGrid ($position: UnityEngine.Rect, $selected: number, $content: System.Array$1<UnityEngine.GUIContent>, $xCount: number) : number
+            /** Make a grid of buttons.
+            * @param $position Rectangle on the screen to use for the grid.
+            * @param $selected The index of the selected grid button.
+            * @param $texts An array of strings to show on the grid buttons.
+            * @param $images An array of textures on the grid buttons.
+            * @param $contents An array of text, image and tooltips for the grid button.
+            * @param $xCount How many elements to fit in the horizontal direction. The controls will be scaled to fit unless the style defines a fixedWidth to use.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @returns The index of the selected button. 
+            */
+            public static SelectionGrid ($position: UnityEngine.Rect, $selected: number, $texts: System.Array$1<string>, $xCount: number, $style: UnityEngine.GUIStyle) : number
+            /** Make a grid of buttons.
+            * @param $position Rectangle on the screen to use for the grid.
+            * @param $selected The index of the selected grid button.
+            * @param $texts An array of strings to show on the grid buttons.
+            * @param $images An array of textures on the grid buttons.
+            * @param $contents An array of text, image and tooltips for the grid button.
+            * @param $xCount How many elements to fit in the horizontal direction. The controls will be scaled to fit unless the style defines a fixedWidth to use.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @returns The index of the selected button. 
+            */
+            public static SelectionGrid ($position: UnityEngine.Rect, $selected: number, $images: System.Array$1<UnityEngine.Texture>, $xCount: number, $style: UnityEngine.GUIStyle) : number
+            /** Make a grid of buttons.
+            * @param $position Rectangle on the screen to use for the grid.
+            * @param $selected The index of the selected grid button.
+            * @param $texts An array of strings to show on the grid buttons.
+            * @param $images An array of textures on the grid buttons.
+            * @param $contents An array of text, image and tooltips for the grid button.
+            * @param $xCount How many elements to fit in the horizontal direction. The controls will be scaled to fit unless the style defines a fixedWidth to use.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @returns The index of the selected button. 
+            */
+            public static SelectionGrid ($position: UnityEngine.Rect, $selected: number, $contents: System.Array$1<UnityEngine.GUIContent>, $xCount: number, $style: UnityEngine.GUIStyle) : number
+            /** A horizontal slider the user can drag to change a value between a min and a max.
+            * @param $position Rectangle on the screen to use for the slider.
+            * @param $value The value the slider shows. This determines the position of the draggable thumb.
+            * @param $leftValue The value at the left end of the slider.
+            * @param $rightValue The value at the right end of the slider.
+            * @param $slider The GUIStyle to use for displaying the dragging area. If left out, the horizontalSlider style from the current GUISkin is used.
+            * @param $thumb The GUIStyle to use for displaying draggable thumb. If left out, the horizontalSliderThumb style from the current GUISkin is used.
+            * @returns The value that has been set by the user. 
+            */
+            public static HorizontalSlider ($position: UnityEngine.Rect, $value: number, $leftValue: number, $rightValue: number) : number
+            /** A horizontal slider the user can drag to change a value between a min and a max.
+            * @param $position Rectangle on the screen to use for the slider.
+            * @param $value The value the slider shows. This determines the position of the draggable thumb.
+            * @param $leftValue The value at the left end of the slider.
+            * @param $rightValue The value at the right end of the slider.
+            * @param $slider The GUIStyle to use for displaying the dragging area. If left out, the horizontalSlider style from the current GUISkin is used.
+            * @param $thumb The GUIStyle to use for displaying draggable thumb. If left out, the horizontalSliderThumb style from the current GUISkin is used.
+            * @returns The value that has been set by the user. 
+            */
+            public static HorizontalSlider ($position: UnityEngine.Rect, $value: number, $leftValue: number, $rightValue: number, $slider: UnityEngine.GUIStyle, $thumb: UnityEngine.GUIStyle) : number
+            public static HorizontalSlider ($position: UnityEngine.Rect, $value: number, $leftValue: number, $rightValue: number, $slider: UnityEngine.GUIStyle, $thumb: UnityEngine.GUIStyle, $thumbExtent: UnityEngine.GUIStyle) : number
+            /** A vertical slider the user can drag to change a value between a min and a max.
+            * @param $position Rectangle on the screen to use for the slider.
+            * @param $value The value the slider shows. This determines the position of the draggable thumb.
+            * @param $topValue The value at the top end of the slider.
+            * @param $bottomValue The value at the bottom end of the slider.
+            * @param $slider The GUIStyle to use for displaying the dragging area. If left out, the horizontalSlider style from the current GUISkin is used.
+            * @param $thumb The GUIStyle to use for displaying draggable thumb. If left out, the horizontalSliderThumb style from the current GUISkin is used.
+            * @returns The value that has been set by the user. 
+            */
+            public static VerticalSlider ($position: UnityEngine.Rect, $value: number, $topValue: number, $bottomValue: number) : number
+            /** A vertical slider the user can drag to change a value between a min and a max.
+            * @param $position Rectangle on the screen to use for the slider.
+            * @param $value The value the slider shows. This determines the position of the draggable thumb.
+            * @param $topValue The value at the top end of the slider.
+            * @param $bottomValue The value at the bottom end of the slider.
+            * @param $slider The GUIStyle to use for displaying the dragging area. If left out, the horizontalSlider style from the current GUISkin is used.
+            * @param $thumb The GUIStyle to use for displaying draggable thumb. If left out, the horizontalSliderThumb style from the current GUISkin is used.
+            * @returns The value that has been set by the user. 
+            */
+            public static VerticalSlider ($position: UnityEngine.Rect, $value: number, $topValue: number, $bottomValue: number, $slider: UnityEngine.GUIStyle, $thumb: UnityEngine.GUIStyle) : number
+            public static VerticalSlider ($position: UnityEngine.Rect, $value: number, $topValue: number, $bottomValue: number, $slider: UnityEngine.GUIStyle, $thumb: UnityEngine.GUIStyle, $thumbExtent: UnityEngine.GUIStyle) : number
+            public static Slider ($position: UnityEngine.Rect, $value: number, $size: number, $start: number, $end: number, $slider: UnityEngine.GUIStyle, $thumb: UnityEngine.GUIStyle, $horiz: boolean, $id: number, $thumbExtent?: UnityEngine.GUIStyle) : number
+            /** Make a horizontal scrollbar. Scrollbars are what you use to scroll through a document. Most likely, you want to use scrollViews instead.
+            * @param $position Rectangle on the screen to use for the scrollbar.
+            * @param $value The position between min and max.
+            * @param $size How much can we see?
+            * @param $leftValue The value at the left end of the scrollbar.
+            * @param $rightValue The value at the right end of the scrollbar.
+            * @param $style The style to use for the scrollbar background. If left out, the horizontalScrollbar style from the current GUISkin is used.
+            * @returns The modified value. This can be changed by the user by dragging the scrollbar, or clicking the arrows at the end. 
+            */
+            public static HorizontalScrollbar ($position: UnityEngine.Rect, $value: number, $size: number, $leftValue: number, $rightValue: number) : number
+            /** Make a horizontal scrollbar. Scrollbars are what you use to scroll through a document. Most likely, you want to use scrollViews instead.
+            * @param $position Rectangle on the screen to use for the scrollbar.
+            * @param $value The position between min and max.
+            * @param $size How much can we see?
+            * @param $leftValue The value at the left end of the scrollbar.
+            * @param $rightValue The value at the right end of the scrollbar.
+            * @param $style The style to use for the scrollbar background. If left out, the horizontalScrollbar style from the current GUISkin is used.
+            * @returns The modified value. This can be changed by the user by dragging the scrollbar, or clicking the arrows at the end. 
+            */
+            public static HorizontalScrollbar ($position: UnityEngine.Rect, $value: number, $size: number, $leftValue: number, $rightValue: number, $style: UnityEngine.GUIStyle) : number
+            /** Make a vertical scrollbar. Scrollbars are what you use to scroll through a document. Most likely, you want to use scrollViews instead.
+            * @param $position Rectangle on the screen to use for the scrollbar.
+            * @param $value The position between min and max.
+            * @param $size How much can we see?
+            * @param $topValue The value at the top of the scrollbar.
+            * @param $bottomValue The value at the bottom of the scrollbar.
+            * @param $style The style to use for the scrollbar background. If left out, the horizontalScrollbar style from the current GUISkin is used.
+            * @returns The modified value. This can be changed by the user by dragging the scrollbar, or clicking the arrows at the end. 
+            */
+            public static VerticalScrollbar ($position: UnityEngine.Rect, $value: number, $size: number, $topValue: number, $bottomValue: number) : number
+            /** Make a vertical scrollbar. Scrollbars are what you use to scroll through a document. Most likely, you want to use scrollViews instead.
+            * @param $position Rectangle on the screen to use for the scrollbar.
+            * @param $value The position between min and max.
+            * @param $size How much can we see?
+            * @param $topValue The value at the top of the scrollbar.
+            * @param $bottomValue The value at the bottom of the scrollbar.
+            * @param $style The style to use for the scrollbar background. If left out, the horizontalScrollbar style from the current GUISkin is used.
+            * @returns The modified value. This can be changed by the user by dragging the scrollbar, or clicking the arrows at the end. 
+            */
+            public static VerticalScrollbar ($position: UnityEngine.Rect, $value: number, $size: number, $topValue: number, $bottomValue: number, $style: UnityEngine.GUIStyle) : number
+            public static BeginClip ($position: UnityEngine.Rect, $scrollOffset: UnityEngine.Vector2, $renderOffset: UnityEngine.Vector2, $resetOffset: boolean) : void
+            /** Begin a group. Must be matched with a call to EndGroup.
+            * @param $position Rectangle on the screen to use for the group.
+            * @param $text Text to display on the group.
+            * @param $image Texture to display on the group.
+            * @param $content Text, image and tooltip for this group. If supplied, any mouse clicks are "captured" by the group and not If left out, no background is rendered, and mouse clicks are passed.
+            * @param $style The style to use for the background.
+            */
+            public static BeginGroup ($position: UnityEngine.Rect) : void
+            /** Begin a group. Must be matched with a call to EndGroup.
+            * @param $position Rectangle on the screen to use for the group.
+            * @param $text Text to display on the group.
+            * @param $image Texture to display on the group.
+            * @param $content Text, image and tooltip for this group. If supplied, any mouse clicks are "captured" by the group and not If left out, no background is rendered, and mouse clicks are passed.
+            * @param $style The style to use for the background.
+            */
+            public static BeginGroup ($position: UnityEngine.Rect, $text: string) : void
+            /** Begin a group. Must be matched with a call to EndGroup.
+            * @param $position Rectangle on the screen to use for the group.
+            * @param $text Text to display on the group.
+            * @param $image Texture to display on the group.
+            * @param $content Text, image and tooltip for this group. If supplied, any mouse clicks are "captured" by the group and not If left out, no background is rendered, and mouse clicks are passed.
+            * @param $style The style to use for the background.
+            */
+            public static BeginGroup ($position: UnityEngine.Rect, $image: UnityEngine.Texture) : void
+            /** Begin a group. Must be matched with a call to EndGroup.
+            * @param $position Rectangle on the screen to use for the group.
+            * @param $text Text to display on the group.
+            * @param $image Texture to display on the group.
+            * @param $content Text, image and tooltip for this group. If supplied, any mouse clicks are "captured" by the group and not If left out, no background is rendered, and mouse clicks are passed.
+            * @param $style The style to use for the background.
+            */
+            public static BeginGroup ($position: UnityEngine.Rect, $content: UnityEngine.GUIContent) : void
+            /** Begin a group. Must be matched with a call to EndGroup.
+            * @param $position Rectangle on the screen to use for the group.
+            * @param $text Text to display on the group.
+            * @param $image Texture to display on the group.
+            * @param $content Text, image and tooltip for this group. If supplied, any mouse clicks are "captured" by the group and not If left out, no background is rendered, and mouse clicks are passed.
+            * @param $style The style to use for the background.
+            */
+            public static BeginGroup ($position: UnityEngine.Rect, $style: UnityEngine.GUIStyle) : void
+            /** Begin a group. Must be matched with a call to EndGroup.
+            * @param $position Rectangle on the screen to use for the group.
+            * @param $text Text to display on the group.
+            * @param $image Texture to display on the group.
+            * @param $content Text, image and tooltip for this group. If supplied, any mouse clicks are "captured" by the group and not If left out, no background is rendered, and mouse clicks are passed.
+            * @param $style The style to use for the background.
+            */
+            public static BeginGroup ($position: UnityEngine.Rect, $text: string, $style: UnityEngine.GUIStyle) : void
+            /** Begin a group. Must be matched with a call to EndGroup.
+            * @param $position Rectangle on the screen to use for the group.
+            * @param $text Text to display on the group.
+            * @param $image Texture to display on the group.
+            * @param $content Text, image and tooltip for this group. If supplied, any mouse clicks are "captured" by the group and not If left out, no background is rendered, and mouse clicks are passed.
+            * @param $style The style to use for the background.
+            */
+            public static BeginGroup ($position: UnityEngine.Rect, $image: UnityEngine.Texture, $style: UnityEngine.GUIStyle) : void
+            /** Begin a group. Must be matched with a call to EndGroup.
+            * @param $position Rectangle on the screen to use for the group.
+            * @param $text Text to display on the group.
+            * @param $image Texture to display on the group.
+            * @param $content Text, image and tooltip for this group. If supplied, any mouse clicks are "captured" by the group and not If left out, no background is rendered, and mouse clicks are passed.
+            * @param $style The style to use for the background.
+            */
+            public static BeginGroup ($position: UnityEngine.Rect, $content: UnityEngine.GUIContent, $style: UnityEngine.GUIStyle) : void
+            /** End a group.
+            */
+            public static EndGroup () : void
+            public static BeginClip ($position: UnityEngine.Rect) : void
+            public static EndClip () : void
+            /** Begin a scrolling view inside your GUI.
+            * @param $position Rectangle on the screen to use for the ScrollView.
+            * @param $scrollPosition The pixel distance that the view is scrolled in the X and Y directions.
+            * @param $viewRect The rectangle used inside the scrollview.
+            * @param $horizontalScrollbar Optional GUIStyle to use for the horizontal scrollbar. If left out, the horizontalScrollbar style from the current GUISkin is used.
+            * @param $verticalScrollbar Optional GUIStyle to use for the vertical scrollbar. If left out, the verticalScrollbar style from the current GUISkin is used.
+            * @param $alwaysShowHorizontal Optional parameter to always show the horizontal scrollbar. If false or left out, it is only shown when viewRect is wider than position.
+            * @param $alwaysShowVertical Optional parameter to always show the vertical scrollbar. If false or left out, it is only shown when viewRect is taller than position.
+            * @returns The modified scrollPosition. Feed this back into the variable you pass in, as shown in the example. 
+            */
+            public static BeginScrollView ($position: UnityEngine.Rect, $scrollPosition: UnityEngine.Vector2, $viewRect: UnityEngine.Rect) : UnityEngine.Vector2
+            /** Begin a scrolling view inside your GUI.
+            * @param $position Rectangle on the screen to use for the ScrollView.
+            * @param $scrollPosition The pixel distance that the view is scrolled in the X and Y directions.
+            * @param $viewRect The rectangle used inside the scrollview.
+            * @param $horizontalScrollbar Optional GUIStyle to use for the horizontal scrollbar. If left out, the horizontalScrollbar style from the current GUISkin is used.
+            * @param $verticalScrollbar Optional GUIStyle to use for the vertical scrollbar. If left out, the verticalScrollbar style from the current GUISkin is used.
+            * @param $alwaysShowHorizontal Optional parameter to always show the horizontal scrollbar. If false or left out, it is only shown when viewRect is wider than position.
+            * @param $alwaysShowVertical Optional parameter to always show the vertical scrollbar. If false or left out, it is only shown when viewRect is taller than position.
+            * @returns The modified scrollPosition. Feed this back into the variable you pass in, as shown in the example. 
+            */
+            public static BeginScrollView ($position: UnityEngine.Rect, $scrollPosition: UnityEngine.Vector2, $viewRect: UnityEngine.Rect, $alwaysShowHorizontal: boolean, $alwaysShowVertical: boolean) : UnityEngine.Vector2
+            /** Begin a scrolling view inside your GUI.
+            * @param $position Rectangle on the screen to use for the ScrollView.
+            * @param $scrollPosition The pixel distance that the view is scrolled in the X and Y directions.
+            * @param $viewRect The rectangle used inside the scrollview.
+            * @param $horizontalScrollbar Optional GUIStyle to use for the horizontal scrollbar. If left out, the horizontalScrollbar style from the current GUISkin is used.
+            * @param $verticalScrollbar Optional GUIStyle to use for the vertical scrollbar. If left out, the verticalScrollbar style from the current GUISkin is used.
+            * @param $alwaysShowHorizontal Optional parameter to always show the horizontal scrollbar. If false or left out, it is only shown when viewRect is wider than position.
+            * @param $alwaysShowVertical Optional parameter to always show the vertical scrollbar. If false or left out, it is only shown when viewRect is taller than position.
+            * @returns The modified scrollPosition. Feed this back into the variable you pass in, as shown in the example. 
+            */
+            public static BeginScrollView ($position: UnityEngine.Rect, $scrollPosition: UnityEngine.Vector2, $viewRect: UnityEngine.Rect, $horizontalScrollbar: UnityEngine.GUIStyle, $verticalScrollbar: UnityEngine.GUIStyle) : UnityEngine.Vector2
+            /** Begin a scrolling view inside your GUI.
+            * @param $position Rectangle on the screen to use for the ScrollView.
+            * @param $scrollPosition The pixel distance that the view is scrolled in the X and Y directions.
+            * @param $viewRect The rectangle used inside the scrollview.
+            * @param $horizontalScrollbar Optional GUIStyle to use for the horizontal scrollbar. If left out, the horizontalScrollbar style from the current GUISkin is used.
+            * @param $verticalScrollbar Optional GUIStyle to use for the vertical scrollbar. If left out, the verticalScrollbar style from the current GUISkin is used.
+            * @param $alwaysShowHorizontal Optional parameter to always show the horizontal scrollbar. If false or left out, it is only shown when viewRect is wider than position.
+            * @param $alwaysShowVertical Optional parameter to always show the vertical scrollbar. If false or left out, it is only shown when viewRect is taller than position.
+            * @returns The modified scrollPosition. Feed this back into the variable you pass in, as shown in the example. 
+            */
+            public static BeginScrollView ($position: UnityEngine.Rect, $scrollPosition: UnityEngine.Vector2, $viewRect: UnityEngine.Rect, $alwaysShowHorizontal: boolean, $alwaysShowVertical: boolean, $horizontalScrollbar: UnityEngine.GUIStyle, $verticalScrollbar: UnityEngine.GUIStyle) : UnityEngine.Vector2
+            /** Ends a scrollview started with a call to BeginScrollView.
+            */
+            public static EndScrollView () : void
+            /** Ends a scrollview started with a call to BeginScrollView.
+            */
+            public static EndScrollView ($handleScrollWheel: boolean) : void
+            /** Scrolls all enclosing scrollviews so they try to make position visible.
+            */
+            public static ScrollTo ($position: UnityEngine.Rect) : void
+            public static ScrollTowards ($position: UnityEngine.Rect, $maxDelta: number) : boolean
+            public static Window ($id: number, $clientRect: UnityEngine.Rect, $func: UnityEngine.GUI.WindowFunction, $text: string) : UnityEngine.Rect
+            public static Window ($id: number, $clientRect: UnityEngine.Rect, $func: UnityEngine.GUI.WindowFunction, $image: UnityEngine.Texture) : UnityEngine.Rect
+            public static Window ($id: number, $clientRect: UnityEngine.Rect, $func: UnityEngine.GUI.WindowFunction, $content: UnityEngine.GUIContent) : UnityEngine.Rect
+            public static Window ($id: number, $clientRect: UnityEngine.Rect, $func: UnityEngine.GUI.WindowFunction, $text: string, $style: UnityEngine.GUIStyle) : UnityEngine.Rect
+            public static Window ($id: number, $clientRect: UnityEngine.Rect, $func: UnityEngine.GUI.WindowFunction, $image: UnityEngine.Texture, $style: UnityEngine.GUIStyle) : UnityEngine.Rect
+            public static Window ($id: number, $clientRect: UnityEngine.Rect, $func: UnityEngine.GUI.WindowFunction, $title: UnityEngine.GUIContent, $style: UnityEngine.GUIStyle) : UnityEngine.Rect
+            public static ModalWindow ($id: number, $clientRect: UnityEngine.Rect, $func: UnityEngine.GUI.WindowFunction, $text: string) : UnityEngine.Rect
+            public static ModalWindow ($id: number, $clientRect: UnityEngine.Rect, $func: UnityEngine.GUI.WindowFunction, $image: UnityEngine.Texture) : UnityEngine.Rect
+            public static ModalWindow ($id: number, $clientRect: UnityEngine.Rect, $func: UnityEngine.GUI.WindowFunction, $content: UnityEngine.GUIContent) : UnityEngine.Rect
+            public static ModalWindow ($id: number, $clientRect: UnityEngine.Rect, $func: UnityEngine.GUI.WindowFunction, $text: string, $style: UnityEngine.GUIStyle) : UnityEngine.Rect
+            public static ModalWindow ($id: number, $clientRect: UnityEngine.Rect, $func: UnityEngine.GUI.WindowFunction, $image: UnityEngine.Texture, $style: UnityEngine.GUIStyle) : UnityEngine.Rect
+            public static ModalWindow ($id: number, $clientRect: UnityEngine.Rect, $func: UnityEngine.GUI.WindowFunction, $content: UnityEngine.GUIContent, $style: UnityEngine.GUIStyle) : UnityEngine.Rect
+            /** If you want to have the entire window background to act as a drag area, use the version of DragWindow that takes no parameters and put it at the end of the window function.
+            */
+            public static DragWindow () : void
+            public constructor ()
+        }
+        /** Defines how GUI looks and behaves.
+        */
+        class GUISkin extends UnityEngine.ScriptableObject
+        {
+            protected [__keep_incompatibility]: never;
+            /** The default font to use for all styles.
+            */
+            public get font(): UnityEngine.Font;
+            public set font(value: UnityEngine.Font);
+            /** Style used by default for GUI.Box controls.
+            */
+            public get box(): UnityEngine.GUIStyle;
+            public set box(value: UnityEngine.GUIStyle);
+            /** Style used by default for GUI.Label controls.
+            */
+            public get label(): UnityEngine.GUIStyle;
+            public set label(value: UnityEngine.GUIStyle);
+            /** Style used by default for GUI.TextField controls.
+            */
+            public get textField(): UnityEngine.GUIStyle;
+            public set textField(value: UnityEngine.GUIStyle);
+            /** Style used by default for GUI.TextArea controls.
+            */
+            public get textArea(): UnityEngine.GUIStyle;
+            public set textArea(value: UnityEngine.GUIStyle);
+            /** Style used by default for GUI.Button controls.
+            */
+            public get button(): UnityEngine.GUIStyle;
+            public set button(value: UnityEngine.GUIStyle);
+            /** Style used by default for GUI.Toggle controls.
+            */
+            public get toggle(): UnityEngine.GUIStyle;
+            public set toggle(value: UnityEngine.GUIStyle);
+            /** Style used by default for Window controls (Additional resources: GUI.Window).
+            */
+            public get window(): UnityEngine.GUIStyle;
+            public set window(value: UnityEngine.GUIStyle);
+            /** Style used by default for the background part of GUI.HorizontalSlider controls.
+            */
+            public get horizontalSlider(): UnityEngine.GUIStyle;
+            public set horizontalSlider(value: UnityEngine.GUIStyle);
+            /** Style used by default for the thumb that is dragged in GUI.HorizontalSlider controls.
+            */
+            public get horizontalSliderThumb(): UnityEngine.GUIStyle;
+            public set horizontalSliderThumb(value: UnityEngine.GUIStyle);
+            /** Style used by default for the background part of GUI.VerticalSlider controls.
+            */
+            public get verticalSlider(): UnityEngine.GUIStyle;
+            public set verticalSlider(value: UnityEngine.GUIStyle);
+            /** Style used by default for the thumb that is dragged in GUI.VerticalSlider controls.
+            */
+            public get verticalSliderThumb(): UnityEngine.GUIStyle;
+            public set verticalSliderThumb(value: UnityEngine.GUIStyle);
+            /** Style used by default for the background part of GUI.HorizontalScrollbar controls.
+            */
+            public get horizontalScrollbar(): UnityEngine.GUIStyle;
+            public set horizontalScrollbar(value: UnityEngine.GUIStyle);
+            /** Style used by default for the thumb that is dragged in GUI.HorizontalScrollbar controls.
+            */
+            public get horizontalScrollbarThumb(): UnityEngine.GUIStyle;
+            public set horizontalScrollbarThumb(value: UnityEngine.GUIStyle);
+            /** Style used by default for the left button on GUI.HorizontalScrollbar controls.
+            */
+            public get horizontalScrollbarLeftButton(): UnityEngine.GUIStyle;
+            public set horizontalScrollbarLeftButton(value: UnityEngine.GUIStyle);
+            /** Style used by default for the right button on GUI.HorizontalScrollbar controls.
+            */
+            public get horizontalScrollbarRightButton(): UnityEngine.GUIStyle;
+            public set horizontalScrollbarRightButton(value: UnityEngine.GUIStyle);
+            /** Style used by default for the background part of GUI.VerticalScrollbar controls.
+            */
+            public get verticalScrollbar(): UnityEngine.GUIStyle;
+            public set verticalScrollbar(value: UnityEngine.GUIStyle);
+            /** Style used by default for the thumb that is dragged in GUI.VerticalScrollbar controls.
+            */
+            public get verticalScrollbarThumb(): UnityEngine.GUIStyle;
+            public set verticalScrollbarThumb(value: UnityEngine.GUIStyle);
+            /** Style used by default for the up button on GUI.VerticalScrollbar controls.
+            */
+            public get verticalScrollbarUpButton(): UnityEngine.GUIStyle;
+            public set verticalScrollbarUpButton(value: UnityEngine.GUIStyle);
+            /** Style used by default for the down button on GUI.VerticalScrollbar controls.
+            */
+            public get verticalScrollbarDownButton(): UnityEngine.GUIStyle;
+            public set verticalScrollbarDownButton(value: UnityEngine.GUIStyle);
+            /** Style used by default for the background of ScrollView controls (see GUI.BeginScrollView).
+            */
+            public get scrollView(): UnityEngine.GUIStyle;
+            public set scrollView(value: UnityEngine.GUIStyle);
+            /** Array of GUI styles for specific needs.
+            */
+            public get customStyles(): System.Array$1<UnityEngine.GUIStyle>;
+            public set customStyles(value: System.Array$1<UnityEngine.GUIStyle>);
+            /** Generic settings for how controls should behave with this skin.
+            */
+            public get settings(): UnityEngine.GUISettings;
+            /** Get a named GUIStyle.
+            */
+            public GetStyle ($styleName: string) : UnityEngine.GUIStyle
+            /** Try to search for a GUIStyle. This functions returns NULL and does not give an error.
+            */
+            public FindStyle ($styleName: string) : UnityEngine.GUIStyle
+            public GetEnumerator () : System.Collections.IEnumerator
+            public constructor ()
+        }
+        /** The contents of a GUI element.
+        */
+        class GUIContent extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            /** Shorthand for empty content.
+            */
+            public static none : UnityEngine.GUIContent
+            /** The text contained.
+            */
+            public get text(): string;
+            public set text(value: string);
+            /** The icon image contained.
+            */
+            public get image(): UnityEngine.Texture;
+            public set image(value: UnityEngine.Texture);
+            /** The tooltip of this element.
+            */
+            public get tooltip(): string;
+            public set tooltip(value: string);
+            public constructor ()
+            public constructor ($text: string)
+            public constructor ($image: UnityEngine.Texture)
+            public constructor ($text: string, $image: UnityEngine.Texture)
+            public constructor ($text: string, $tooltip: string)
+            public constructor ($image: UnityEngine.Texture, $tooltip: string)
+            public constructor ($text: string, $image: UnityEngine.Texture, $tooltip: string)
+            public constructor ($src: UnityEngine.GUIContent)
+        }
+        /** Styling information for GUI elements.
+        */
+        class GUIStyle extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            /** The font to use for rendering. If null, the default font for the current GUISkin is used instead.
+            */
+            public get font(): UnityEngine.Font;
+            public set font(value: UnityEngine.Font);
+            /** How image and text of the GUIContent is combined.
+            */
+            public get imagePosition(): UnityEngine.ImagePosition;
+            public set imagePosition(value: UnityEngine.ImagePosition);
+            /** Text alignment.
+            */
+            public get alignment(): UnityEngine.TextAnchor;
+            public set alignment(value: UnityEngine.TextAnchor);
+            /** Should the text be wordwrapped?
+            */
+            public get wordWrap(): boolean;
+            public set wordWrap(value: boolean);
+            /** What to do when the contents to be rendered is too large to fit within the area given.
+            */
+            public get clipping(): UnityEngine.TextClipping;
+            public set clipping(value: UnityEngine.TextClipping);
+            /** Pixel offset to apply to the content of this GUIstyle.
+            */
+            public get contentOffset(): UnityEngine.Vector2;
+            public set contentOffset(value: UnityEngine.Vector2);
+            /** If non-0, any GUI elements rendered with this style will have the width specified here.
+            */
+            public get fixedWidth(): number;
+            public set fixedWidth(value: number);
+            /** If non-0, any GUI elements rendered with this style will have the height specified here.
+            */
+            public get fixedHeight(): number;
+            public set fixedHeight(value: number);
+            /** Can GUI elements of this style be stretched horizontally for better layouting?
+            */
+            public get stretchWidth(): boolean;
+            public set stretchWidth(value: boolean);
+            /** Can GUI elements of this style be stretched vertically for better layout?
+            */
+            public get stretchHeight(): boolean;
+            public set stretchHeight(value: boolean);
+            /** The font size to use (for dynamic fonts).
+            */
+            public get fontSize(): number;
+            public set fontSize(value: number);
+            /** The font style to use (for dynamic fonts).
+            */
+            public get fontStyle(): UnityEngine.FontStyle;
+            public set fontStyle(value: UnityEngine.FontStyle);
+            /** Enable HTML-style tags for Text Formatting Markup.
+            */
+            public get richText(): boolean;
+            public set richText(value: boolean);
+            /** The name of this GUIStyle. Used for getting them based on name.
+            */
+            public get name(): string;
+            public set name(value: string);
+            /** Rendering settings for when the component is displayed normally.
+            */
+            public get normal(): UnityEngine.GUIStyleState;
+            public set normal(value: UnityEngine.GUIStyleState);
+            /** Rendering settings for when the mouse is hovering over the control.
+            */
+            public get hover(): UnityEngine.GUIStyleState;
+            public set hover(value: UnityEngine.GUIStyleState);
+            /** Rendering settings for when the control is pressed down.
+            */
+            public get active(): UnityEngine.GUIStyleState;
+            public set active(value: UnityEngine.GUIStyleState);
+            /** Rendering settings for when the control is turned on.
+            */
+            public get onNormal(): UnityEngine.GUIStyleState;
+            public set onNormal(value: UnityEngine.GUIStyleState);
+            /** Rendering settings for when the control is turned on and the mouse is hovering it.
+            */
+            public get onHover(): UnityEngine.GUIStyleState;
+            public set onHover(value: UnityEngine.GUIStyleState);
+            /** Rendering settings for when the element is turned on and pressed down.
+            */
+            public get onActive(): UnityEngine.GUIStyleState;
+            public set onActive(value: UnityEngine.GUIStyleState);
+            /** Rendering settings for when the element has keyboard focus.
+            */
+            public get focused(): UnityEngine.GUIStyleState;
+            public set focused(value: UnityEngine.GUIStyleState);
+            /** Rendering settings for when the element has keyboard and is turned on.
+            */
+            public get onFocused(): UnityEngine.GUIStyleState;
+            public set onFocused(value: UnityEngine.GUIStyleState);
+            /** The borders of all background images.
+            */
+            public get border(): UnityEngine.RectOffset;
+            public set border(value: UnityEngine.RectOffset);
+            /** The margins between elements rendered in this style and any other GUI elements.
+            */
+            public get margin(): UnityEngine.RectOffset;
+            public set margin(value: UnityEngine.RectOffset);
+            /** Space from the edge of GUIStyle to the start of the contents.
+            */
+            public get padding(): UnityEngine.RectOffset;
+            public set padding(value: UnityEngine.RectOffset);
+            /** Extra space to be added to the background image.
+            */
+            public get overflow(): UnityEngine.RectOffset;
+            public set overflow(value: UnityEngine.RectOffset);
+            /** The height of one line of text with this style, measured in pixels. (Read Only)
+            */
+            public get lineHeight(): number;
+            /** Shortcut for an empty GUIStyle.
+            */
+            public static get none(): UnityEngine.GUIStyle;
+            public get isHeightDependantOnWidth(): boolean;
+            /** Draw this GUIStyle on to the screen, internal version.
+            */
+            public Draw ($position: UnityEngine.Rect, $isHover: boolean, $isActive: boolean, $on: boolean, $hasKeyboardFocus: boolean) : void
+            /** Draw the GUIStyle with a text string inside.
+            */
+            public Draw ($position: UnityEngine.Rect, $text: string, $isHover: boolean, $isActive: boolean, $on: boolean, $hasKeyboardFocus: boolean) : void
+            /** Draw the GUIStyle with an image inside. If the image is too large to fit within the content area of the style it is scaled down.
+            */
+            public Draw ($position: UnityEngine.Rect, $image: UnityEngine.Texture, $isHover: boolean, $isActive: boolean, $on: boolean, $hasKeyboardFocus: boolean) : void
+            /** Draw the GUIStyle with text and an image inside. If the image is too large to fit within the content area of the style it is scaled down.
+            */
+            public Draw ($position: UnityEngine.Rect, $content: UnityEngine.GUIContent, $isHover: boolean, $isActive: boolean, $on: boolean, $hasKeyboardFocus: boolean) : void
+            /** Draw the GUIStyle with text and an image inside. If the image is too large to fit within the content area of the style it is scaled down.
+            */
+            public Draw ($position: UnityEngine.Rect, $content: UnityEngine.GUIContent, $controlID: number) : void
+            /** Draw the GUIStyle with text and an image inside. If the image is too large to fit within the content area of the style it is scaled down.
+            */
+            public Draw ($position: UnityEngine.Rect, $content: UnityEngine.GUIContent, $controlID: number, $on: boolean) : void
+            public Draw ($position: UnityEngine.Rect, $content: UnityEngine.GUIContent, $controlID: number, $on: boolean, $hover: boolean) : void
+            /** Draw this GUIStyle with selected content.
+            */
+            public DrawCursor ($position: UnityEngine.Rect, $content: UnityEngine.GUIContent, $controlID: number, $character: number) : void
+            /** Draw this GUIStyle with selected content.
+            */
+            public DrawWithTextSelection ($position: UnityEngine.Rect, $content: UnityEngine.GUIContent, $controlID: number, $firstSelectedCharacter: number, $lastSelectedCharacter: number) : void
+            public static op_Implicit ($str: string) : UnityEngine.GUIStyle
+            /** Get the pixel position of a given string index.
+            */
+            public GetCursorPixelPosition ($position: UnityEngine.Rect, $content: UnityEngine.GUIContent, $cursorStringIndex: number) : UnityEngine.Vector2
+            /** Get the cursor position (indexing into contents.text) when the user clicked at cursorPixelPosition.
+            */
+            public GetCursorStringIndex ($position: UnityEngine.Rect, $content: UnityEngine.GUIContent, $cursorPixelPosition: UnityEngine.Vector2) : number
+            /** Calculate the size of some content if it is rendered with this style.
+            */
+            public CalcSize ($content: UnityEngine.GUIContent) : UnityEngine.Vector2
+            /** Calculate the size of an element formatted with this style, and a given space to content.
+            */
+            public CalcScreenSize ($contentSize: UnityEngine.Vector2) : UnityEngine.Vector2
+            /** How tall this element will be when rendered with content and a specific width.
+            */
+            public CalcHeight ($content: UnityEngine.GUIContent, $width: number) : number
+            /** Calculate the minimum and maximum widths for this style rendered with content.
+            */
+            public CalcMinMaxWidth ($content: UnityEngine.GUIContent, $minWidth: $Ref<number>, $maxWidth: $Ref<number>) : void
+            public constructor ()
+            public constructor ($other: UnityEngine.GUIStyle)
+        }
+        /** Base class for images & text strings displayed in a GUI.
+        */
+        class GUIElement extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+        }
+        /** Used by GUIUtility.GetControlID to inform the IMGUI system if a given control can get keyboard focus. This allows the IMGUI system to give focus appropriately when a user presses tab for cycling between controls.
+        */
+        enum FocusType
+        { Native = 0, Keyboard = 1, Passive = 2 }
+        class GUILayer extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+        }
+        /** The GUILayout class is the interface for Unity gui with automatic layout.
+        */
+        class GUILayout extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            /** Make an auto-layout label.
+            * @param $text Text to display on the label.
+            * @param $image Texture to display on the label.
+            * @param $content Text, image and tooltip for this label.
+            * @param $style The style to use. If left out, the label style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            */
+            public static Label ($image: UnityEngine.Texture, ...options: UnityEngine.GUILayoutOption[]) : void
+            /** Make an auto-layout label.
+            * @param $text Text to display on the label.
+            * @param $image Texture to display on the label.
+            * @param $content Text, image and tooltip for this label.
+            * @param $style The style to use. If left out, the label style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            */
+            public static Label ($text: string, ...options: UnityEngine.GUILayoutOption[]) : void
+            /** Make an auto-layout label.
+            * @param $text Text to display on the label.
+            * @param $image Texture to display on the label.
+            * @param $content Text, image and tooltip for this label.
+            * @param $style The style to use. If left out, the label style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            */
+            public static Label ($content: UnityEngine.GUIContent, ...options: UnityEngine.GUILayoutOption[]) : void
+            /** Make an auto-layout label.
+            * @param $text Text to display on the label.
+            * @param $image Texture to display on the label.
+            * @param $content Text, image and tooltip for this label.
+            * @param $style The style to use. If left out, the label style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            */
+            public static Label ($image: UnityEngine.Texture, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : void
+            /** Make an auto-layout label.
+            * @param $text Text to display on the label.
+            * @param $image Texture to display on the label.
+            * @param $content Text, image and tooltip for this label.
+            * @param $style The style to use. If left out, the label style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            */
+            public static Label ($text: string, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : void
+            /** Make an auto-layout label.
+            * @param $text Text to display on the label.
+            * @param $image Texture to display on the label.
+            * @param $content Text, image and tooltip for this label.
+            * @param $style The style to use. If left out, the label style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            */
+            public static Label ($content: UnityEngine.GUIContent, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : void
+            /** Make an auto-layout box.
+            * @param $text Text to display on the box.
+            * @param $image Texture to display on the box.
+            * @param $content Text, image and tooltip for this box.
+            * @param $style The style to use. If left out, the box style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            */
+            public static Box ($image: UnityEngine.Texture, ...options: UnityEngine.GUILayoutOption[]) : void
+            /** Make an auto-layout box.
+            * @param $text Text to display on the box.
+            * @param $image Texture to display on the box.
+            * @param $content Text, image and tooltip for this box.
+            * @param $style The style to use. If left out, the box style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            */
+            public static Box ($text: string, ...options: UnityEngine.GUILayoutOption[]) : void
+            /** Make an auto-layout box.
+            * @param $text Text to display on the box.
+            * @param $image Texture to display on the box.
+            * @param $content Text, image and tooltip for this box.
+            * @param $style The style to use. If left out, the box style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            */
+            public static Box ($content: UnityEngine.GUIContent, ...options: UnityEngine.GUILayoutOption[]) : void
+            /** Make an auto-layout box.
+            * @param $text Text to display on the box.
+            * @param $image Texture to display on the box.
+            * @param $content Text, image and tooltip for this box.
+            * @param $style The style to use. If left out, the box style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            */
+            public static Box ($image: UnityEngine.Texture, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : void
+            /** Make an auto-layout box.
+            * @param $text Text to display on the box.
+            * @param $image Texture to display on the box.
+            * @param $content Text, image and tooltip for this box.
+            * @param $style The style to use. If left out, the box style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            */
+            public static Box ($text: string, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : void
+            /** Make an auto-layout box.
+            * @param $text Text to display on the box.
+            * @param $image Texture to display on the box.
+            * @param $content Text, image and tooltip for this box.
+            * @param $style The style to use. If left out, the box style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            */
+            public static Box ($content: UnityEngine.GUIContent, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : void
+            /** Make a single press button.
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns true when the users clicks the button. 
+            */
+            public static Button ($image: UnityEngine.Texture, ...options: UnityEngine.GUILayoutOption[]) : boolean
+            /** Make a single press button.
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns true when the users clicks the button. 
+            */
+            public static Button ($text: string, ...options: UnityEngine.GUILayoutOption[]) : boolean
+            /** Make a single press button.
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns true when the users clicks the button. 
+            */
+            public static Button ($content: UnityEngine.GUIContent, ...options: UnityEngine.GUILayoutOption[]) : boolean
+            /** Make a single press button.
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns true when the users clicks the button. 
+            */
+            public static Button ($image: UnityEngine.Texture, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : boolean
+            /** Make a single press button.
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns true when the users clicks the button. 
+            */
+            public static Button ($text: string, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : boolean
+            /** Make a single press button.
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns true when the users clicks the button. 
+            */
+            public static Button ($content: UnityEngine.GUIContent, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : boolean
+            /** Make a repeating button. The button returns true as long as the user holds down the mouse.
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns true when the holds down the mouse. 
+            */
+            public static RepeatButton ($image: UnityEngine.Texture, ...options: UnityEngine.GUILayoutOption[]) : boolean
+            /** Make a repeating button. The button returns true as long as the user holds down the mouse.
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns true when the holds down the mouse. 
+            */
+            public static RepeatButton ($text: string, ...options: UnityEngine.GUILayoutOption[]) : boolean
+            /** Make a repeating button. The button returns true as long as the user holds down the mouse.
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns true when the holds down the mouse. 
+            */
+            public static RepeatButton ($content: UnityEngine.GUIContent, ...options: UnityEngine.GUILayoutOption[]) : boolean
+            /** Make a repeating button. The button returns true as long as the user holds down the mouse.
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns true when the holds down the mouse. 
+            */
+            public static RepeatButton ($image: UnityEngine.Texture, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : boolean
+            /** Make a repeating button. The button returns true as long as the user holds down the mouse.
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns true when the holds down the mouse. 
+            */
+            public static RepeatButton ($text: string, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : boolean
+            /** Make a repeating button. The button returns true as long as the user holds down the mouse.
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns true when the holds down the mouse. 
+            */
+            public static RepeatButton ($content: UnityEngine.GUIContent, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : boolean
+            /** Make a single-line text field where the user can edit a string.
+            * @param $text Text to edit. The return value of this function should be assigned back to the string as shown in the example.
+            * @param $maxLength The maximum length of the string. If left out, the user can type for ever and ever.
+            * @param $style The style to use. If left out, the textArea style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns The edited string. 
+            */
+            public static TextField ($text: string, ...options: UnityEngine.GUILayoutOption[]) : string
+            /** Make a single-line text field where the user can edit a string.
+            * @param $text Text to edit. The return value of this function should be assigned back to the string as shown in the example.
+            * @param $maxLength The maximum length of the string. If left out, the user can type for ever and ever.
+            * @param $style The style to use. If left out, the textArea style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns The edited string. 
+            */
+            public static TextField ($text: string, $maxLength: number, ...options: UnityEngine.GUILayoutOption[]) : string
+            /** Make a single-line text field where the user can edit a string.
+            * @param $text Text to edit. The return value of this function should be assigned back to the string as shown in the example.
+            * @param $maxLength The maximum length of the string. If left out, the user can type for ever and ever.
+            * @param $style The style to use. If left out, the textArea style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns The edited string. 
+            */
+            public static TextField ($text: string, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : string
+            /** Make a single-line text field where the user can edit a string.
+            * @param $text Text to edit. The return value of this function should be assigned back to the string as shown in the example.
+            * @param $maxLength The maximum length of the string. If left out, the user can type for ever and ever.
+            * @param $style The style to use. If left out, the textArea style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns The edited string. 
+            */
+            public static TextField ($text: string, $maxLength: number, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : string
+            /** Make a text field where the user can enter a password.
+            * @param $password Password to edit. The return value of this function should be assigned back to the string as shown in the example.
+            * @param $maskChar Character to mask the password with.
+            * @param $maxLength The maximum length of the string. If left out, the user can type for ever and ever.
+            * @param $style The style to use. If left out, the textField style from the current GUISkin is used.
+            * @returns The edited password. 
+            */
+            public static PasswordField ($password: string, $maskChar: number, ...options: UnityEngine.GUILayoutOption[]) : string
+            /** Make a text field where the user can enter a password.
+            * @param $password Password to edit. The return value of this function should be assigned back to the string as shown in the example.
+            * @param $maskChar Character to mask the password with.
+            * @param $maxLength The maximum length of the string. If left out, the user can type for ever and ever.
+            * @param $style The style to use. If left out, the textField style from the current GUISkin is used.
+            * @returns The edited password. 
+            */
+            public static PasswordField ($password: string, $maskChar: number, $maxLength: number, ...options: UnityEngine.GUILayoutOption[]) : string
+            /** Make a text field where the user can enter a password.
+            * @param $password Password to edit. The return value of this function should be assigned back to the string as shown in the example.
+            * @param $maskChar Character to mask the password with.
+            * @param $maxLength The maximum length of the string. If left out, the user can type for ever and ever.
+            * @param $style The style to use. If left out, the textField style from the current GUISkin is used.
+            * @returns The edited password. 
+            */
+            public static PasswordField ($password: string, $maskChar: number, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : string
+            /** Make a text field where the user can enter a password.
+            * @param $password Password to edit. The return value of this function should be assigned back to the string as shown in the example.
+            * @param $maskChar Character to mask the password with.
+            * @param $maxLength The maximum length of the string. If left out, the user can type for ever and ever.
+            * @param $style The style to use. If left out, the textField style from the current GUISkin is used.
+            * @returns The edited password. 
+            */
+            public static PasswordField ($password: string, $maskChar: number, $maxLength: number, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : string
+            /** Make a multi-line text field where the user can edit a string.
+            * @param $text Text to edit. The return value of this function should be assigned back to the string as shown in the example.
+            * @param $maxLength The maximum length of the string. If left out, the user can type for ever and ever.
+            * @param $style The style to use. If left out, the textField style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.&amp;lt;br&amp;gt;
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns The edited string. 
+            */
+            public static TextArea ($text: string, ...options: UnityEngine.GUILayoutOption[]) : string
+            /** Make a multi-line text field where the user can edit a string.
+            * @param $text Text to edit. The return value of this function should be assigned back to the string as shown in the example.
+            * @param $maxLength The maximum length of the string. If left out, the user can type for ever and ever.
+            * @param $style The style to use. If left out, the textField style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.&amp;lt;br&amp;gt;
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns The edited string. 
+            */
+            public static TextArea ($text: string, $maxLength: number, ...options: UnityEngine.GUILayoutOption[]) : string
+            /** Make a multi-line text field where the user can edit a string.
+            * @param $text Text to edit. The return value of this function should be assigned back to the string as shown in the example.
+            * @param $maxLength The maximum length of the string. If left out, the user can type for ever and ever.
+            * @param $style The style to use. If left out, the textField style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.&amp;lt;br&amp;gt;
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns The edited string. 
+            */
+            public static TextArea ($text: string, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : string
+            /** Make a multi-line text field where the user can edit a string.
+            * @param $text Text to edit. The return value of this function should be assigned back to the string as shown in the example.
+            * @param $maxLength The maximum length of the string. If left out, the user can type for ever and ever.
+            * @param $style The style to use. If left out, the textField style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.&amp;lt;br&amp;gt;
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns The edited string. 
+            */
+            public static TextArea ($text: string, $maxLength: number, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : string
+            /** Make an on/off toggle button.
+            * @param $value Is the button on or off?
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns The new value of the button. 
+            */
+            public static Toggle ($value: boolean, $image: UnityEngine.Texture, ...options: UnityEngine.GUILayoutOption[]) : boolean
+            /** Make an on/off toggle button.
+            * @param $value Is the button on or off?
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns The new value of the button. 
+            */
+            public static Toggle ($value: boolean, $text: string, ...options: UnityEngine.GUILayoutOption[]) : boolean
+            /** Make an on/off toggle button.
+            * @param $value Is the button on or off?
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns The new value of the button. 
+            */
+            public static Toggle ($value: boolean, $content: UnityEngine.GUIContent, ...options: UnityEngine.GUILayoutOption[]) : boolean
+            /** Make an on/off toggle button.
+            * @param $value Is the button on or off?
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns The new value of the button. 
+            */
+            public static Toggle ($value: boolean, $image: UnityEngine.Texture, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : boolean
+            /** Make an on/off toggle button.
+            * @param $value Is the button on or off?
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns The new value of the button. 
+            */
+            public static Toggle ($value: boolean, $text: string, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : boolean
+            /** Make an on/off toggle button.
+            * @param $value Is the button on or off?
+            * @param $text Text to display on the button.
+            * @param $image Texture to display on the button.
+            * @param $content Text, image and tooltip for this button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns The new value of the button. 
+            */
+            public static Toggle ($value: boolean, $content: UnityEngine.GUIContent, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : boolean
+            /** Make a toolbar.
+            * @param $selected The index of the selected button.
+            * @param $texts An array of strings to show on the buttons.
+            * @param $images An array of textures on the buttons.
+            * @param $contents An array of text, image and tooltips for the button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @param $buttonSize Determines how toolbar button size is calculated.
+            * @returns The index of the selected button. 
+            */
+            public static Toolbar ($selected: number, $texts: System.Array$1<string>, ...options: UnityEngine.GUILayoutOption[]) : number
+            /** Make a toolbar.
+            * @param $selected The index of the selected button.
+            * @param $texts An array of strings to show on the buttons.
+            * @param $images An array of textures on the buttons.
+            * @param $contents An array of text, image and tooltips for the button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @param $buttonSize Determines how toolbar button size is calculated.
+            * @returns The index of the selected button. 
+            */
+            public static Toolbar ($selected: number, $images: System.Array$1<UnityEngine.Texture>, ...options: UnityEngine.GUILayoutOption[]) : number
+            /** Make a toolbar.
+            * @param $selected The index of the selected button.
+            * @param $texts An array of strings to show on the buttons.
+            * @param $images An array of textures on the buttons.
+            * @param $contents An array of text, image and tooltips for the button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @param $buttonSize Determines how toolbar button size is calculated.
+            * @returns The index of the selected button. 
+            */
+            public static Toolbar ($selected: number, $contents: System.Array$1<UnityEngine.GUIContent>, ...options: UnityEngine.GUILayoutOption[]) : number
+            /** Make a toolbar.
+            * @param $selected The index of the selected button.
+            * @param $texts An array of strings to show on the buttons.
+            * @param $images An array of textures on the buttons.
+            * @param $contents An array of text, image and tooltips for the button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @param $buttonSize Determines how toolbar button size is calculated.
+            * @returns The index of the selected button. 
+            */
+            public static Toolbar ($selected: number, $texts: System.Array$1<string>, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : number
+            /** Make a toolbar.
+            * @param $selected The index of the selected button.
+            * @param $texts An array of strings to show on the buttons.
+            * @param $images An array of textures on the buttons.
+            * @param $contents An array of text, image and tooltips for the button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @param $buttonSize Determines how toolbar button size is calculated.
+            * @returns The index of the selected button. 
+            */
+            public static Toolbar ($selected: number, $images: System.Array$1<UnityEngine.Texture>, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : number
+            public static Toolbar ($selected: number, $texts: System.Array$1<string>, $style: UnityEngine.GUIStyle, $buttonSize: UnityEngine.GUI.ToolbarButtonSize, ...options: UnityEngine.GUILayoutOption[]) : number
+            public static Toolbar ($selected: number, $images: System.Array$1<UnityEngine.Texture>, $style: UnityEngine.GUIStyle, $buttonSize: UnityEngine.GUI.ToolbarButtonSize, ...options: UnityEngine.GUILayoutOption[]) : number
+            /** Make a toolbar.
+            * @param $selected The index of the selected button.
+            * @param $texts An array of strings to show on the buttons.
+            * @param $images An array of textures on the buttons.
+            * @param $contents An array of text, image and tooltips for the button.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @param $buttonSize Determines how toolbar button size is calculated.
+            * @returns The index of the selected button. 
+            */
+            public static Toolbar ($selected: number, $contents: System.Array$1<UnityEngine.GUIContent>, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : number
+            public static Toolbar ($selected: number, $contents: System.Array$1<UnityEngine.GUIContent>, $style: UnityEngine.GUIStyle, $buttonSize: UnityEngine.GUI.ToolbarButtonSize, ...options: UnityEngine.GUILayoutOption[]) : number
+            public static Toolbar ($selected: number, $contents: System.Array$1<UnityEngine.GUIContent>, $enabled: System.Array$1<boolean>, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : number
+            public static Toolbar ($selected: number, $contents: System.Array$1<UnityEngine.GUIContent>, $enabled: System.Array$1<boolean>, $style: UnityEngine.GUIStyle, $buttonSize: UnityEngine.GUI.ToolbarButtonSize, ...options: UnityEngine.GUILayoutOption[]) : number
+            /** Make a Selection Grid.
+            * @param $selected The index of the selected button.
+            * @param $texts An array of strings to show on the buttons.
+            * @param $images An array of textures on the buttons.
+            * @param $contents An array of text, image and tooltips for the button.
+            * @param $xCount How many elements to fit in the horizontal direction. The elements will be scaled to fit unless the style defines a fixedWidth to use. The height of the control will be determined from the number of elements.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns The index of the selected button. 
+            */
+            public static SelectionGrid ($selected: number, $texts: System.Array$1<string>, $xCount: number, ...options: UnityEngine.GUILayoutOption[]) : number
+            /** Make a Selection Grid.
+            * @param $selected The index of the selected button.
+            * @param $texts An array of strings to show on the buttons.
+            * @param $images An array of textures on the buttons.
+            * @param $contents An array of text, image and tooltips for the button.
+            * @param $xCount How many elements to fit in the horizontal direction. The elements will be scaled to fit unless the style defines a fixedWidth to use. The height of the control will be determined from the number of elements.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns The index of the selected button. 
+            */
+            public static SelectionGrid ($selected: number, $images: System.Array$1<UnityEngine.Texture>, $xCount: number, ...options: UnityEngine.GUILayoutOption[]) : number
+            /** Make a Selection Grid.
+            * @param $selected The index of the selected button.
+            * @param $texts An array of strings to show on the buttons.
+            * @param $images An array of textures on the buttons.
+            * @param $contents An array of text, image and tooltips for the button.
+            * @param $xCount How many elements to fit in the horizontal direction. The elements will be scaled to fit unless the style defines a fixedWidth to use. The height of the control will be determined from the number of elements.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns The index of the selected button. 
+            */
+            public static SelectionGrid ($selected: number, $content: System.Array$1<UnityEngine.GUIContent>, $xCount: number, ...options: UnityEngine.GUILayoutOption[]) : number
+            /** Make a Selection Grid.
+            * @param $selected The index of the selected button.
+            * @param $texts An array of strings to show on the buttons.
+            * @param $images An array of textures on the buttons.
+            * @param $contents An array of text, image and tooltips for the button.
+            * @param $xCount How many elements to fit in the horizontal direction. The elements will be scaled to fit unless the style defines a fixedWidth to use. The height of the control will be determined from the number of elements.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns The index of the selected button. 
+            */
+            public static SelectionGrid ($selected: number, $texts: System.Array$1<string>, $xCount: number, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : number
+            /** Make a Selection Grid.
+            * @param $selected The index of the selected button.
+            * @param $texts An array of strings to show on the buttons.
+            * @param $images An array of textures on the buttons.
+            * @param $contents An array of text, image and tooltips for the button.
+            * @param $xCount How many elements to fit in the horizontal direction. The elements will be scaled to fit unless the style defines a fixedWidth to use. The height of the control will be determined from the number of elements.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns The index of the selected button. 
+            */
+            public static SelectionGrid ($selected: number, $images: System.Array$1<UnityEngine.Texture>, $xCount: number, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : number
+            /** Make a Selection Grid.
+            * @param $selected The index of the selected button.
+            * @param $texts An array of strings to show on the buttons.
+            * @param $images An array of textures on the buttons.
+            * @param $contents An array of text, image and tooltips for the button.
+            * @param $xCount How many elements to fit in the horizontal direction. The elements will be scaled to fit unless the style defines a fixedWidth to use. The height of the control will be determined from the number of elements.
+            * @param $style The style to use. If left out, the button style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns The index of the selected button. 
+            */
+            public static SelectionGrid ($selected: number, $contents: System.Array$1<UnityEngine.GUIContent>, $xCount: number, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : number
+            /** A horizontal slider the user can drag to change a value between a min and a max.
+            * @param $value The value the slider shows. This determines the position of the draggable thumb.
+            * @param $leftValue The value at the left end of the slider.
+            * @param $rightValue The value at the right end of the slider.
+            * @param $slider The GUIStyle to use for displaying the dragging area. If left out, the horizontalSlider style from the current GUISkin is used.
+            * @param $thumb The GUIStyle to use for displaying draggable thumb. If left out, the horizontalSliderThumb style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.
+            * @returns The value that has been set by the user. 
+            */
+            public static HorizontalSlider ($value: number, $leftValue: number, $rightValue: number, ...options: UnityEngine.GUILayoutOption[]) : number
+            /** A horizontal slider the user can drag to change a value between a min and a max.
+            * @param $value The value the slider shows. This determines the position of the draggable thumb.
+            * @param $leftValue The value at the left end of the slider.
+            * @param $rightValue The value at the right end of the slider.
+            * @param $slider The GUIStyle to use for displaying the dragging area. If left out, the horizontalSlider style from the current GUISkin is used.
+            * @param $thumb The GUIStyle to use for displaying draggable thumb. If left out, the horizontalSliderThumb style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.
+            * @returns The value that has been set by the user. 
+            */
+            public static HorizontalSlider ($value: number, $leftValue: number, $rightValue: number, $slider: UnityEngine.GUIStyle, $thumb: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : number
+            /** A vertical slider the user can drag to change a value between a min and a max.
+            * @param $value The value the slider shows. This determines the position of the draggable thumb.
+            * @param $topValue The value at the top end of the slider.
+            * @param $bottomValue The value at the bottom end of the slider.
+            * @param $slider The GUIStyle to use for displaying the dragging area. If left out, the horizontalSlider style from the current GUISkin is used.
+            * @param $thumb The GUIStyle to use for displaying draggable thumb. If left out, the horizontalSliderThumb style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.
+            * @returns The value that has been set by the user. 
+            */
+            public static VerticalSlider ($value: number, $leftValue: number, $rightValue: number, ...options: UnityEngine.GUILayoutOption[]) : number
+            /** A vertical slider the user can drag to change a value between a min and a max.
+            * @param $value The value the slider shows. This determines the position of the draggable thumb.
+            * @param $topValue The value at the top end of the slider.
+            * @param $bottomValue The value at the bottom end of the slider.
+            * @param $slider The GUIStyle to use for displaying the dragging area. If left out, the horizontalSlider style from the current GUISkin is used.
+            * @param $thumb The GUIStyle to use for displaying draggable thumb. If left out, the horizontalSliderThumb style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.
+            * @returns The value that has been set by the user. 
+            */
+            public static VerticalSlider ($value: number, $leftValue: number, $rightValue: number, $slider: UnityEngine.GUIStyle, $thumb: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : number
+            /** Make a horizontal scrollbar.
+            * @param $value The position between min and max.
+            * @param $size How much can we see?
+            * @param $leftValue The value at the left end of the scrollbar.
+            * @param $rightValue The value at the right end of the scrollbar.
+            * @param $style The style to use for the scrollbar background. If left out, the horizontalScrollbar style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.
+            * @returns The modified value. This can be changed by the user by dragging the scrollbar, or clicking the arrows at the end. 
+            */
+            public static HorizontalScrollbar ($value: number, $size: number, $leftValue: number, $rightValue: number, ...options: UnityEngine.GUILayoutOption[]) : number
+            /** Make a horizontal scrollbar.
+            * @param $value The position between min and max.
+            * @param $size How much can we see?
+            * @param $leftValue The value at the left end of the scrollbar.
+            * @param $rightValue The value at the right end of the scrollbar.
+            * @param $style The style to use for the scrollbar background. If left out, the horizontalScrollbar style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.
+            * @returns The modified value. This can be changed by the user by dragging the scrollbar, or clicking the arrows at the end. 
+            */
+            public static HorizontalScrollbar ($value: number, $size: number, $leftValue: number, $rightValue: number, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : number
+            /** Make a vertical scrollbar.
+            * @param $value The position between min and max.
+            * @param $size How much can we see?
+            * @param $topValue The value at the top end of the scrollbar.
+            * @param $bottomValue The value at the bottom end of the scrollbar.
+            * @param $style The style to use for the scrollbar background. If left out, the horizontalScrollbar style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.
+            * @returns The modified value. This can be changed by the user by dragging the scrollbar, or clicking the arrows at the end. 
+            */
+            public static VerticalScrollbar ($value: number, $size: number, $topValue: number, $bottomValue: number, ...options: UnityEngine.GUILayoutOption[]) : number
+            /** Make a vertical scrollbar.
+            * @param $value The position between min and max.
+            * @param $size How much can we see?
+            * @param $topValue The value at the top end of the scrollbar.
+            * @param $bottomValue The value at the bottom end of the scrollbar.
+            * @param $style The style to use for the scrollbar background. If left out, the horizontalScrollbar style from the current GUISkin is used.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.
+            * @returns The modified value. This can be changed by the user by dragging the scrollbar, or clicking the arrows at the end. 
+            */
+            public static VerticalScrollbar ($value: number, $size: number, $topValue: number, $bottomValue: number, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : number
+            /** Insert a space in the current layout group.
+            */
+            public static Space ($pixels: number) : void
+            /** Insert a flexible space element.
+            */
+            public static FlexibleSpace () : void
+            /** Begin a Horizontal control group.
+            * @param $text Text to display on group.
+            * @param $image Texture to display on group.
+            * @param $content Text, image, and tooltip for this group.
+            * @param $style The style to use for background image and padding values. If left out, the background is transparent.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            */
+            public static BeginHorizontal (...options: UnityEngine.GUILayoutOption[]) : void
+            /** Begin a Horizontal control group.
+            * @param $text Text to display on group.
+            * @param $image Texture to display on group.
+            * @param $content Text, image, and tooltip for this group.
+            * @param $style The style to use for background image and padding values. If left out, the background is transparent.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            */
+            public static BeginHorizontal ($style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : void
+            /** Begin a Horizontal control group.
+            * @param $text Text to display on group.
+            * @param $image Texture to display on group.
+            * @param $content Text, image, and tooltip for this group.
+            * @param $style The style to use for background image and padding values. If left out, the background is transparent.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            */
+            public static BeginHorizontal ($text: string, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : void
+            /** Begin a Horizontal control group.
+            * @param $text Text to display on group.
+            * @param $image Texture to display on group.
+            * @param $content Text, image, and tooltip for this group.
+            * @param $style The style to use for background image and padding values. If left out, the background is transparent.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            */
+            public static BeginHorizontal ($image: UnityEngine.Texture, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : void
+            /** Begin a Horizontal control group.
+            * @param $text Text to display on group.
+            * @param $image Texture to display on group.
+            * @param $content Text, image, and tooltip for this group.
+            * @param $style The style to use for background image and padding values. If left out, the background is transparent.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            */
+            public static BeginHorizontal ($content: UnityEngine.GUIContent, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : void
+            /** Close a group started with BeginHorizontal.
+            */
+            public static EndHorizontal () : void
+            /** Begin a vertical control group.
+            * @param $text Text to display on group.
+            * @param $image Texture to display on group.
+            * @param $content Text, image, and tooltip for this group.
+            * @param $style The style to use for background image and padding values. If left out, the background is transparent.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            */
+            public static BeginVertical (...options: UnityEngine.GUILayoutOption[]) : void
+            /** Begin a vertical control group.
+            * @param $text Text to display on group.
+            * @param $image Texture to display on group.
+            * @param $content Text, image, and tooltip for this group.
+            * @param $style The style to use for background image and padding values. If left out, the background is transparent.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            */
+            public static BeginVertical ($style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : void
+            /** Begin a vertical control group.
+            * @param $text Text to display on group.
+            * @param $image Texture to display on group.
+            * @param $content Text, image, and tooltip for this group.
+            * @param $style The style to use for background image and padding values. If left out, the background is transparent.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            */
+            public static BeginVertical ($text: string, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : void
+            /** Begin a vertical control group.
+            * @param $text Text to display on group.
+            * @param $image Texture to display on group.
+            * @param $content Text, image, and tooltip for this group.
+            * @param $style The style to use for background image and padding values. If left out, the background is transparent.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            */
+            public static BeginVertical ($image: UnityEngine.Texture, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : void
+            /** Begin a vertical control group.
+            * @param $text Text to display on group.
+            * @param $image Texture to display on group.
+            * @param $content Text, image, and tooltip for this group.
+            * @param $style The style to use for background image and padding values. If left out, the background is transparent.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            */
+            public static BeginVertical ($content: UnityEngine.GUIContent, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : void
+            /** Close a group started with BeginVertical.
+            */
+            public static EndVertical () : void
+            /** Begin a GUILayout block of GUI controls in a fixed screen area.
+            * @param $text Optional text to display in the area.
+            * @param $image Optional texture to display in the area.
+            * @param $content Optional text, image and tooltip top display for this area.
+            * @param $style The style to use. If left out, the empty GUIStyle (GUIStyle.none) is used, giving a transparent background.
+            */
+            public static BeginArea ($screenRect: UnityEngine.Rect) : void
+            /** Begin a GUILayout block of GUI controls in a fixed screen area.
+            * @param $text Optional text to display in the area.
+            * @param $image Optional texture to display in the area.
+            * @param $content Optional text, image and tooltip top display for this area.
+            * @param $style The style to use. If left out, the empty GUIStyle (GUIStyle.none) is used, giving a transparent background.
+            */
+            public static BeginArea ($screenRect: UnityEngine.Rect, $text: string) : void
+            /** Begin a GUILayout block of GUI controls in a fixed screen area.
+            * @param $text Optional text to display in the area.
+            * @param $image Optional texture to display in the area.
+            * @param $content Optional text, image and tooltip top display for this area.
+            * @param $style The style to use. If left out, the empty GUIStyle (GUIStyle.none) is used, giving a transparent background.
+            */
+            public static BeginArea ($screenRect: UnityEngine.Rect, $image: UnityEngine.Texture) : void
+            /** Begin a GUILayout block of GUI controls in a fixed screen area.
+            * @param $text Optional text to display in the area.
+            * @param $image Optional texture to display in the area.
+            * @param $content Optional text, image and tooltip top display for this area.
+            * @param $style The style to use. If left out, the empty GUIStyle (GUIStyle.none) is used, giving a transparent background.
+            */
+            public static BeginArea ($screenRect: UnityEngine.Rect, $content: UnityEngine.GUIContent) : void
+            /** Begin a GUILayout block of GUI controls in a fixed screen area.
+            * @param $text Optional text to display in the area.
+            * @param $image Optional texture to display in the area.
+            * @param $content Optional text, image and tooltip top display for this area.
+            * @param $style The style to use. If left out, the empty GUIStyle (GUIStyle.none) is used, giving a transparent background.
+            */
+            public static BeginArea ($screenRect: UnityEngine.Rect, $style: UnityEngine.GUIStyle) : void
+            /** Begin a GUILayout block of GUI controls in a fixed screen area.
+            * @param $text Optional text to display in the area.
+            * @param $image Optional texture to display in the area.
+            * @param $content Optional text, image and tooltip top display for this area.
+            * @param $style The style to use. If left out, the empty GUIStyle (GUIStyle.none) is used, giving a transparent background.
+            */
+            public static BeginArea ($screenRect: UnityEngine.Rect, $text: string, $style: UnityEngine.GUIStyle) : void
+            /** Begin a GUILayout block of GUI controls in a fixed screen area.
+            * @param $text Optional text to display in the area.
+            * @param $image Optional texture to display in the area.
+            * @param $content Optional text, image and tooltip top display for this area.
+            * @param $style The style to use. If left out, the empty GUIStyle (GUIStyle.none) is used, giving a transparent background.
+            */
+            public static BeginArea ($screenRect: UnityEngine.Rect, $image: UnityEngine.Texture, $style: UnityEngine.GUIStyle) : void
+            /** Begin a GUILayout block of GUI controls in a fixed screen area.
+            * @param $text Optional text to display in the area.
+            * @param $image Optional texture to display in the area.
+            * @param $content Optional text, image and tooltip top display for this area.
+            * @param $style The style to use. If left out, the empty GUIStyle (GUIStyle.none) is used, giving a transparent background.
+            */
+            public static BeginArea ($screenRect: UnityEngine.Rect, $content: UnityEngine.GUIContent, $style: UnityEngine.GUIStyle) : void
+            /** Close a GUILayout block started with BeginArea.
+            */
+            public static EndArea () : void
+            /** Begin an automatically laid out scrollview.
+            * @param $scrollPosition The position to use display.
+            * @param $alwayShowHorizontal Optional parameter to always show the horizontal scrollbar. If false or left out, it is only shown when the content inside the ScrollView is wider than the scrollview itself.
+            * @param $alwayShowVertical Optional parameter to always show the vertical scrollbar. If false or left out, it is only shown when content inside the ScrollView is taller than the scrollview itself.
+            * @param $horizontalScrollbar Optional GUIStyle to use for the horizontal scrollbar. If left out, the horizontalScrollbar style from the current GUISkin is used.
+            * @param $verticalScrollbar Optional GUIStyle to use for the vertical scrollbar. If left out, the verticalScrollbar style from the current GUISkin is used.
+            * @returns The modified scrollPosition. Feed this back into the variable you pass in, as shown in the example. 
+            */
+            public static BeginScrollView ($scrollPosition: UnityEngine.Vector2, ...options: UnityEngine.GUILayoutOption[]) : UnityEngine.Vector2
+            /** Begin an automatically laid out scrollview.
+            * @param $scrollPosition The position to use display.
+            * @param $alwayShowHorizontal Optional parameter to always show the horizontal scrollbar. If false or left out, it is only shown when the content inside the ScrollView is wider than the scrollview itself.
+            * @param $alwayShowVertical Optional parameter to always show the vertical scrollbar. If false or left out, it is only shown when content inside the ScrollView is taller than the scrollview itself.
+            * @param $horizontalScrollbar Optional GUIStyle to use for the horizontal scrollbar. If left out, the horizontalScrollbar style from the current GUISkin is used.
+            * @param $verticalScrollbar Optional GUIStyle to use for the vertical scrollbar. If left out, the verticalScrollbar style from the current GUISkin is used.
+            * @returns The modified scrollPosition. Feed this back into the variable you pass in, as shown in the example. 
+            */
+            public static BeginScrollView ($scrollPosition: UnityEngine.Vector2, $alwaysShowHorizontal: boolean, $alwaysShowVertical: boolean, ...options: UnityEngine.GUILayoutOption[]) : UnityEngine.Vector2
+            /** Begin an automatically laid out scrollview.
+            * @param $scrollPosition The position to use display.
+            * @param $alwayShowHorizontal Optional parameter to always show the horizontal scrollbar. If false or left out, it is only shown when the content inside the ScrollView is wider than the scrollview itself.
+            * @param $alwayShowVertical Optional parameter to always show the vertical scrollbar. If false or left out, it is only shown when content inside the ScrollView is taller than the scrollview itself.
+            * @param $horizontalScrollbar Optional GUIStyle to use for the horizontal scrollbar. If left out, the horizontalScrollbar style from the current GUISkin is used.
+            * @param $verticalScrollbar Optional GUIStyle to use for the vertical scrollbar. If left out, the verticalScrollbar style from the current GUISkin is used.
+            * @returns The modified scrollPosition. Feed this back into the variable you pass in, as shown in the example. 
+            */
+            public static BeginScrollView ($scrollPosition: UnityEngine.Vector2, $horizontalScrollbar: UnityEngine.GUIStyle, $verticalScrollbar: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : UnityEngine.Vector2
+            /** Begin an automatically laid out scrollview.
+            * @param $scrollPosition The position to use display.
+            * @param $alwayShowHorizontal Optional parameter to always show the horizontal scrollbar. If false or left out, it is only shown when the content inside the ScrollView is wider than the scrollview itself.
+            * @param $alwayShowVertical Optional parameter to always show the vertical scrollbar. If false or left out, it is only shown when content inside the ScrollView is taller than the scrollview itself.
+            * @param $horizontalScrollbar Optional GUIStyle to use for the horizontal scrollbar. If left out, the horizontalScrollbar style from the current GUISkin is used.
+            * @param $verticalScrollbar Optional GUIStyle to use for the vertical scrollbar. If left out, the verticalScrollbar style from the current GUISkin is used.
+            * @returns The modified scrollPosition. Feed this back into the variable you pass in, as shown in the example. 
+            */
+            public static BeginScrollView ($scrollPosition: UnityEngine.Vector2, $style: UnityEngine.GUIStyle) : UnityEngine.Vector2
+            /** Begin an automatically laid out scrollview.
+            * @param $scrollPosition The position to use display.
+            * @param $alwayShowHorizontal Optional parameter to always show the horizontal scrollbar. If false or left out, it is only shown when the content inside the ScrollView is wider than the scrollview itself.
+            * @param $alwayShowVertical Optional parameter to always show the vertical scrollbar. If false or left out, it is only shown when content inside the ScrollView is taller than the scrollview itself.
+            * @param $horizontalScrollbar Optional GUIStyle to use for the horizontal scrollbar. If left out, the horizontalScrollbar style from the current GUISkin is used.
+            * @param $verticalScrollbar Optional GUIStyle to use for the vertical scrollbar. If left out, the verticalScrollbar style from the current GUISkin is used.
+            * @returns The modified scrollPosition. Feed this back into the variable you pass in, as shown in the example. 
+            */
+            public static BeginScrollView ($scrollPosition: UnityEngine.Vector2, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : UnityEngine.Vector2
+            /** Begin an automatically laid out scrollview.
+            * @param $scrollPosition The position to use display.
+            * @param $alwayShowHorizontal Optional parameter to always show the horizontal scrollbar. If false or left out, it is only shown when the content inside the ScrollView is wider than the scrollview itself.
+            * @param $alwayShowVertical Optional parameter to always show the vertical scrollbar. If false or left out, it is only shown when content inside the ScrollView is taller than the scrollview itself.
+            * @param $horizontalScrollbar Optional GUIStyle to use for the horizontal scrollbar. If left out, the horizontalScrollbar style from the current GUISkin is used.
+            * @param $verticalScrollbar Optional GUIStyle to use for the vertical scrollbar. If left out, the verticalScrollbar style from the current GUISkin is used.
+            * @returns The modified scrollPosition. Feed this back into the variable you pass in, as shown in the example. 
+            */
+            public static BeginScrollView ($scrollPosition: UnityEngine.Vector2, $alwaysShowHorizontal: boolean, $alwaysShowVertical: boolean, $horizontalScrollbar: UnityEngine.GUIStyle, $verticalScrollbar: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : UnityEngine.Vector2
+            /** Begin an automatically laid out scrollview.
+            * @param $scrollPosition The position to use display.
+            * @param $alwayShowHorizontal Optional parameter to always show the horizontal scrollbar. If false or left out, it is only shown when the content inside the ScrollView is wider than the scrollview itself.
+            * @param $alwayShowVertical Optional parameter to always show the vertical scrollbar. If false or left out, it is only shown when content inside the ScrollView is taller than the scrollview itself.
+            * @param $horizontalScrollbar Optional GUIStyle to use for the horizontal scrollbar. If left out, the horizontalScrollbar style from the current GUISkin is used.
+            * @param $verticalScrollbar Optional GUIStyle to use for the vertical scrollbar. If left out, the verticalScrollbar style from the current GUISkin is used.
+            * @returns The modified scrollPosition. Feed this back into the variable you pass in, as shown in the example. 
+            */
+            public static BeginScrollView ($scrollPosition: UnityEngine.Vector2, $alwaysShowHorizontal: boolean, $alwaysShowVertical: boolean, $horizontalScrollbar: UnityEngine.GUIStyle, $verticalScrollbar: UnityEngine.GUIStyle, $background: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : UnityEngine.Vector2
+            /** End a scroll view begun with a call to BeginScrollView.
+            */
+            public static EndScrollView () : void
+            public static Window ($id: number, $screenRect: UnityEngine.Rect, $func: UnityEngine.GUI.WindowFunction, $text: string, ...options: UnityEngine.GUILayoutOption[]) : UnityEngine.Rect
+            public static Window ($id: number, $screenRect: UnityEngine.Rect, $func: UnityEngine.GUI.WindowFunction, $image: UnityEngine.Texture, ...options: UnityEngine.GUILayoutOption[]) : UnityEngine.Rect
+            public static Window ($id: number, $screenRect: UnityEngine.Rect, $func: UnityEngine.GUI.WindowFunction, $content: UnityEngine.GUIContent, ...options: UnityEngine.GUILayoutOption[]) : UnityEngine.Rect
+            public static Window ($id: number, $screenRect: UnityEngine.Rect, $func: UnityEngine.GUI.WindowFunction, $text: string, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : UnityEngine.Rect
+            public static Window ($id: number, $screenRect: UnityEngine.Rect, $func: UnityEngine.GUI.WindowFunction, $image: UnityEngine.Texture, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : UnityEngine.Rect
+            public static Window ($id: number, $screenRect: UnityEngine.Rect, $func: UnityEngine.GUI.WindowFunction, $content: UnityEngine.GUIContent, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : UnityEngine.Rect
+            /** Option passed to a control to give it an absolute width.
+            */
+            public static Width ($width: number) : UnityEngine.GUILayoutOption
+            /** Option passed to a control to specify a minimum width.
+            */
+            public static MinWidth ($minWidth: number) : UnityEngine.GUILayoutOption
+            /** Option passed to a control to specify a maximum width.
+            */
+            public static MaxWidth ($maxWidth: number) : UnityEngine.GUILayoutOption
+            /** Option passed to a control to give it an absolute height.
+            */
+            public static Height ($height: number) : UnityEngine.GUILayoutOption
+            /** Option passed to a control to specify a minimum height.
+            */
+            public static MinHeight ($minHeight: number) : UnityEngine.GUILayoutOption
+            /** Option passed to a control to specify a maximum height.
+            */
+            public static MaxHeight ($maxHeight: number) : UnityEngine.GUILayoutOption
+            /** Option passed to a control to allow or disallow horizontal expansion.
+            */
+            public static ExpandWidth ($expand: boolean) : UnityEngine.GUILayoutOption
+            /** Option passed to a control to allow or disallow vertical expansion.
+            */
+            public static ExpandHeight ($expand: boolean) : UnityEngine.GUILayoutOption
+            public constructor ()
+        }
+        /** Class internally used to pass layout options into GUILayout functions. You don't use these directly, but construct them with the layouting functions in the GUILayout class.
+        */
+        class GUILayoutOption extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        /** Utility functions for implementing and extending the GUILayout class.
+        */
+        class GUILayoutUtility extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            /** Reserve layout space for a rectangle for displaying some contents with a specific style.
+            * @param $content The content to make room for displaying.
+            * @param $style The GUIStyle to layout for.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns A rectangle that is large enough to contain content when rendered in style. 
+            */
+            public static GetRect ($content: UnityEngine.GUIContent, $style: UnityEngine.GUIStyle) : UnityEngine.Rect
+            /** Reserve layout space for a rectangle for displaying some contents with a specific style.
+            * @param $content The content to make room for displaying.
+            * @param $style The GUIStyle to layout for.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns A rectangle that is large enough to contain content when rendered in style. 
+            */
+            public static GetRect ($content: UnityEngine.GUIContent, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : UnityEngine.Rect
+            /** Reserve layout space for a rectangle with a fixed content area.
+            * @param $width The width of the area you want.
+            * @param $height The height of the area you want.
+            * @param $style An optional GUIStyle to layout for. If specified, the style's padding value will be added to your sizes & its margin value will be used for spacing.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns The rectangle to put your control in. 
+            */
+            public static GetRect ($width: number, $height: number) : UnityEngine.Rect
+            /** Reserve layout space for a rectangle with a fixed content area.
+            * @param $width The width of the area you want.
+            * @param $height The height of the area you want.
+            * @param $style An optional GUIStyle to layout for. If specified, the style's padding value will be added to your sizes & its margin value will be used for spacing.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns The rectangle to put your control in. 
+            */
+            public static GetRect ($width: number, $height: number, $style: UnityEngine.GUIStyle) : UnityEngine.Rect
+            /** Reserve layout space for a rectangle with a fixed content area.
+            * @param $width The width of the area you want.
+            * @param $height The height of the area you want.
+            * @param $style An optional GUIStyle to layout for. If specified, the style's padding value will be added to your sizes & its margin value will be used for spacing.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns The rectangle to put your control in. 
+            */
+            public static GetRect ($width: number, $height: number, ...options: UnityEngine.GUILayoutOption[]) : UnityEngine.Rect
+            /** Reserve layout space for a rectangle with a fixed content area.
+            * @param $width The width of the area you want.
+            * @param $height The height of the area you want.
+            * @param $style An optional GUIStyle to layout for. If specified, the style's padding value will be added to your sizes & its margin value will be used for spacing.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns The rectangle to put your control in. 
+            */
+            public static GetRect ($width: number, $height: number, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : UnityEngine.Rect
+            /** Reserve layout space for a flexible rect.
+            * @param $minWidth The minimum width of the area passed back.
+            * @param $maxWidth The maximum width of the area passed back.
+            * @param $minHeight The minimum width of the area passed back.
+            * @param $maxHeight The maximum width of the area passed back.
+            * @param $style An optional style. If specified, the style's padding value will be added to the sizes requested & the style's margin values will be used for spacing.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns A rectangle with size between minWidth & maxWidth on both axes. 
+            */
+            public static GetRect ($minWidth: number, $maxWidth: number, $minHeight: number, $maxHeight: number) : UnityEngine.Rect
+            /** Reserve layout space for a flexible rect.
+            * @param $minWidth The minimum width of the area passed back.
+            * @param $maxWidth The maximum width of the area passed back.
+            * @param $minHeight The minimum width of the area passed back.
+            * @param $maxHeight The maximum width of the area passed back.
+            * @param $style An optional style. If specified, the style's padding value will be added to the sizes requested & the style's margin values will be used for spacing.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns A rectangle with size between minWidth & maxWidth on both axes. 
+            */
+            public static GetRect ($minWidth: number, $maxWidth: number, $minHeight: number, $maxHeight: number, $style: UnityEngine.GUIStyle) : UnityEngine.Rect
+            /** Reserve layout space for a flexible rect.
+            * @param $minWidth The minimum width of the area passed back.
+            * @param $maxWidth The maximum width of the area passed back.
+            * @param $minHeight The minimum width of the area passed back.
+            * @param $maxHeight The maximum width of the area passed back.
+            * @param $style An optional style. If specified, the style's padding value will be added to the sizes requested & the style's margin values will be used for spacing.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns A rectangle with size between minWidth & maxWidth on both axes. 
+            */
+            public static GetRect ($minWidth: number, $maxWidth: number, $minHeight: number, $maxHeight: number, ...options: UnityEngine.GUILayoutOption[]) : UnityEngine.Rect
+            /** Reserve layout space for a flexible rect.
+            * @param $minWidth The minimum width of the area passed back.
+            * @param $maxWidth The maximum width of the area passed back.
+            * @param $minHeight The minimum width of the area passed back.
+            * @param $maxHeight The maximum width of the area passed back.
+            * @param $style An optional style. If specified, the style's padding value will be added to the sizes requested & the style's margin values will be used for spacing.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns A rectangle with size between minWidth & maxWidth on both axes. 
+            */
+            public static GetRect ($minWidth: number, $maxWidth: number, $minHeight: number, $maxHeight: number, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : UnityEngine.Rect
+            /** Get the rectangle last used by GUILayout for a control.
+            * @returns The last used rectangle. 
+            */
+            public static GetLastRect () : UnityEngine.Rect
+            /** Reserve layout space for a rectangle with a specific aspect ratio.
+            * @param $aspect The aspect ratio of the element (width / height).
+            * @param $style An optional style. If specified, the style's padding value will be added to the sizes of the returned rectangle & the style's margin values will be used for spacing.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns The rect for the control. 
+            */
+            public static GetAspectRect ($aspect: number) : UnityEngine.Rect
+            /** Reserve layout space for a rectangle with a specific aspect ratio.
+            * @param $aspect The aspect ratio of the element (width / height).
+            * @param $style An optional style. If specified, the style's padding value will be added to the sizes of the returned rectangle & the style's margin values will be used for spacing.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns The rect for the control. 
+            */
+            public static GetAspectRect ($aspect: number, $style: UnityEngine.GUIStyle) : UnityEngine.Rect
+            /** Reserve layout space for a rectangle with a specific aspect ratio.
+            * @param $aspect The aspect ratio of the element (width / height).
+            * @param $style An optional style. If specified, the style's padding value will be added to the sizes of the returned rectangle & the style's margin values will be used for spacing.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns The rect for the control. 
+            */
+            public static GetAspectRect ($aspect: number, ...options: UnityEngine.GUILayoutOption[]) : UnityEngine.Rect
+            /** Reserve layout space for a rectangle with a specific aspect ratio.
+            * @param $aspect The aspect ratio of the element (width / height).
+            * @param $style An optional style. If specified, the style's padding value will be added to the sizes of the returned rectangle & the style's margin values will be used for spacing.
+            * @param $options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
+            Additional resources: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
+            GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
+            * @returns The rect for the control. 
+            */
+            public static GetAspectRect ($aspect: number, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : UnityEngine.Rect
+            public constructor ()
+        }
+        /** General settings for how the GUI behaves.
+        */
+        class GUISettings extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            /** Should double-clicking select words in text fields.
+            */
+            public get doubleClickSelectsWord(): boolean;
+            public set doubleClickSelectsWord(value: boolean);
+            /** Should triple-clicking select whole text in text fields.
+            */
+            public get tripleClickSelectsLine(): boolean;
+            public set tripleClickSelectsLine(value: boolean);
+            /** The color of the cursor in text fields.
+            */
+            public get cursorColor(): UnityEngine.Color;
+            public set cursorColor(value: UnityEngine.Color);
+            /** The speed of text field cursor flashes.
+            */
+            public get cursorFlashSpeed(): number;
+            public set cursorFlashSpeed(value: number);
+            /** The color of the selection rect in text fields.
+            */
+            public get selectionColor(): UnityEngine.Color;
+            public set selectionColor(value: UnityEngine.Color);
+            public constructor ()
+        }
+        /** Specialized values for the given states used by GUIStyle objects.
+        */
+        class GUIStyleState extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            /** The background image used by GUI elements in this given state.
+            */
+            public get background(): UnityEngine.Texture2D;
+            public set background(value: UnityEngine.Texture2D);
+            /** The text color used by GUI elements in this state.
+            */
+            public get textColor(): UnityEngine.Color;
+            public set textColor(value: UnityEngine.Color);
+            /** Background images used by this state when on a high-resolution screen. It should either be left empty, or contain a single image that is exactly twice the resolution of background. This is only used by the editor. The field is not copied to player data, and is not accessible from player code.
+            */
+            public get scaledBackgrounds(): System.Array$1<UnityEngine.Texture2D>;
+            public set scaledBackgrounds(value: System.Array$1<UnityEngine.Texture2D>);
+            public constructor ()
+        }
+        /** How image and text is placed inside GUIStyle.
+        */
+        enum ImagePosition
+        { ImageLeft = 0, ImageAbove = 1, ImageOnly = 2, TextOnly = 3 }
+        /** Different methods for how the GUI system handles text being too large to fit the rectangle allocated.
+        */
+        enum TextClipping
+        { Overflow = 0, Clip = 1, Ellipsis = 2 }
+        /** Allows to control for which display the OnGUI is called.
+        */
+        class GUITargetAttribute extends System.Attribute implements System.Runtime.InteropServices._Attribute
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public constructor ($displayIndex: number)
+            public constructor ($displayIndex: number, $displayIndex1: number)
+            public constructor ($displayIndex: number, $displayIndex1: number, ...displayIndexList: number[])
+        }
+        class GUITexture extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+        }
+        /** Utility class for making new GUI controls.
+        */
+        class GUIUtility extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            /** A global property, which is true if a ModalWindow is being displayed, false otherwise.
+            */
+            public static get hasModalWindow(): boolean;
+            /** Get access to the system-wide clipboard.
+            */
+            public static get systemCopyBuffer(): string;
+            public static set systemCopyBuffer(value: string);
+            /** The controlID of the current hot control.
+            */
+            public static get hotControl(): number;
+            public static set hotControl(value: number);
+            /** The controlID of the control that has keyboard focus.
+            */
+            public static get keyboardControl(): number;
+            public static set keyboardControl(value: number);
+            /** Get a unique ID for a control, using an integer as a hint to help ensure correct matching of IDs to controls.
+            */
+            public static GetControlID ($hint: number, $focusType: UnityEngine.FocusType, $rect: UnityEngine.Rect) : number
+            /** Align a local space rectangle to the pixel grid.
+            * @param $local The local space rectangle that needs to be processed.
+            * @param $widthInPixels Width, in pixel units, of the axis-aligned bounding box that encompasses the aligned points.
+            * @param $heightInPixels Height, in pixel units, of the axis-aligned bounding box that encompasses the aligned points.
+            * @returns The aligned rectangle in local space. 
+            */
+            public static AlignRectToDevice ($rect: UnityEngine.Rect, $widthInPixels: $Ref<number>, $heightInPixels: $Ref<number>) : UnityEngine.Rect
+            /** Get a unique ID for a control.
+            */
+            public static GetControlID ($focus: UnityEngine.FocusType) : number
+            /** Get a unique ID for a control, using a the label content as a hint to help ensure correct matching of IDs to controls.
+            */
+            public static GetControlID ($contents: UnityEngine.GUIContent, $focus: UnityEngine.FocusType) : number
+            /** Get a unique ID for a control.
+            */
+            public static GetControlID ($focus: UnityEngine.FocusType, $position: UnityEngine.Rect) : number
+            /** Get a unique ID for a control, using a the label content as a hint to help ensure correct matching of IDs to controls.
+            */
+            public static GetControlID ($contents: UnityEngine.GUIContent, $focus: UnityEngine.FocusType, $position: UnityEngine.Rect) : number
+            /** Get a unique ID for a control, using an integer as a hint to help ensure correct matching of IDs to controls.
+            */
+            public static GetControlID ($hint: number, $focus: UnityEngine.FocusType) : number
+            /** Get a state object from a controlID.
+            */
+            public static GetStateObject ($t: System.Type, $controlID: number) : any
+            /** Get an existing state object from a controlID.
+            */
+            public static QueryStateObject ($t: System.Type, $controlID: number) : any
+            /** Puts the GUI in a state that will prevent all subsequent immediate mode GUI functions from evaluating for the remainder of the GUI loop by throwing an ExitGUIException.
+            */
+            public static ExitGUI () : void
+            /** Convert a point from GUI position to screen space.
+            */
+            public static GUIToScreenPoint ($guiPoint: UnityEngine.Vector2) : UnityEngine.Vector2
+            /** Convert a rect from GUI position to screen space.
+            */
+            public static GUIToScreenRect ($guiRect: UnityEngine.Rect) : UnityEngine.Rect
+            /** Convert a point from screen space to GUI position.
+            */
+            public static ScreenToGUIPoint ($screenPoint: UnityEngine.Vector2) : UnityEngine.Vector2
+            /** Convert a rect from screen space to GUI position.
+            */
+            public static ScreenToGUIRect ($screenRect: UnityEngine.Rect) : UnityEngine.Rect
+            /** Helper function to rotate the GUI around a point.
+            */
+            public static RotateAroundPivot ($angle: number, $pivotPoint: UnityEngine.Vector2) : void
+            /** Helper function to scale the GUI around a point.
+            */
+            public static ScaleAroundPivot ($scale: UnityEngine.Vector2, $pivotPoint: UnityEngine.Vector2) : void
+            /** Align a local space rectangle to the pixel grid.
+            * @param $local The local space rectangle that needs to be processed.
+            * @param $widthInPixels Width, in pixel units, of the axis-aligned bounding box that encompasses the aligned points.
+            * @param $heightInPixels Height, in pixel units, of the axis-aligned bounding box that encompasses the aligned points.
+            * @returns The aligned rectangle in local space. 
+            */
+            public static AlignRectToDevice ($rect: UnityEngine.Rect) : UnityEngine.Rect
+            public constructor ()
+        }
+        /** An exception that will prevent all subsequent immediate mode GUI functions from evaluating for the remainder of the GUI loop.
+        */
+        class ExitGUIException extends System.Exception implements System.Runtime.Serialization.ISerializable, System.Runtime.InteropServices._Exception
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+        }
+        class TextEditor extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public keyboardOnScreen : UnityEngine.TouchScreenKeyboard
+            public controlID : number
+            public style : UnityEngine.GUIStyle
+            public isPasswordField : boolean
+            public scrollOffset : UnityEngine.Vector2
+            public graphicalCursorPos : UnityEngine.Vector2
+            public graphicalSelectCursorPos : UnityEngine.Vector2
+            public get isMultiline(): boolean;
+            public set isMultiline(value: boolean);
+            public get hasHorizontalCursor(): boolean;
+            public set hasHorizontalCursor(value: boolean);
+            public get showCursor(): boolean;
+            public set showCursor(value: boolean);
+            public get text(): string;
+            public set text(value: string);
+            public get position(): UnityEngine.Rect;
+            public set position(value: UnityEngine.Rect);
+            public get cursorIndex(): number;
+            public set cursorIndex(value: number);
+            public get selectIndex(): number;
+            public set selectIndex(value: number);
+            public get doubleClickSnapping(): UnityEngine.TextEditor.DblClickSnapping;
+            public set doubleClickSnapping(value: UnityEngine.TextEditor.DblClickSnapping);
+            public get altCursorPosition(): number;
+            public set altCursorPosition(value: number);
+            public get hasSelection(): boolean;
+            public get SelectedText(): string;
+            public OnFocus () : void
+            public OnLostFocus () : void
+            public HasClickedOnLink ($mousePosition: UnityEngine.Vector2, $linkData: $Ref<string>) : boolean
+            public HasClickedOnHREF ($mousePosition: UnityEngine.Vector2, $href: $Ref<string>) : boolean
+            public HandleKeyEvent ($e: UnityEngine.Event) : boolean
+            public DeleteLineBack () : boolean
+            public DeleteWordBack () : boolean
+            public DeleteWordForward () : boolean
+            public Delete () : boolean
+            public CanPaste () : boolean
+            public Backspace () : boolean
+            public SelectAll () : void
+            public SelectNone () : void
+            public DeleteSelection () : boolean
+            public ReplaceSelection ($replace: string) : void
+            public Insert ($c: number) : void
+            public MoveSelectionToAltCursor () : void
+            public MoveRight () : void
+            public MoveLeft () : void
+            public MoveUp () : void
+            public MoveDown () : void
+            public MoveLineStart () : void
+            public MoveLineEnd () : void
+            public MoveGraphicalLineStart () : void
+            public MoveGraphicalLineEnd () : void
+            public MoveTextStart () : void
+            public MoveTextEnd () : void
+            public MoveParagraphForward () : void
+            public MoveParagraphBackward () : void
+            public MoveCursorToPosition ($cursorPosition: UnityEngine.Vector2) : void
+            public MoveAltCursorToPosition ($cursorPosition: UnityEngine.Vector2) : void
+            public IsOverSelection ($cursorPosition: UnityEngine.Vector2) : boolean
+            public SelectToPosition ($cursorPosition: UnityEngine.Vector2) : void
+            public SelectLeft () : void
+            public SelectRight () : void
+            public SelectUp () : void
+            public SelectDown () : void
+            public SelectTextEnd () : void
+            public SelectTextStart () : void
+            public MouseDragSelectsWholeWords ($on: boolean) : void
+            public DblClickSnap ($snapping: UnityEngine.TextEditor.DblClickSnapping) : void
+            public MoveWordRight () : void
+            public MoveToStartOfNextWord () : void
+            public MoveToEndOfPreviousWord () : void
+            public SelectToStartOfNextWord () : void
+            public SelectToEndOfPreviousWord () : void
+            public FindStartOfNextWord ($p: number) : number
+            public MoveWordLeft () : void
+            public SelectWordRight () : void
+            public SelectWordLeft () : void
+            public ExpandSelectGraphicalLineStart () : void
+            public ExpandSelectGraphicalLineEnd () : void
+            public SelectGraphicalLineStart () : void
+            public SelectGraphicalLineEnd () : void
+            public SelectParagraphForward () : void
+            public SelectParagraphBackward () : void
+            public SelectCurrentWord () : void
+            public SelectCurrentParagraph () : void
+            public UpdateScrollOffsetIfNeeded ($evt: UnityEngine.Event) : void
+            public DrawCursor ($newText: string) : void
+            public SaveBackup () : void
+            public Undo () : void
+            public Cut () : boolean
+            public Copy () : void
+            public Paste () : boolean
+            public DetectFocusChange () : void
+            public constructor ()
+        }
+        class GUIText extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+        }
+        /** How multiline text should be aligned.
+        */
+        enum TextAlignment
+        { Left = 0, Center = 1, Right = 2 }
+        /** A struct that stores the settings for TextGeneration.
+        */
+        class TextGenerationSettings extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            /** Font to use for generation.
+            */
+            public font : UnityEngine.Font
+            /** The base color for the text generation.
+            */
+            public color : UnityEngine.Color
+            /** Font size.
+            */
+            public fontSize : number
+            /** The line spacing multiplier.
+            */
+            public lineSpacing : number
+            /** Allow rich text markup in generation.
+            */
+            public richText : boolean
+            /** A scale factor for the text. This is useful if the Text is on a Canvas and the canvas is scaled.
+            */
+            public scaleFactor : number
+            /** Font style.
+            */
+            public fontStyle : UnityEngine.FontStyle
+            /** How is the generated text anchored.
+            */
+            public textAnchor : UnityEngine.TextAnchor
+            /** Use the extents of glyph geometry to perform horizontal alignment rather than glyph metrics.
+            */
+            public alignByGeometry : boolean
+            /** Should the text be resized to fit the configured bounds?
+            */
+            public resizeTextForBestFit : boolean
+            /** Minimum size for resized text.
+            */
+            public resizeTextMinSize : number
+            /** Maximum size for resized text.
+            */
+            public resizeTextMaxSize : number
+            /** Should the text generator update the bounds from the generated text.
+            */
+            public updateBounds : boolean
+            /** What happens to text when it reaches the bottom generation bounds.
+            */
+            public verticalOverflow : UnityEngine.VerticalWrapMode
+            /** What happens to text when it reaches the horizontal generation bounds.
+            */
+            public horizontalOverflow : UnityEngine.HorizontalWrapMode
+            /** Extents that the generator will attempt to fit the text in.
+            */
+            public generationExtents : UnityEngine.Vector2
+            /** Generated vertices are offset by the pivot.
+            */
+            public pivot : UnityEngine.Vector2
+            /** Continue to generate characters even if the text runs out of bounds.
+            */
+            public generateOutOfBounds : boolean
+            public Equals ($other: UnityEngine.TextGenerationSettings) : boolean
+        }
+        /** Wrapping modes for text that reaches the vertical boundary.
+        */
+        enum VerticalWrapMode
+        { Truncate = 0, Overflow = 1 }
+        /** Wrapping modes for text that reaches the horizontal boundary.
+        */
+        enum HorizontalWrapMode
+        { Wrap = 0, Overflow = 1 }
+        /** Class that can be used to generate text for rendering.
+        */
+        class TextGenerator extends System.Object implements System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+            /** The number of characters that have been generated and are included in the visible lines.
+            */
+            public get characterCountVisible(): number;
+            /** Array of generated vertices.
+            */
+            public get verts(): System.Collections.Generic.IList$1<UnityEngine.UIVertex>;
+            /** Array of generated characters.
+            */
+            public get characters(): System.Collections.Generic.IList$1<UnityEngine.UICharInfo>;
+            /** Information about each generated text line.
+            */
+            public get lines(): System.Collections.Generic.IList$1<UnityEngine.UILineInfo>;
+            /** Extents of the generated text in rect format.
+            */
+            public get rectExtents(): UnityEngine.Rect;
+            /** Number of vertices generated.
+            */
+            public get vertexCount(): number;
+            /** The number of characters that have been generated.
+            */
+            public get characterCount(): number;
+            /** Number of text lines generated.
+            */
+            public get lineCount(): number;
+            /** The size of the font that was found if using best fit mode.
+            */
+            public get fontSizeUsedForBestFit(): number;
+            /** Mark the text generator as invalid. This will force a full text generation the next time Populate is called.
+            */
+            public Invalidate () : void
+            public GetCharacters ($characters: System.Collections.Generic.List$1<UnityEngine.UICharInfo>) : void
+            public GetLines ($lines: System.Collections.Generic.List$1<UnityEngine.UILineInfo>) : void
+            public GetVertices ($vertices: System.Collections.Generic.List$1<UnityEngine.UIVertex>) : void
+            /** Given a string and settings, returns the preferred width for a container that would hold this text.
+            * @param $str Generation text.
+            * @param $settings Settings for generation.
+            * @returns Preferred width. 
+            */
+            public GetPreferredWidth ($str: string, $settings: UnityEngine.TextGenerationSettings) : number
+            /** Given a string and settings, returns the preferred height for a container that would hold this text.
+            * @param $str Generation text.
+            * @param $settings Settings for generation.
+            * @returns Preferred height. 
+            */
+            public GetPreferredHeight ($str: string, $settings: UnityEngine.TextGenerationSettings) : number
+            /** Will generate the vertices and other data for the given string with the given settings.
+            * @param $str String to generate.
+            * @param $settings Generation settings.
+            * @param $context The object used as context of the error log message, if necessary.
+            * @returns True if the generation is a success, false otherwise. 
+            */
+            public PopulateWithErrors ($str: string, $settings: UnityEngine.TextGenerationSettings, $context: UnityEngine.GameObject) : boolean
+            /** Will generate the vertices and other data for the given string with the given settings.
+            * @param $str String to generate.
+            * @param $settings Settings.
+            */
+            public Populate ($str: string, $settings: UnityEngine.TextGenerationSettings) : boolean
+            /** Returns the current UIVertex array.
+            * @returns Vertices. 
+            */
+            public GetVerticesArray () : System.Array$1<UnityEngine.UIVertex>
+            /** Returns the current UICharInfo.
+            * @returns Character information. 
+            */
+            public GetCharactersArray () : System.Array$1<UnityEngine.UICharInfo>
+            /** Returns the current UILineInfo.
+            * @returns Line information. 
+            */
+            public GetLinesArray () : System.Array$1<UnityEngine.UILineInfo>
+            public constructor ()
+            public constructor ($initialCapacity: number)
+        }
+        /** Class that specifies some information about a renderable character.
+        */
+        class UICharInfo extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            /** Position of the character cursor in local (text generated) space.
+            */
+            public cursorPos : UnityEngine.Vector2
+            /** Character width.
+            */
+            public charWidth : number
+        }
+        /** Information about a generated line of text.
+        */
+        class UILineInfo extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            /** Index of the first character in the line.
+            */
+            public startCharIdx : number
+            /** Height of the line.
+            */
+            public height : number
+            /** The upper Y position of the line in pixels. This is used for text annotation such as the caret and selection box in the InputField.
+            */
+            public topY : number
+            /** Space in pixels between this line and the next line.
+            */
+            public leading : number
+        }
+        /** Vertex class used by a Canvas for managing vertices.
+        */
+        class UIVertex extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            /** Vertex position.
+            */
+            public position : UnityEngine.Vector3
+            /** Normal.
+            */
+            public normal : UnityEngine.Vector3
+            /** Tangent.
+            */
+            public tangent : UnityEngine.Vector4
+            /** Vertex color.
+            */
+            public color : UnityEngine.Color32
+            /** The first texture coordinate set of the mesh. Used by UI elements by default.
+            */
+            public uv0 : UnityEngine.Vector4
+            /** The second texture coordinate set of the mesh, if present.
+            */
+            public uv1 : UnityEngine.Vector4
+            /** The Third texture coordinate set of the mesh, if present.
+            */
+            public uv2 : UnityEngine.Vector4
+            /** The forth texture coordinate set of the mesh, if present.
+            */
+            public uv3 : UnityEngine.Vector4
+            /** Simple UIVertex with sensible settings for use in the UI system.
+            */
+            public static simpleVert : UnityEngine.UIVertex
+        }
+        /** A script interface for the.
+        */
+        class TextMesh extends UnityEngine.Component
+        {
+            protected [__keep_incompatibility]: never;
+            /** The text that is displayed.
+            */
+            public get text(): string;
+            public set text(value: string);
+            /** The Font used.
+            */
+            public get font(): UnityEngine.Font;
+            public set font(value: UnityEngine.Font);
+            /** The font size to use (for dynamic fonts).
+            */
+            public get fontSize(): number;
+            public set fontSize(value: number);
+            /** The font style to use (for dynamic fonts).
+            */
+            public get fontStyle(): UnityEngine.FontStyle;
+            public set fontStyle(value: UnityEngine.FontStyle);
+            /** How far should the text be offset from the transform.position.z when drawing.
+            */
+            public get offsetZ(): number;
+            public set offsetZ(value: number);
+            /** How lines of text are aligned (Left, Right, Center).
+            */
+            public get alignment(): UnityEngine.TextAlignment;
+            public set alignment(value: UnityEngine.TextAlignment);
+            /** Which point of the text shares the position of the Transform.
+            */
+            public get anchor(): UnityEngine.TextAnchor;
+            public set anchor(value: UnityEngine.TextAnchor);
+            /** The size of each character (This scales the whole text).
+            */
+            public get characterSize(): number;
+            public set characterSize(value: number);
+            /** How much space will be in-between lines of text.
+            */
+            public get lineSpacing(): number;
+            public set lineSpacing(value: number);
+            /** How much space will be inserted for a tab '\t' character. This is a multiplum of the 'spacebar' character offset.
+            */
+            public get tabSize(): number;
+            public set tabSize(value: number);
+            /** Enable HTML-style tags for Text Formatting Markup.
+            */
+            public get richText(): boolean;
+            public set richText(value: boolean);
+            /** The color used to render the text.
+            */
+            public get color(): UnityEngine.Color;
+            public set color(value: UnityEngine.Color);
+            public constructor ()
+        }
+        /** Specification for how to render a character from the font texture. See Font.characterInfo.
+        */
+        class CharacterInfo extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            /** Unicode value of the character.
+            */
+            public index : number
+            /** The size of the character or 0 if it is the default font size.
+            */
+            public size : number
+            /** The style of the character.
+            */
+            public style : UnityEngine.FontStyle
+            /** The horizontal distance, rounded to the nearest integer, from the origin of this character to the origin of the next character.
+            */
+            public get advance(): number;
+            public set advance(value: number);
+            /** The width of the glyph image.
+            */
+            public get glyphWidth(): number;
+            public set glyphWidth(value: number);
+            /** The height of the glyph image.
+            */
+            public get glyphHeight(): number;
+            public set glyphHeight(value: number);
+            /** The horizontal distance from the origin of this glyph to the begining of the glyph image.
+            */
+            public get bearing(): number;
+            public set bearing(value: number);
+            /** The minimum extend of the glyph image in the y-axis.
+            */
+            public get minY(): number;
+            public set minY(value: number);
+            /** The maximum extend of the glyph image in the y-axis.
+            */
+            public get maxY(): number;
+            public set maxY(value: number);
+            /** The minium extend of the glyph image in the x-axis.
+            */
+            public get minX(): number;
+            public set minX(value: number);
+            /** The maximum extend of the glyph image in the x-axis.
+            */
+            public get maxX(): number;
+            public set maxX(value: number);
+            /** The uv coordinate matching the bottom left of the glyph image in the font texture.
+            */
+            public get uvBottomLeft(): UnityEngine.Vector2;
+            public set uvBottomLeft(value: UnityEngine.Vector2);
+            /** The uv coordinate matching the bottom right of the glyph image in the font texture.
+            */
+            public get uvBottomRight(): UnityEngine.Vector2;
+            public set uvBottomRight(value: UnityEngine.Vector2);
+            /** The uv coordinate matching the top right of the glyph image in the font texture.
+            */
+            public get uvTopRight(): UnityEngine.Vector2;
+            public set uvTopRight(value: UnityEngine.Vector2);
+            /** The uv coordinate matching the top left of the glyph image in the font texture.
+            */
+            public get uvTopLeft(): UnityEngine.Vector2;
+            public set uvTopLeft(value: UnityEngine.Vector2);
         }
     }
     namespace System.Runtime.Serialization {
@@ -19205,6 +22310,9 @@ declare namespace CS {
         interface _Assembly
         {
         }
+        interface _EventInfo
+        {
+        }
     }
     namespace UnityEngine.Debug {
         class StartupLog extends System.ValueType
@@ -19372,6 +22480,10 @@ declare namespace CS {
         {
         }
         class Assembly extends System.Object implements System.Runtime.Serialization.ISerializable, System.Reflection.ICustomAttributeProvider, System.Security.IEvidenceFactory, System.Runtime.InteropServices._Assembly
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class EventInfo extends System.Reflection.MemberInfo implements System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._EventInfo, System.Reflection.ICustomAttributeProvider
         {
             protected [__keep_incompatibility]: never;
         }
@@ -42384,6 +45496,28 @@ declare namespace CS {
         enum DefaultFocusOrder
         { ChildOrder = 0, PositionXY = 1, PositionYX = 2 }
     }
+    namespace UnityEngine.GUI {
+        enum ToolbarButtonSize
+        { Fixed = 0, FitToContents = 1 }
+        interface WindowFunction
+        { 
+        (id: number) : void; 
+        Invoke?: (id: number) => void;
+        }
+        var WindowFunction: { new (func: (id: number) => void): WindowFunction; }
+    }
+    namespace UnityEngine.TextEditor {
+        enum DblClickSnapping
+        { WORDS = 0, PARAGRAPHS = 1 }
+    }
+    namespace UnityEngine.Font {
+        interface FontTextureRebuildCallback
+        { 
+        () : void; 
+        Invoke?: () => void;
+        }
+        var FontTextureRebuildCallback: { new (func: () => void): FontTextureRebuildCallback; }
+    }
     namespace Unity.Mathematics {
         class bool2 extends System.ValueType implements System.IEquatable$1<Unity.Mathematics.bool2>
         {
@@ -51600,31 +54734,60 @@ declare namespace CS {
         {
             ProcessClassStr ($classStr: string, $dom: OneJS.Dom.Dom) : string
         }
-        class CommonGlobals extends System.Object
+        class Bundler extends UnityEngine.MonoBehaviour
         {
             protected [__keep_incompatibility]: never;
-            public static atob ($str: string) : string
-            public static btoa ($str: string) : string
+            public defaultFiles : System.Array$1<OneJS.DefaultFileMapping>
+            public directoriesToPackage : System.Array$1<string>
+            public outputsZip : UnityEngine.TextAsset
+            public version : string
+            public forceExtract : boolean
+            public ignoreList : System.Array$1<string>
+            public ExtractOutputsIfNotFound () : void
+            public ExtractForStandalone () : void
+            public PackageOutputsZipWithPrompt () : void
+            public PackageOutputsZip () : void
+            public ZeroOutOutputsZipWithPrompt () : void
+            public ZeroOutOutputsZip () : void
+            public PackageDirectoriesWithPrompt () : void
+            public PackageDirectories () : void
             public constructor ()
         }
-        interface MyCallback
-        { 
-        () : void; 
-        Invoke?: () => void;
-        }
-        var MyCallback: { new (func: () => void): MyCallback; }
-        class Resource extends System.Object
+        class DefaultFileMapping extends System.Object
         {
             protected [__keep_incompatibility]: never;
-            public loadFont ($path: string) : UnityEngine.Font
-            public loadFontDefinition ($path: string) : UnityEngine.UIElements.FontDefinition
-            public loadImage ($path: string) : UnityEngine.Texture2D
+            public path : string
+            public textAsset : UnityEngine.TextAsset
+            public constructor ()
+        }
+        class DTSGenerator extends UnityEngine.MonoBehaviour
+        {
+            protected [__keep_incompatibility]: never;
+            public assemblies : System.Array$1<string>
+            public namespaces : System.Array$1<string>
+            public blacklistedTypes : System.Array$1<string>
+            public savePath : string
+            public compact : boolean
+            public includeGlobalObjects : boolean
+            public constructor ()
+        }
+        class EngineHost extends System.Object implements System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+            public add_onReload ($value: OneJS.EngineHost.ActionCallback) : void
+            public remove_onReload ($value: OneJS.EngineHost.ActionCallback) : void
+            public add_onDestroy ($value: OneJS.EngineHost.ActionCallback) : void
+            public remove_onDestroy ($value: OneJS.EngineHost.ActionCallback) : void
+            public subscribe ($eventSource: any, $eventName: string, $handler: Function) : System.Action
+            public subscribe ($eventName: string, $handler: Function) : System.Action
+            public InvokeOnReload () : void
+            public InvokeOnDestroy () : void
+            public Dispose () : void
             public constructor ($engine: OneJS.ScriptEngine)
         }
         class ScriptEngine extends UnityEngine.MonoBehaviour implements OneJS.IScriptEngine
         {
             protected [__keep_incompatibility]: never;
-            public static GlobalJsEnv : Puerts.JsEnv
             public editorWorkingDirInfo : OneJS.EditorWorkingDirInfo
             public playerWorkingDirInfo : OneJS.PlayerWorkingDirInfo
             public preloads : System.Array$1<UnityEngine.TextAsset>
@@ -51647,29 +54810,26 @@ declare namespace CS {
         {
             WorkingDir : string
         }
-        class Initializer extends UnityEngine.MonoBehaviour
+        class CommonGlobals extends System.Object
         {
             protected [__keep_incompatibility]: never;
-            public defaultFiles : System.Array$1<OneJS.DefaultFileMapping>
-            public onejsCoreZip : UnityEngine.TextAsset
-            public outputsZip : UnityEngine.TextAsset
-            public version : string
-            public forceExtract : boolean
-            public ignoreList : System.Array$1<string>
-            public ExtractOnejsCoreIfNotFound () : void
-            public ExtractOutputsIfNotFound () : void
-            public ExtractOutputsForStandalone () : void
-            public PackageOutputsZipWithPrompt () : void
-            public PackageOutputsZip () : void
-            public ZeroOutOutputsZip () : void
+            public static atob ($str: string) : string
+            public static btoa ($str: string) : string
             public constructor ()
         }
-        class DefaultFileMapping extends System.Object
+        interface MyCallback
+        { 
+        () : void; 
+        Invoke?: () => void;
+        }
+        var MyCallback: { new (func: () => void): MyCallback; }
+        class Resource extends System.Object
         {
             protected [__keep_incompatibility]: never;
-            public path : string
-            public textAsset : UnityEngine.TextAsset
-            public constructor ()
+            public loadFont ($path: string) : UnityEngine.Font
+            public loadFontDefinition ($path: string) : UnityEngine.UIElements.FontDefinition
+            public loadImage ($path: string) : UnityEngine.Texture2D
+            public constructor ($engine: OneJS.ScriptEngine)
         }
         class Janitor extends UnityEngine.MonoBehaviour
         {
@@ -51679,13 +54839,6 @@ declare namespace CS {
             public ClearGameObjects () : void
             public Clean () : void
             public ClearLog () : void
-            public constructor ()
-        }
-        class JanitorSpawner extends UnityEngine.MonoBehaviour
-        {
-            protected [__keep_incompatibility]: never;
-            public get Janitor(): OneJS.Janitor;
-            public Respawn () : void
             public constructor ()
         }
         class Runner extends UnityEngine.MonoBehaviour
@@ -51743,15 +54896,6 @@ declare namespace CS {
         {
             protected [__keep_incompatibility]: never;
             public constructor ()
-        }
-        class Painter2DWrapper extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public static Foo ($a: any, $b: UnityEngine.Color) : void
-            public static Bar ($a: any, $b: any) : void
-            public static Ace ($a: UnityEngine.Color, $b: UnityEngine.Color) : void
-            public static Test ($c: UnityEngine.Color) : void
-            public static Test2 ($v: number) : void
         }
     }
     namespace OneJS.Dom {
@@ -51958,7 +55102,19 @@ declare namespace CS {
             public constructor ()
         }
     }
+    namespace OneJS.EngineHost {
+        interface ActionCallback
+        { 
+        () : void; 
+        Invoke?: () => void;
+        }
+        var ActionCallback: { new (func: () => void): ActionCallback; }
+    }
     namespace Puerts {
+        class GenericDelegate extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
         class JsEnv extends System.Object implements System.IDisposable
         {
             protected [__keep_incompatibility]: never;
@@ -51998,6 +55154,22 @@ declare namespace CS {
             public static Do ($action: System.Action) : System.Collections.IEnumerator
             public constructor ()
         }
+        class DelegateWrapper extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static Wrap ($jsEnv: Puerts.JsEnv, $eventInfo: System.Reflection.EventInfo, $handler: Function) : Function
+            public GetWrapped () : Function
+            public GetAction () : System.Action
+            public constructor ($jsEnv: Puerts.JsEnv, $eventInfo: System.Reflection.EventInfo, $handler: Function)
+        }
+        class GenericDelegateWrapper extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static Wrap ($jsEnv: Puerts.JsEnv, $eventInfo: System.Reflection.EventInfo, $handler: Function) : Function
+            public GetWrapped () : Function
+            public GetAction () : System.Action
+            public constructor ($jsEnv: Puerts.JsEnv, $eventInfo: System.Reflection.EventInfo, $handler: Function)
+        }
         class GradientTextureFillJob extends System.ValueType implements Unity.Jobs.IJobParallelFor
         {
             protected [__keep_incompatibility]: never;
@@ -52007,6 +55179,12 @@ declare namespace CS {
             public topRightColor : UnityEngine.Color32
             public static Run ($colors: Unity.Collections.NativeArray$1<UnityEngine.Color32>, $width: number, $height: number, $topRightColor: UnityEngine.Color32) : void
             public Execute ($index: number) : void
+        }
+        class StringUtil extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static SanitizeFilename ($filename: string) : string
+            public constructor ()
         }
         class TarCreator extends System.Object
         {
@@ -52045,6 +55223,25 @@ declare namespace CS {
         class TarOutputStream extends System.IO.Stream implements System.IAsyncDisposable, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
+        }
+    }
+    namespace OneJS.Samples {
+        class SampleCharacter extends UnityEngine.MonoBehaviour
+        {
+            protected [__keep_incompatibility]: never;
+            public get Health(): number;
+            public set Health(value: number);
+            public get MaxHealth(): number;
+            public set MaxHealth(value: number);
+            public get SlotIndex(): number;
+            public set SlotIndex(value: number);
+            public add_OnHealthChanged ($value: System.Action$1<number>) : void
+            public remove_OnHealthChanged ($value: System.Action$1<number>) : void
+            public add_OnMaxHealthChanged ($value: System.Action$1<number>) : void
+            public remove_OnMaxHealthChanged ($value: System.Action$1<number>) : void
+            public add_OnSlotIndexChanged ($value: System.Action$1<number>) : void
+            public remove_OnSlotIndexChanged ($value: System.Action$1<number>) : void
+            public constructor ()
         }
     }
 }
