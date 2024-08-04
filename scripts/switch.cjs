@@ -76,7 +76,7 @@ async function Process(backend, outputDir) {
 function getOneJSUnityDir() {
     var packageJsonPath = path.join(__dirname, '../package.json')
     var json = require(packageJsonPath)
-    return json.onejs.unityPackagePath
+    return json.onejs["unity-package-path"]
 }
 
 function ensureDirectoryExistence(filePath) {
