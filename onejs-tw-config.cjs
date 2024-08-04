@@ -64,30 +64,39 @@ exports.plugins = [
             ".duration-1000": { "transition-duration": "1000ms" },
             ".scale-none": { scale: "none" },
             ".rotate-none": { rotate: "none" },
+            ".text-left": { "-unity-text-align": "middle-left" },
+            ".text-center": { "-unity-text-align": "middle-center" },
+            ".text-right": { "-unity-text-align": "middle-right" },
+            ".text-upper-left": { "-unity-text-align": "upper-left" },
+            ".text-upper-center": { "-unity-text-align": "upper-center" },
+            ".text-upper-right": { "-unity-text-align": "upper-right" },
+            ".text-lower-left": { "-unity-text-align": "lower-left" },
+            ".text-lower-center": { "-unity-text-align": "lower-center" },
+            ".text-lower-right": { "-unity-text-align": "lower-right" },
         })
 
         matchUtilities({
             fontdef: (value) => ({ "-unity-font-definition": `url("${value}")` }),
         }, {})
 
-        matchUtilities(
-            {
-                text: (value) => ({ "-unity-text-align": value }),
-            },
-            {
-                values: {
-                    left: "middle-left",
-                    center: "middle-center",
-                    right: "middle-right",
-                    "upper-left": "upper-left",
-                    "upper-center": "upper-center",
-                    "upper-right": "upper-right",
-                    "lower-left": "lower-left",
-                    "lower-center": "lower-center",
-                    "lower-right": "lower-right",
-                },
-            }
-        )
+        // matchUtilities(
+        //     {
+        //         text: (value) => ({ "-unity-text-align": value }), // This will conflict with text colors, etc
+        //     },
+        //     {
+        //         values: {
+        //             left: "middle-left",
+        //             center: "middle-center",
+        //             right: "middle-right",
+        //             "upper-left": "upper-left",
+        //             "upper-center": "upper-center",
+        //             "upper-right": "upper-right",
+        //             "lower-left": "lower-left",
+        //             "lower-center": "lower-center",
+        //             "lower-right": "lower-right",
+        //         },
+        //     }
+        // )
 
         matchUtilities(
             {
