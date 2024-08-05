@@ -19,6 +19,10 @@ export class DocumentWrapper {
         this.#doc.addRuntimeUSS(uss)
     }
 
+    clearRuntimeStyleSheets(): void {
+        this.#doc.clearRuntimeStyleSheets()
+    }
+
     createElement(tagName: string, options?: ElementCreationOptions): DomWrapper {
         return new DomWrapper(this.#doc.createElement(tagName))
     }

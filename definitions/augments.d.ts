@@ -1,6 +1,7 @@
 declare global {
     interface Document {
         addRuntimeUSS(uss: string): void
+        clearRuntimeStyleSheets(): void
 
         // createElement(tagName: string): CS.OneJS.Dom.Dom
         // createTextNode(text: string): CS.OneJS.Dom.Dom
