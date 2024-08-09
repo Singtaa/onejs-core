@@ -14,6 +14,8 @@
 // Don't do any import here, just declare the types
 
 type VisualElement = CS.UnityEngine.UIElements.VisualElement;
+type Vector2 = CS.UnityEngine.Vector2;
+type Vector3 = CS.UnityEngine.Vector3;
 type float2 = CS.Unity.Mathematics.float2;
 type float3 = CS.Unity.Mathematics.float3;
 type float4 = CS.Unity.Mathematics.float4;
@@ -140,7 +142,7 @@ declare namespace CS.OneJS.Dom {
         transitionDuration: StyleList<TimeValue> | TimeValue | string | null | string[] | number | number[];
         transitionProperty: StyleList<StylePropertyName> | StylePropertyName | string | null | string[];
         transitionTimingFunction: StyleList<EasingFunction> | EasingFunction | string | null | string[];
-        translate: StyleTranslate | Translate | string | null | number[];
+        translate: StyleTranslate | Translate | string | null | Vector2 | Vector3 | number[];
         unityBackgroundImageTintColor: StyleColor | Color | string | null | number[] | float4;
         unityBackgroundScaleMode: StyleEnum<ScaleMode> | ScaleMode | string | null | number;
         unityFont: StyleFont | UnityEngine.Font | string | null;
