@@ -149,39 +149,21 @@ exports.plugins = [
     }),
 ]
 
-exports.corePlugins = {
-    // USS cannot support dynamic custom properties within rgb()
-    // which is what is used by Tailwind for opacity scales
-    transitionProperty: false,
-    transitionDuration: false,
-    backdropOpacity: false,
-    backgroundOpacity: false,
-    borderOpacity: false,
-    divideOpacity: false,
-    ringOpacity: false,
-    textOpacity: false,
-    transform: false,
-    translate: false,
-    rotate: false,
-    scale: false,
-    filter: false,
-    display: false,
-    columnGap: false,
-    rowGap: false,
-    gridColumn: false,
-    gridColumnEnd: false,
-    gridColumnStart: false,
-    gridRow: false,
-    gridRowEnd: false,
-    gridRowStart: false,
-    gridTemplateColumns: false,
-    gridTemplateRows: false,
-    gridAutoFlow: false,
-    gridAutoColumns: false,
-    gridAutoRows: false,
-    fontWeight: false,
-    lineHeight: false,
-}
+// USS cannot support dynamic custom properties within rgb()
+// which is what is used by Tailwind for opacity scales
+exports.corePlugins = [
+    "alignContent", "alignItems", "alignSelf",
+    "justifyContent",
+    "backgroundColor", "backgroundImage", "backgroundPosition", "backgroundRepeat", "backgroundSize", 
+    "borderColor", "borderRadius", "borderWidth", 
+    "colors", "textColor", "cursor",
+    "flex", "flexBasis", "flexDirection", "flexGrow", "flexShrink", 
+    "fontFamily", "fontSize", "fontStyle", 
+    "width", "height", "maxWidth", "maxHeight", "minWidth", "minHeight",
+    "margin", "padding",
+    "opacity", "overflow",
+    "position", "inset"
+]
 
 /**
  * Utilities
