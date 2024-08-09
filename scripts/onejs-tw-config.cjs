@@ -164,6 +164,7 @@ exports.corePlugins = {
     translate: false,
     rotate: false,
     scale: false,
+    filter: false,
     fontWeight: false,
     lineHeight: false,
 }
