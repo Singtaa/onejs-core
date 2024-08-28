@@ -11,7 +11,10 @@ function getPackagesWithAssets() {
     const packages = fs.readdirSync(nodeModulesPath);
     // console.log("There are " + packages.length + " packages in node_modules");
     for (const packageName of packages) {
-        const pkgJsonPath = path.join(nodeModulesPath, packageName, 'package.json');
+        const packagePath = path.join(nodeModulesPath, packageName);
+        if (!fs.statSync(packagePath).isDirectory())
+            continue;
+        const pkgJsonPath = path.join(packagePath, 'package.json');
 
         try {
             const pkgJsonContent = fs.readFileSync(pkgJsonPath, 'utf8');
