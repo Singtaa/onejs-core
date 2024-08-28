@@ -1,11 +1,16 @@
 import flatten from "css-flatten"
 import generateComponentId from "./utils/generateComponentId"
 
+const _pastCompIds = new Set<string>()
+
 export function hashAndAddRuntimeUSS(style: string) {
     let compId = generateComponentId(style)
+    if (_pastCompIds.has(compId))
+        return compId
     style = `.${compId} {${style}}`
     style = flatten(style)
     document.addRuntimeUSS(style)
+    _pastCompIds.add(compId)
 
     return compId
 }
