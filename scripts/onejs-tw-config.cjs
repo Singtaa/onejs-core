@@ -151,13 +151,14 @@ exports.plugins = [
 
 // USS cannot support dynamic custom properties within rgb()
 // which is what is used by Tailwind for opacity scales
+// Ref: https://tailwindcss.com/docs/configuration#core-plugins
 exports.corePlugins = [
     "alignContent", "alignItems", "alignSelf",
     "justifyContent",
     "backgroundColor", "backgroundImage", "backgroundPosition", "backgroundRepeat", "backgroundSize", 
     "borderColor", "borderRadius", "borderWidth", 
     "colors", "textColor", "cursor",
-    "flex", "flexBasis", "flexDirection", "flexGrow", "flexShrink", 
+    "flex", "flexBasis", "flexDirection", "flexGrow", "flexShrink", "flexWrap",
     "fontFamily", "fontSize", "fontStyle", 
     "width", "height", "maxWidth", "maxHeight", "minWidth", "minHeight",
     "margin", "padding",
