@@ -1,17 +1,23 @@
 declare global {
-    interface Document {
-        addRuntimeUSS(uss: string): void
-        clearRuntimeStyleSheets(): void
 
-        // createElement(tagName: string): CS.OneJS.Dom.Dom
-        // createTextNode(text: string): CS.OneJS.Dom.Dom
-    }
+    // interface ElementCreationOptions {
+    //     is?: string
+    // }
 
-    interface Element {
-        classname: string
-        nodeType: number
-        ve: CS.UnityEngine.UIElements.VisualElement
-    }
+    // interface Document {
+    //     addRuntimeUSS(uss: string): void
+    //     clearRuntimeStyleSheets(): void
+
+    //     createElement(tagName: string, options?: ElementCreationOptions): Element
+    //     createElementNS(ns: string, tagName: string, options?: ElementCreationOptions): Element
+    //     createTextNode(text: string): Element
+    // }
+
+    // interface Element {
+    //     classname: string
+    //     nodeType: number
+    //     ve: CS.UnityEngine.UIElements.VisualElement
+    // }
 
     interface HTMLElement {
         style: CS.OneJS.Dom.DomStyle
@@ -25,21 +31,21 @@ declare global {
     const requestAnimationFrame: (callback: (time: number) => void) => number
     const cancelAnimationFrame: (id: number) => void
 
-    const console: { 
+    const console: {
         log: (...args: any[]) => void
         error: (...args: any[]) => void
         warn: (...args: any[]) => void
         info: (...args: any[]) => void
         debug: (...args: any[]) => void
-     }
+    }
 
     interface Event {
         type: string
-     }
-    interface Text { 
+    }
+    interface Text {
         data: string
         nodeType: number
-     }
+    }
 }
 
 export { }

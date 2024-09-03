@@ -27,12 +27,24 @@ export class DocumentWrapper {
         return new DomWrapper(this.#doc.createElement(tagName))
     }
 
-    createElementNS(ns: string, tagName: string, options: ElementCreationOptions): DomWrapper {
+    createElementNS(ns: string, tagName: string, options?: ElementCreationOptions): DomWrapper {
         return new DomWrapper(this.#doc.createElement(tagName))
     }
 
-
     createTextNode(text: string): DomWrapper {
         return new DomWrapper(this.#doc.createTextNode(text))
+    }
+
+    getElementById(id: string): DomWrapper {
+        return new DomWrapper(this.#doc.getElementById(id))
+    }
+
+    querySelectorAll(selector: string): DomWrapper[] {
+        let doms = this.#doc.querySelectorAll(selector)
+        let res = []
+        for (let i = 0; i < doms.Length; i++) {
+            res.push(new DomWrapper(doms.get_Item(i)))
+        }
+        return res;
     }
 }
