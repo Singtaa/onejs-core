@@ -228,6 +228,7 @@ declare namespace CS {
             public removeEventListener ($name: string, $callback: UnityEngine.UIElements.EventCallback$1<UnityEngine.UIElements.EventBase>, $useCapture?: boolean) : void
             public appendChild ($node: OneJS.Dom.Dom) : void
             public removeChild ($child: OneJS.Dom.Dom) : void
+            public contains ($child: OneJS.Dom.Dom) : boolean
             public insertBefore ($a: OneJS.Dom.Dom, $b: OneJS.Dom.Dom) : void
             public setAttribute ($name: string, $val: any) : void
             public removeAttribute ($name: string) : void

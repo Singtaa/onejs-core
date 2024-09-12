@@ -48,6 +48,10 @@ export class DomWrapper {
         this.#dom.insertBefore(a?._dom, b?._dom)
     }
 
+    contains(child: DomWrapper) {
+        return this.#dom.contains(child._dom)
+    }
+
     clearChildren() {
         this.#dom.clearChildren()
     }
