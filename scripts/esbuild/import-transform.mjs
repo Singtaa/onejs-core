@@ -5,7 +5,7 @@ export const importTransformPlugin = {
 	name: "onejs-import-transform",
 	setup(build) {
 		// First pass: Mark C# imports as external
-		build.onResolve({ filter: /^(UnityEngine|OneJS)/ }, (args) => {
+		build.onResolve({ filter: /^(Unity\/|UnityEngine|OneJS)/ }, (args) => {
 			return { path: args.path, external: true };
 		});
 
@@ -15,7 +15,7 @@ export const importTransformPlugin = {
 
 			// Transform Unity imports
 			contents = contents.replace(
-				/import\s+(?:{([^}]+)})?\s*from\s*["'](UnityEngine[^"']*|OneJS[^"']*)["'];?/g,
+				/import\s+(?:{([^}]+)})?\s*from\s*["'](Unity\/[^"']*|UnityEngine[^"']*|OneJS[^"']*)["'];?/g,
 				(match, imports, moduleName) => {
 					moduleName = moduleName.replace(/\//g, ".");
 					if (imports) {
@@ -30,7 +30,7 @@ export const importTransformPlugin = {
 
 			// Transform any remaining require statements for Unity modules
 			contents = contents.replace(
-				/__require\(["'](UnityEngine[^"']*|OneJS[^"']*)["']\)/g,
+				/__require\(["'](Unity\/[^"']*|UnityEngine[^"']*|OneJS[^"']*)["']\)/g,
 				(match, moduleName) => {
 					return `CS.${moduleName.replace(/\//g, ".")}`;
 				}

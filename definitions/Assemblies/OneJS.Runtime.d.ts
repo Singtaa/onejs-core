@@ -424,6 +424,16 @@ declare namespace CS {
         { PersistentDataPath = 0, AppPath = 1 }
     }
     namespace OneJS.Utils {
+        class FloatConvUtil extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static CreateFloatBuffer ($jsObj: any) : System.Array
+            public static SetFloatValue ($arr: System.Array, val: number, index: number) : void
+            public static SetFloat2Value ($arr: System.Array, val: Unity.Mathematics.float2, index: number) : void
+            public static SetFloat3Value ($arr: System.Array, val: Unity.Mathematics.float3, index: number) : void
+            public static SetFloat4Value ($arr: System.Array, val: Unity.Mathematics.float4, index: number) : void
+            public constructor ()
+        }
         class AssemblyFinder extends System.Object
         {
             protected [__keep_incompatibility]: never;

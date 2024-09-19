@@ -1,3 +1,4 @@
+import { EventBase } from "UnityEngine/UIElements";
 import { DomStyleWrapper } from "./dom-style"
 
 export class DomWrapper {
@@ -60,12 +61,12 @@ export class DomWrapper {
         this.#dom.focus()
     }
 
-    addEventListener(type: string, listener: (event: Event) => void, useCapture?: boolean) {
+    addEventListener(type: string, listener: (event: EventBase) => void, useCapture?: boolean) {
         // @ts-ignore
         this.#dom.addEventListener(type, listener.bind(this), useCapture)
     }
 
-    removeEventListener(type: string, listener: (event: Event) => void, useCapture?: boolean) {
+    removeEventListener(type: string, listener: (event: EventBase) => void, useCapture?: boolean) {
         // @ts-ignore
         this.#dom.removeEventListener(type, listener.bind(this), useCapture)
     }
