@@ -1,10 +1,10 @@
 
 
 export class DomStyleWrapper implements CS.OneJS.Dom.DomStyle {
-    #domStyle: CS.OneJS.Dom.DomStyle
+    _domStyle: CS.OneJS.Dom.DomStyle // Making this public so that Proxy's setProperty can access it
 
     constructor(domStyle: CS.OneJS.Dom.DomStyle) {
-        this.#domStyle = domStyle
+        this._domStyle = domStyle
 
         return new Proxy(this, {
             set(target, prop, value) {
@@ -18,7 +18,7 @@ export class DomStyleWrapper implements CS.OneJS.Dom.DomStyle {
     }
 
     setProperty(name: string, value: any) {
-        this.#domStyle.setProperty(name, value)
+        this._domStyle.setProperty(name, value)
     }
 }
 
