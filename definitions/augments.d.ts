@@ -48,4 +48,8 @@ declare global {
     }
 }
 
+declare module "UnityEngine" {
+    class PhysicsMaterial extends PhysicMaterial { }
+}
+
 export { }
