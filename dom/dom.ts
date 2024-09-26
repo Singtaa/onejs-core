@@ -16,11 +16,11 @@ export class DomWrapper {
     }
 
     public get nodeType(): number { return this.#dom.nodeType }
+    public get style(): DomStyleWrapper { return this.#domStyleWrapper }
     public get Id(): string { return this.#dom.Id }
     public set Id(value: string) { this.#dom.Id = value }
     public get key(): string { return this.#dom.key }
     public set key(value: string) { this.#dom.key = value }
-    public get style(): DomStyleWrapper { return this.#domStyleWrapper }
     public get value(): any { return this.#dom.value }
     public get checked(): boolean { return this.#dom.checked }
     public get data(): any { return this.#dom.data }
