@@ -1,33 +1,5 @@
-This is the Core JS Lib for OneJS V2.
+This is the Core JS Lib for OneJS V2. It generally contains 3 things:
 
----
-
-## h()
-
-```tsx
-import { h } from "@onejs/core"
-
-export default function (target) {
-    return <div>
-        <div>{target.make}</div>
-        <div>{target.year}</div>
-        <div>{target.color}</div>
-    </div>
-}
-```
-
-## emo
-
-```ts
-import { emo } from "onejs/styled"
-import { h, render } from "preact"
-
-const Foo = (props) => {
-    return <div class={emo`
-        font-size: ${props.size ?? 10}px;
-        color: red;
-    `}>Hello</div>
-}
-
-render(<Foo size={30} />, document.body)
-```
+1) Document and Dom wrappers
+2) Type definitions for a good portion of built-in Unity assemblies
+3) Utility scripts used by esbuild and tailwind
