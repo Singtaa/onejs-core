@@ -3,9 +3,13 @@ const tar = require('tar')
 const url = require('url')
 const path = require('path')
 const fse = require('fs-extra')
+const xml2js = require('xml2js')
 const { rimraf } = require('rimraf')
 
 const fsp = fs.promises
+
+const projectDir = path.resolve(process.cwd(), '..')
+const manifestPath = path.join(projectDir, 'Packages', 'manifest.json')
 
 const backends = [
     { name: "QuickJS", tgzUrl: "https://github.com/Tencent/puerts/releases/download/Unity_v2.1.0/PuerTS_Quickjs_2.1.0.tgz" },
@@ -73,10 +77,80 @@ async function Process(backend, outputDir) {
 
 // --- Support Functions ---
 
-function getOneJSUnityDir() {
-    var packageJsonPath = path.join(process.cwd(), 'package.json')
-    var json = require(packageJsonPath)
-    return json.onejs["unity-package-path"]
+// function getOneJSUnityDir() {
+//     var packageJsonPath = path.join(process.cwd(), 'package.json')
+//     var json = require(packageJsonPath)
+//     return json.onejs["unity-package-path"]
+// }
+
+async function getOneJSUnityDir() {
+    let oneJSPath = null;
+
+    // Step 1: Check manifest.json
+    if (fs.existsSync(manifestPath)) {
+        const manifestContent = fs.readFileSync(manifestPath, 'utf8');
+        const manifestJson = JSON.parse(manifestContent);
+
+        const dependencies = manifestJson.dependencies;
+        const oneJSKey = 'com.dragonground.onejs';
+
+        if (dependencies && dependencies[oneJSKey]) {
+            const packagePath = dependencies[oneJSKey]; // e.g., "file:PATH/TO/OneJS"
+            if (packagePath.startsWith('file:')) {
+                oneJSPath = packagePath.substring(5); // Remove "file:" prefix
+                oneJSPath = path.resolve(projectDir, oneJSPath);
+                return oneJSPath;
+            }
+        }
+    }
+
+    // Step 2: If not found, parse OneJS.Runtime.csproj
+    if (!oneJSPath) {
+        const csprojPath = path.join(projectDir, 'OneJS.Runtime.csproj');
+
+        if (fs.existsSync(csprojPath)) {
+            const csprojContent = fs.readFileSync(csprojPath, 'utf8');
+            const parser = new xml2js.Parser();
+
+            try {
+                const result = await parser.parseStringPromise(csprojContent);
+
+                const project = result.Project;
+                const itemGroups = project.ItemGroup;
+
+                if (itemGroups && itemGroups.length > 0) {
+                    for (const itemGroup of itemGroups) {
+                        if (itemGroup.Compile) {
+                            for (const compileItem of itemGroup.Compile) {
+                                const includePath = compileItem.$.Include;
+
+                                // Normalize path separators for cross-platform compatibility
+                                const normalizedIncludePath = includePath.replace(/\\/g, '/');
+                                const searchIndex = normalizedIncludePath.indexOf('Assets/OneJS');
+
+                                if (searchIndex !== -1) {
+                                    oneJSPath = normalizedIncludePath.substring(0, searchIndex + 'Assets/OneJS'.length);
+                                    oneJSPath = path.resolve(oneJSPath);
+                                    return oneJSPath;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                console.error('Could not find OneJS path in csproj file.');
+                return null;
+            } catch (err) {
+                console.error('Error parsing csproj file:', err);
+                return null;
+            }
+        } else {
+            console.error('OneJS.Runtime.csproj file does not exist.');
+            return null;
+        }
+    }
+
+    return oneJSPath;
 }
 
 function ensureDirectoryExistence(filePath) {
