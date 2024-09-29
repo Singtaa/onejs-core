@@ -54,7 +54,7 @@ async function Process(backend, outputDir) {
         await extractTgz(downloadedPath, outputDir)
 
         // Safe keep asmdef files
-        const onejsDir = getOneJSUnityDir()
+        const onejsDir = await getOneJSUnityDir()
         const a = path.join(onejsDir, 'Puerts/Editor/com.tencent.puerts.core.Editor.asmdef')
         const b = path.join(upmDir, 'Editor/com.tencent.puerts.core.Editor.asmdef')
         const c = path.join(onejsDir, 'Puerts/Runtime/com.tencent.puerts.core.asmdef')
@@ -130,7 +130,7 @@ async function getOneJSUnityDir() {
 
                                 if (searchIndex !== -1) {
                                     oneJSPath = normalizedIncludePath.substring(0, searchIndex + 'Assets/OneJS'.length);
-                                    oneJSPath = path.resolve(oneJSPath);
+                                    oneJSPath = path.resolve(projectDir, oneJSPath);
                                     return oneJSPath;
                                 }
                             }
