@@ -4,7 +4,15 @@ import { DomStyleWrapper } from "./dom-style"
 export class DomWrapper {
     public get _dom(): CS.OneJS.Dom.Dom { return this.#dom }
     public get ve(): CS.UnityEngine.UIElements.VisualElement { return this.#dom.ve }
-    public get childNodes(): DomWrapper[] { return (this.#dom.childNodes as any as CS.OneJS.Dom.Dom[]).map((child) => new DomWrapper(child)) }
+    public get childNodes(): DomWrapper[] {
+        if (!this.#dom.childNodes) return [];
+        let arr = new Array(this.#dom.childNodes.Length) as DomWrapper[];
+        var i = this.#dom.childNodes.Length;
+        while (i--) {
+            arr[i] = new DomWrapper(this.#dom.childNodes.get_Item(i));
+        }
+        return arr
+    }
     public get firstChild(): DomWrapper | null {
         return this.#dom.firstChild ? new DomWrapper(this.#dom.firstChild) : null;
     }
