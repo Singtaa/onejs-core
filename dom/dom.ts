@@ -5,13 +5,13 @@ export class DomWrapper {
     public get _dom(): CS.OneJS.Dom.Dom { return this.#dom }
     public get ve(): CS.UnityEngine.UIElements.VisualElement { return this.#dom.ve }
     public get childNodes(): DomWrapper[] {
-        if (!this.#dom.childNodes) return [];
-        let arr = new Array(this.#dom.childNodes.Length) as DomWrapper[];
+        if (this.#cachedChildNodes) return this.#cachedChildNodes
+        this.#cachedChildNodes = new Array(this.#dom.childNodes.Length) as DomWrapper[];
         var i = this.#dom.childNodes.Length;
         while (i--) {
-            arr[i] = new DomWrapper(this.#dom.childNodes.get_Item(i));
+            this.#cachedChildNodes[i] = new DomWrapper(this.#dom.childNodes.get_Item(i));
         }
-        return arr
+        return this.#cachedChildNodes
     }
     public get firstChild(): DomWrapper | null {
         return this.#dom.firstChild ? new DomWrapper(this.#dom.firstChild) : null;
@@ -40,6 +40,8 @@ export class DomWrapper {
     #dom: CS.OneJS.Dom.Dom
     #domStyleWrapper: DomStyleWrapper
 
+    #cachedChildNodes: DomWrapper[] = null
+
     constructor(dom: CS.OneJS.Dom.Dom) {
         this.#dom = dom
         this.#domStyleWrapper = new DomStyleWrapper(dom.style)
@@ -47,14 +49,17 @@ export class DomWrapper {
 
     appendChild(child: DomWrapper) {
         this.#dom.appendChild(child.#dom)
+        this.#cachedChildNodes = null
     }
 
     removeChild(child: DomWrapper) {
         this.#dom.removeChild(child.#dom)
+        this.#cachedChildNodes = null
     }
 
     insertBefore(a: DomWrapper, b: DomWrapper) {
         this.#dom.insertBefore(a?._dom, b?._dom)
+        this.#cachedChildNodes = null
     }
 
     contains(child: DomWrapper) {
@@ -63,6 +68,7 @@ export class DomWrapper {
 
     clearChildren() {
         this.#dom.clearChildren()
+        this.#cachedChildNodes = null
     }
 
     focus() {
