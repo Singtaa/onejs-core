@@ -270,7 +270,7 @@ declare global {
 
         }
 
-        interface RadioButtonGroup extends BindableElement {
+        interface RadioButtonGroup extends BaseField<number> {
             label?: string
         }
 
