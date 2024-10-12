@@ -32,3 +32,4 @@ declare const onejs: {
 declare function require(name: string): any
 
 declare const resource: CS.OneJS.Resource
+declare const ___workingDir: string

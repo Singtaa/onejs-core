@@ -162,7 +162,7 @@ exports.corePlugins = [
     "fontFamily", "fontSize", "fontStyle", 
     "width", "height", "maxWidth", "maxHeight", "minWidth", "minHeight",
     "margin", "padding",
-    "opacity", "overflow", "display",
+    "opacity", "overflow", "display", "visibility",
     "position", "inset"
 ]
 
