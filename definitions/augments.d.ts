@@ -1,3 +1,5 @@
+import { DocumentWrapper } from "../dom/document"
+
 declare global {
 
     // interface ElementCreationOptions {
@@ -23,7 +25,7 @@ declare global {
         style: CS.OneJS.Dom.DomStyle
     }
 
-    const document: Document
+    const document: DocumentWrapper
     const setTimeout: (callback: () => void, delay?: number) => number
     const clearTimeout: (id: number) => void
     const setInterval: (callback: () => void, delay?: number) => number

@@ -5,6 +5,8 @@ interface ElementCreationOptions {
 }
 
 export class DocumentWrapper {
+    public get _doc(): CS.OneJS.Dom.Document { return this.#doc }
+
     #doc: CS.OneJS.Dom.Document;
     #body: DomWrapper;
 
@@ -12,7 +14,8 @@ export class DocumentWrapper {
 
     constructor(doc: CS.OneJS.Dom.Document) {
         this.#doc = doc
-        this.#body = new DomWrapper(doc.body)
+        if (doc.body)
+            this.#body = new DomWrapper(doc.body)
     }
 
     addRuntimeUSS(uss: string): void {
@@ -41,7 +44,7 @@ export class DocumentWrapper {
 
     querySelectorAll(selector: string): DomWrapper[] {
         let doms = this.#doc.querySelectorAll(selector)
-        let res = []
+        let res = [] as any[]
         for (let i = 0; i < doms.Length; i++) {
             res.push(new DomWrapper(doms.get_Item(i)))
         }
