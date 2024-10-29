@@ -235,6 +235,7 @@ declare namespace CS {
             public focus () : void
             public First ($predicate: System.Func$2<OneJS.Dom.Dom, boolean>) : OneJS.Dom.Dom
             public ProcessClassStr ($classStr: string, $dom: OneJS.Dom.Dom) : string
+            public constructor ($ve: UnityEngine.UIElements.VisualElement)
             public constructor ($ve: UnityEngine.UIElements.VisualElement, $document: OneJS.Dom.Document)
         }
         class ElementCreationOptions extends System.Object

@@ -37,7 +37,7 @@ export function h(type: any, props: any, ...children: any[]): any {
 export { emo } from "./styling/index"
 
 declare global {
-    interface Document extends DocumentWrapper {}
+    interface Document extends DocumentWrapper { }
     interface Element extends DomWrapper {
         classname: string
         nodeType: number
@@ -46,4 +46,7 @@ declare global {
 }
 
 // @ts-ignore
-globalThis.document = new DocumentWrapper(___document)
+if (typeof ___document != "undefined") {
+    // @ts-ignore
+    globalThis.document = new DocumentWrapper(___document)
+}
