@@ -22,4 +22,6 @@ export class DomStyleWrapper implements CS.OneJS.Dom.DomStyle {
     }
 }
 
-export interface DomStyleWrapper extends CS.OneJS.Dom.DomStyle { }
+export interface DomStyleWrapper extends CS.OneJS.Dom.DomStyle {
+    [key: string | symbol]: any;
+}
