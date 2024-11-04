@@ -338,6 +338,9 @@ declare global {
             "is-password-field"?: boolean
             "mask-char"?: string
             "is-read-only"?: boolean
+            "select-all-on-focus"?: boolean
+            "select-all-on-mouse-up"?: boolean
+            "vertical-scroller-visibility"?: ScrollerVisibility
         }
 
         interface TextField extends TextInputBaseField<string> {
