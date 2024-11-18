@@ -78,6 +78,7 @@ declare global {
 
         interface IntrinsicAttributes {
             id?: string
+            key?: string | number
         }
 
         // interface VNode<P = {}> {

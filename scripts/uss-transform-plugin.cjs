@@ -39,12 +39,12 @@ module.exports = () => {
 
             // Handle hexadecimal colors with alpha value to RGBA conversion
             root.walkDecls(decl => {
-                decl.value = decl.value.replace(/: #([A-Fa-f0-9]{8})/g, (match, hex) => {
+                decl.value = decl.value.replace(/#([A-Fa-f0-9]{8})/g, (match, hex) => {
                     const r = parseInt(hex.slice(0, 2), 16);
                     const g = parseInt(hex.slice(2, 4), 16);
                     const b = parseInt(hex.slice(4, 6), 16);
                     const a = parseInt(hex.slice(6, 8), 16) / 255;
-                    return `: rgba(${r}, ${g}, ${b}, ${a})`;
+                    return `rgba(${r}, ${g}, ${b}, ${a})`;
                 });
             });
 
