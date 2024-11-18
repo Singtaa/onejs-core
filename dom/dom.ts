@@ -45,6 +45,7 @@ export class DomWrapper {
     domStyleWrapper: DomStyleWrapper
 
     cachedChildNodes: DomWrapper[] | null = null
+    boundListeners = new WeakMap();
 
     constructor(dom: CS.OneJS.Dom.Dom) {
         this.dom = dom
@@ -52,11 +53,13 @@ export class DomWrapper {
     }
 
     appendChild(child: DomWrapper) {
+        if (!child) return
         this.dom.appendChild(child.dom)
         this.cachedChildNodes = null
     }
 
     removeChild(child: DomWrapper) {
+        if (!child) return
         this.dom.removeChild(child.dom)
         this.cachedChildNodes = null
     }
@@ -67,6 +70,7 @@ export class DomWrapper {
     }
 
     contains(child: DomWrapper) {
+        if (!child) return false
         return this.dom.contains(child._dom)
     }
 
@@ -80,13 +84,20 @@ export class DomWrapper {
     }
 
     addEventListener(type: string, listener: (event: EventBase) => void, useCapture?: boolean) {
-        // @ts-ignore
-        this.dom.addEventListener(type, listener.bind(this), useCapture ? true : false)
+        let boundListener = this.boundListeners.get(listener);
+        if (!boundListener) {
+            boundListener = listener.bind(this);
+            this.boundListeners.set(listener, boundListener);
+        }
+        this.dom.addEventListener(type, boundListener, useCapture ? true : false)
     }
 
     removeEventListener(type: string, listener: (event: EventBase) => void, useCapture?: boolean) {
-        // @ts-ignore
-        this.dom.removeEventListener(type, listener.bind(this), useCapture ? true : false)
+        const boundListener = this.boundListeners.get(listener);
+        if (boundListener) {
+            this.dom.removeEventListener(type, boundListener, useCapture ? true : false)
+            this.boundListeners.delete(listener); // isn't strictly necessary for WeakMap, but still good practice
+        }
     }
 
     setAttribute(name: string, value: any) {
