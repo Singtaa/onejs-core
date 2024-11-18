@@ -5,6 +5,7 @@ const path = require('path')
 const fse = require('fs-extra')
 const xml2js = require('xml2js')
 const { rimraf } = require('rimraf')
+const ProgressBar = require('progress')
 
 const fsp = fs.promises
 
@@ -172,7 +173,7 @@ async function downloadFile(fileUrl, outputDir) {
 
     ensureDirectoryExistence(outputLocationPath);
 
-    // Check if the file already exists
+    // Check if file exists (keep existing code)
     if (fs.existsSync(outputLocationPath)) {
         console.log(`Local .tgz found: ${outputLocationPath}`);
         return outputLocationPath;
@@ -185,15 +186,24 @@ async function downloadFile(fileUrl, outputDir) {
         throw new Error(`Failed to fetch ${fileUrl}: ${response.statusText}`);
     }
 
+    // Get the total size for the progress bar
+    const totalSize = parseInt(response.headers.get('content-length'), 10);
+    
+    // Create progress bar
+    const progressBar = new ProgressBar('[:bar] :percent ETA: :etas', {
+        complete: '=',
+        incomplete: ' ',
+        width: 40,
+        total: totalSize
+    });
+
     const fileStream = fs.createWriteStream(outputLocationPath);
     for await (const chunk of response.body) {
         fileStream.write(chunk);
+        progressBar.tick(chunk.length);
     }
 
     fileStream.end();
-    fileStream.on('finish', () => {
-        console.log(`Download completed: ${outputLocationPath}`);
-    });
 
     return new Promise((resolve, reject) => {
         fileStream.on('close', () => resolve(outputLocationPath));
