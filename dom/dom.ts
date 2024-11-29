@@ -69,6 +69,11 @@ export class DomWrapper {
         this.cachedChildNodes = null
     }
 
+    insertAfter(a: DomWrapper, b: DomWrapper) {
+        this.dom.insertAfter(a?._dom, b?._dom)
+        this.cachedChildNodes = null
+    }
+
     contains(child: DomWrapper) {
         if (!child) return false
         return this.dom.contains(child._dom)
@@ -107,4 +112,156 @@ export class DomWrapper {
     removeAttribute(name: string) {
         this.dom.removeAttribute(name)
     }
+
+    /**
+     * Returns all elements matching the specified selector.
+     * Supports basic selectors:
+     * - Tag names: 'div'
+     * - IDs: '#myId'
+     * - Classes: '.myClass'
+     * - Combinations: 'div.myClass#myId'
+     */
+    querySelectorAll(selector: string): DomWrapper[] {
+        const selectorInfo = parseSelector(selector);
+        const results: DomWrapper[] = [];
+
+        function traverse(element: DomWrapper) {
+            if (elementMatchesSelector(element, selectorInfo)) {
+                results.push(element);
+            }
+
+            for (const child of element.childNodes) {
+                traverse(child);
+            }
+        }
+
+        traverse(this);
+        return results;
+    }
+
+    /**
+     * Returns the first element matching the specified selector.
+     * Supports the same basic selectors as querySelectorAll.
+     */
+    querySelector(selector: string): DomWrapper | null {
+        const selectorInfo = parseSelector(selector);
+
+        function traverse(element: DomWrapper): DomWrapper | null {
+            if (elementMatchesSelector(element, selectorInfo)) {
+                return element;
+            }
+
+            for (const child of element.childNodes) {
+                const match = traverse(child);
+                if (match) {
+                    return match;
+                }
+            }
+
+            return null;
+        }
+
+        return traverse(this);
+    }
+}
+
+interface SelectorInfo {
+    tag?: string;
+    id?: string;
+    classes: string[];
+}
+
+function parseSelector(selector: string): SelectorInfo {
+    const selectorInfo: SelectorInfo = {
+        classes: []
+    };
+
+    // Handle ID
+    const idMatch = selector.match(/#([^.#\s]+)/);
+    if (idMatch) {
+        selectorInfo.id = idMatch[1];
+        selector = selector.replace(idMatch[0], '');
+    }
+
+    // Handle classes
+    const classMatches = selector.match(/\.([^.#\s]+)/g);
+    if (classMatches) {
+        selectorInfo.classes = classMatches.map(c => c.substring(1));
+        selector = selector.replace(/\.[^.#\s]+/g, '');
+    }
+
+    // Handle tag name (what's left after removing id and classes)
+    const tagName = selector.trim();
+    if (tagName) {
+        selectorInfo.tag = tagName.toLowerCase();
+    }
+
+    return selectorInfo;
+}
+
+function elementMatchesSelector(element: DomWrapper, selectorInfo: SelectorInfo): boolean {
+    // Check tag name
+    if (selectorInfo.tag && element.ve.name.toLowerCase() !== selectorInfo.tag) {
+        return false;
+    }
+
+    // Check ID
+    if (selectorInfo.id && element.Id !== selectorInfo.id) {
+        return false;
+    }
+
+    // Check classes
+    if (selectorInfo.classes.length > 0) {
+        const elementClasses = element.classname.split(' ').filter(c => c);
+        for (const className of selectorInfo.classes) {
+            if (!elementClasses.includes(className)) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+export function querySelectorAll(root: DomWrapper, selector: string): DomWrapper[] {
+    const results: DomWrapper[] = [];
+    const selectorInfo = parseSelector(selector);
+
+    function traverse(element: DomWrapper) {
+        // Check if current element matches
+        if (elementMatchesSelector(element, selectorInfo)) {
+            results.push(element);
+        }
+
+        // Recursively check children
+        for (const child of element.childNodes) {
+            traverse(child);
+        }
+    }
+
+    traverse(root);
+    return results;
+}
+
+export function querySelector(root: DomWrapper, selector: string): DomWrapper | null {
+    const selectorInfo = parseSelector(selector);
+
+    function traverse(element: DomWrapper): DomWrapper | null {
+        // Check if current element matches
+        if (elementMatchesSelector(element, selectorInfo)) {
+            return element;
+        }
+
+        // Recursively check children
+        for (const child of element.childNodes) {
+            const match = traverse(child);
+            if (match) {
+                return match;
+            }
+        }
+
+        return null;
+    }
+
+    return traverse(root);
 }

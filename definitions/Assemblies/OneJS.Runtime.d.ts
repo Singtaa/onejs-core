@@ -230,6 +230,7 @@ declare namespace CS {
             public removeChild ($child: OneJS.Dom.Dom) : void
             public contains ($child: OneJS.Dom.Dom) : boolean
             public insertBefore ($a: OneJS.Dom.Dom, $b: OneJS.Dom.Dom) : void
+            public insertAfter ($a: OneJS.Dom.Dom, $b: OneJS.Dom.Dom) : void
             public setAttribute ($name: string, $val: any) : void
             public removeAttribute ($name: string) : void
             public focus () : void
