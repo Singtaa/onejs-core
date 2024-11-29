@@ -24,9 +24,9 @@ declare const onejs: {
         eventSource: T,
         eventName: K,
         handler: OneJS.EventGenericType<T[K]>
-    ): () => void
+    ): CS.System.Action
 
-    subscribe(eventName: string, handler: () => void): () => void
+    subscribe(eventName: string, handler: () => void): CS.System.Action
 }
 
 declare function require(name: string): any
