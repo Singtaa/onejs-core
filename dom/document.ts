@@ -8,14 +8,16 @@ export class DocumentWrapper {
     public get _doc(): CS.OneJS.Dom.Document { return this.#doc }
 
     #doc: CS.OneJS.Dom.Document;
-    #body: DomWrapper;
+    #body: DomWrapper | null;
 
-    public get body(): DomWrapper { return this.#body }
+    /**
+     * The body/root element of the document. Will be null for Editor documents.
+     */
+    public get body(): DomWrapper | null { return this.#body }
 
     constructor(doc: CS.OneJS.Dom.Document) {
         this.#doc = doc
-        if (doc.body)
-            this.#body = new DomWrapper(doc.body)
+        this.#body = doc.body ? new DomWrapper(doc.body) : null
     }
 
     addRuntimeUSS(uss: string): void {
