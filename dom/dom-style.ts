@@ -12,9 +12,13 @@ export class DomStyleWrapper implements CS.OneJS.Dom.DomStyle {
                 return true;
             },
             get(target, prop) {
-                return target[prop];
+                return target.getProperty(prop as string);
             }
         })
+    }
+
+    getProperty(name: string) {
+        return this._domStyle.getProperty(name)
     }
 
     setProperty(name: string, value: any) {
