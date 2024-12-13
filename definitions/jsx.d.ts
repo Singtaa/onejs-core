@@ -469,6 +469,10 @@ declare global {
          * OneJS Elements
          */
 
+        interface Img extends Image {
+            src?: string
+        }
+
         interface GradientRect extends VisualElement {
             colors?: Color[]
         }
@@ -527,8 +531,9 @@ declare global {
             dropdownfield: DropdownField
 
             // /* OneJS Custom */
+            img: Img
             gradientrect: GradientRect
-            // flipbook: Flipbook
+            flipbook: Flipbook
             // simplelistview: SimpleListView
         }
     }

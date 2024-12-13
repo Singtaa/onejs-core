@@ -4,14 +4,14 @@
         "module": "esnext",
         "lib": [ "esnext" ],
         "outDir": "./dist",
-        "moduleResolution": "node",
+        "moduleResolution": "bundler",
         "jsx": "react",
         "jsxFactory": "h",
         "jsxFragmentFactory": "Fragment",
         "skipLibCheck": false,
         "forceConsistentCasingInFileNames": true,
         "declaration": true,
-        "typeRoots": [ "./definitions/**/*" ],
+        "typeRoots": [ ],
     },
     "include": [
         "./**/*"

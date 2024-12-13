@@ -6,7 +6,7 @@ theme.extend = {
     transitionTimingFunction: {
         DEFAULT: "ease-in-out",
         "in-out": "ease-in-out",
-    },
+    }
 }
 exports.theme = theme
 
@@ -155,11 +155,11 @@ exports.plugins = [
 exports.corePlugins = [
     "alignContent", "alignItems", "alignSelf",
     "justifyContent",
-    "backgroundColor", "backgroundImage", "backgroundPosition", "backgroundRepeat", "backgroundSize", 
-    "borderColor", "borderRadius", "borderWidth", 
+    "backgroundColor", "backgroundImage", "backgroundPosition", "backgroundRepeat", "backgroundSize",
+    "borderColor", "borderRadius", "borderWidth",
     "colors", "textColor", "cursor",
     "flex", "flexBasis", "flexDirection", "flexGrow", "flexShrink", "flexWrap",
-    "fontFamily", "fontSize", "fontStyle", 
+    "fontFamily", "fontSize", "fontStyle",
     "width", "height", "maxWidth", "maxHeight", "minWidth", "minHeight",
     "margin", "padding",
     "opacity", "overflow", "display", "visibility",

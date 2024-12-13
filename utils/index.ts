@@ -1,3 +1,4 @@
+/// <reference path="../definitions/index.d.ts" />
 /**
  * @module utils
  * 

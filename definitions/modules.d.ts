@@ -10,6 +10,10 @@ declare module "OneJS/Dom" {
     export = CS.OneJS.Dom
 }
 
+declare module "System" {
+    export = CS.System;
+}
+
 declare module "UnityEngine" {
     export = CS.UnityEngine;
 }

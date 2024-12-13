@@ -50,7 +50,7 @@ declare namespace CS {
             public textAsset : UnityEngine.TextAsset
             public constructor ()
         }
-        class DTSGenerator extends UnityEngine.MonoBehaviour
+        class DTSGenerator extends System.Object
         {
             protected [__keep_incompatibility]: never;
             public assemblies : System.Array$1<string>
@@ -87,16 +87,22 @@ declare namespace CS {
             public preloads : System.Array$1<UnityEngine.TextAsset>
             public globalObjects : System.Array$1<OneJS.ObjectMappingPair>
             public styleSheets : System.Array$1<UnityEngine.UIElements.StyleSheet>
+            public dtsGenerator : OneJS.DTSGenerator
             public get Tick(): number;
             public get WorkingDir(): string;
             public get JsEnv(): Puerts.JsEnv;
+            public get AddToGlobal(): System.Action$2<string, any>;
+            public add_OnPreInit ($value: System.Action$1<Puerts.JsEnv>) : void
+            public remove_OnPreInit ($value: System.Action$1<Puerts.JsEnv>) : void
+            public add_OnPostInit ($value: System.Action$1<Puerts.JsEnv>) : void
+            public remove_OnPostInit ($value: System.Action$1<Puerts.JsEnv>) : void
             public add_OnReload ($value: System.Action) : void
             public remove_OnReload ($value: System.Action) : void
             public GetFullPath ($filepath: string) : string
             public Shutdown () : void
             public Reload () : void
             public EvalFile ($filepath: string) : void
-            public Eval ($code: string) : void
+            public Eval ($code: string, $chunkName?: string) : void
             public GenerateGlobalsDefinitions () : void
             public constructor ()
         }
@@ -135,6 +141,20 @@ declare namespace CS {
             public ClearLog () : void
             public constructor ()
         }
+        class StaticCoroutine extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static Start ($coroutine: System.Collections.IEnumerator) : UnityEngine.Coroutine
+            public static Stop ($coroutine: UnityEngine.Coroutine) : void
+            public constructor ()
+        }
+        class WebApi extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public getText ($uri: string, $callback: System.Action$1<string>) : UnityEngine.Coroutine
+            public getImage ($url: string, $callback: System.Action$1<UnityEngine.Texture2D>) : UnityEngine.Coroutine
+            public constructor ()
+        }
         class Runner extends UnityEngine.MonoBehaviour
         {
             protected [__keep_incompatibility]: never;
@@ -147,6 +167,7 @@ declare namespace CS {
             public respawnJanitorOnSceneLoad : boolean
             public stopCleaningOnDisable : boolean
             public standalone : boolean
+            public Reload () : void
             public constructor ()
         }
         class ScreenMonitor extends UnityEngine.MonoBehaviour
@@ -196,7 +217,7 @@ declare namespace CS {
         class Dom extends System.Object
         {
             protected [__keep_incompatibility]: never;
-            public get document(): OneJS.Dom.Document;
+            public get document(): OneJS.Dom.IDocument;
             public get ve(): UnityEngine.UIElements.VisualElement;
             public get childNodes(): System.Array$1<OneJS.Dom.Dom>;
             public get firstChild(): OneJS.Dom.Dom;
@@ -228,16 +249,15 @@ declare namespace CS {
             public removeEventListener ($name: string, $callback: UnityEngine.UIElements.EventCallback$1<UnityEngine.UIElements.EventBase>, $useCapture?: boolean) : void
             public appendChild ($node: OneJS.Dom.Dom) : void
             public removeChild ($child: OneJS.Dom.Dom) : void
-            public contains ($child: OneJS.Dom.Dom) : boolean
             public insertBefore ($a: OneJS.Dom.Dom, $b: OneJS.Dom.Dom) : void
             public insertAfter ($a: OneJS.Dom.Dom, $b: OneJS.Dom.Dom) : void
             public setAttribute ($name: string, $val: any) : void
             public removeAttribute ($name: string) : void
+            public contains ($child: OneJS.Dom.Dom) : boolean
             public focus () : void
             public First ($predicate: System.Func$2<OneJS.Dom.Dom, boolean>) : OneJS.Dom.Dom
             public ProcessClassStr ($classStr: string, $dom: OneJS.Dom.Dom) : string
-            public constructor ($ve: UnityEngine.UIElements.VisualElement)
-            public constructor ($ve: UnityEngine.UIElements.VisualElement, $document: OneJS.Dom.Document)
+            public constructor ($ve: UnityEngine.UIElements.VisualElement, $document: OneJS.Dom.IDocument)
         }
         class ElementCreationOptions extends System.Object
         {
@@ -245,14 +265,12 @@ declare namespace CS {
             public is : string
             public constructor ()
         }
-        class Document extends System.Object
+        class Document extends System.Object implements OneJS.Dom.IDocument
         {
             protected [__keep_incompatibility]: never;
             public get scriptEngine(): OneJS.ScriptEngine;
             public get Root(): UnityEngine.UIElements.VisualElement;
             public get body(): OneJS.Dom.Dom;
-            public get UIElementEventTypesDict(): System.Collections.Generic.Dictionary$2<string, System.Type>;
-            public FindUIElementEventType ($name: string) : System.Type
             public addRuntimeUSS ($uss: string) : void
             public removeRuntimeStyleSheet ($sheet: UnityEngine.UIElements.StyleSheet) : void
             public clearRuntimeStyleSheets () : void
@@ -262,6 +280,9 @@ declare namespace CS {
             public createTextNode ($text: string) : OneJS.Dom.Dom
             public getElementById ($id: string) : OneJS.Dom.Dom
             public querySelectorAll ($selector: string) : System.Array$1<OneJS.Dom.Dom>
+            public getDomFromVE ($ve: UnityEngine.UIElements.VisualElement) : OneJS.Dom.Dom
+            public clearCache () : void
+            public loadRemoteImage ($url: string, $callback: System.Action$1<UnityEngine.Texture2D>) : UnityEngine.Coroutine
             public loadImage ($path: string, $filterMode?: UnityEngine.FilterMode) : UnityEngine.Texture2D
             public loadFont ($path: string) : UnityEngine.Font
             public loadFontDefinition ($path: string) : UnityEngine.UIElements.FontDefinition
@@ -270,6 +291,23 @@ declare namespace CS {
             public static createStyleList ($v: any, $type: System.Type) : any
             public static createStyleListWithKeyword ($keyword: UnityEngine.UIElements.StyleKeyword, $type: System.Type) : any
             public constructor ($root: UnityEngine.UIElements.VisualElement, $scriptEngine: OneJS.ScriptEngine)
+            public loadRemoteImage ($path: string, $callback: System.Action$1<UnityEngine.Texture2D>) : UnityEngine.Coroutine
+            public AddCachingDom ($dom: OneJS.Dom.Dom) : void
+            public RemoveCachingDom ($dom: OneJS.Dom.Dom) : void
+        }
+        interface IDocument
+        {
+            createElement ($tagName: string) : OneJS.Dom.Dom
+            createElement ($tagName: string, $options: OneJS.Dom.ElementCreationOptions) : OneJS.Dom.Dom
+            createElementNS ($ns: string, $tagName: string, $options: OneJS.Dom.ElementCreationOptions) : OneJS.Dom.Dom
+            createTextNode ($text: string) : OneJS.Dom.Dom
+            clearCache () : void
+            loadRemoteImage ($path: string, $callback: System.Action$1<UnityEngine.Texture2D>) : UnityEngine.Coroutine
+            loadImage ($path: string, $filterMode?: UnityEngine.FilterMode) : UnityEngine.Texture2D
+            loadFont ($path: string) : UnityEngine.Font
+            loadFontDefinition ($path: string) : UnityEngine.UIElements.FontDefinition
+            AddCachingDom ($dom: OneJS.Dom.Dom) : void
+            RemoveCachingDom ($dom: OneJS.Dom.Dom) : void
         }
         class RegisteredCallbackHolder extends System.Object
         {
@@ -283,6 +321,7 @@ declare namespace CS {
         {
             protected [__keep_incompatibility]: never;
             public get veStyle(): UnityEngine.UIElements.IStyle;
+            public getProperty ($key: string) : any
             public setProperty ($key: string, $value: any) : void
             public SetAlignContent ($value: UnityEngine.UIElements.Align) : void
             public SetAlignItems ($value: UnityEngine.UIElements.Align) : void
@@ -376,7 +415,7 @@ declare namespace CS {
             public static TryParseColorString ($s: string, $color: $Ref<UnityEngine.Color>) : boolean
             public constructor ($dom: OneJS.Dom.Dom)
         }
-        class Flipbook extends UnityEngine.UIElements.Image implements UnityEngine.UIElements.IStylePropertyAnimations, UnityEngine.UIElements.IVisualElementScheduler, UnityEngine.UIElements.Experimental.ITransitionAnimations, UnityEngine.UIElements.IResolvedStyle, UnityEngine.UIElements.IExperimentalFeatures, UnityEngine.UIElements.ITransform, UnityEngine.UIElements.IEventHandler
+        class Flipbook extends UnityEngine.UIElements.Image implements UnityEngine.UIElements.Experimental.ITransitionAnimations, UnityEngine.UIElements.IVisualElementScheduler, UnityEngine.UIElements.IResolvedStyle, UnityEngine.UIElements.IStylePropertyAnimations, UnityEngine.UIElements.IEventHandler, UnityEngine.UIElements.IExperimentalFeatures, UnityEngine.UIElements.ITransform
         {
             protected [__keep_incompatibility]: never;
             public get src(): any;
@@ -391,11 +430,19 @@ declare namespace CS {
             public set randomRotation(value: boolean);
             public constructor ()
         }
-        class GradientRect extends UnityEngine.UIElements.VisualElement implements UnityEngine.UIElements.IStylePropertyAnimations, UnityEngine.UIElements.IVisualElementScheduler, UnityEngine.UIElements.Experimental.ITransitionAnimations, UnityEngine.UIElements.IResolvedStyle, UnityEngine.UIElements.IExperimentalFeatures, UnityEngine.UIElements.ITransform, UnityEngine.UIElements.IEventHandler
+        class GradientRect extends UnityEngine.UIElements.VisualElement implements UnityEngine.UIElements.Experimental.ITransitionAnimations, UnityEngine.UIElements.IVisualElementScheduler, UnityEngine.UIElements.IResolvedStyle, UnityEngine.UIElements.IStylePropertyAnimations, UnityEngine.UIElements.IEventHandler, UnityEngine.UIElements.IExperimentalFeatures, UnityEngine.UIElements.ITransform
         {
             protected [__keep_incompatibility]: never;
             public get Colors(): System.Array$1<UnityEngine.Color>;
             public set Colors(value: System.Array$1<UnityEngine.Color>);
+            public constructor ()
+        }
+        class Img extends UnityEngine.UIElements.Image implements UnityEngine.UIElements.Experimental.ITransitionAnimations, UnityEngine.UIElements.IVisualElementScheduler, UnityEngine.UIElements.IResolvedStyle, UnityEngine.UIElements.IStylePropertyAnimations, UnityEngine.UIElements.IEventHandler, UnityEngine.UIElements.IExperimentalFeatures, UnityEngine.UIElements.ITransform
+        {
+            protected [__keep_incompatibility]: never;
+            public get Src(): string;
+            public set Src(value: string);
+            public SetSrc ($src: string) : void
             public constructor ()
         }
     }
@@ -416,32 +463,33 @@ declare namespace CS {
         {
             protected [__keep_incompatibility]: never;
         }
+        type JSObject = any;
     }
     namespace OneJS.EditorWorkingDirInfo {
         enum EditorBaseDir
-        { ProjectPath = 0, PersistentDataPath = 1 }
+        { ProjectPath = 0, PersistentDataPath = 1, StreamingAssetsPath = 2 }
     }
     namespace OneJS.PlayerWorkingDirInfo {
         enum PlayerBaseDir
-        { PersistentDataPath = 0, AppPath = 1 }
+        { PersistentDataPath = 0, StreamingAssetsPath = 1, AppPath = 2 }
     }
     namespace OneJS.Utils {
-        class FloatConvUtil extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static CreateFloatBuffer ($jsObj: any) : System.Array
-            public static SetFloatValue ($arr: System.Array, val: number, index: number) : void
-            public static SetFloat2Value ($arr: System.Array, val: Unity.Mathematics.float2, index: number) : void
-            public static SetFloat3Value ($arr: System.Array, val: Unity.Mathematics.float3, index: number) : void
-            public static SetFloat4Value ($arr: System.Array, val: Unity.Mathematics.float4, index: number) : void
-            public constructor ()
-        }
         class AssemblyFinder extends System.Object
         {
             protected [__keep_incompatibility]: never;
             public static FindType ($name: string) : System.Type
             public static IsValidNamespace ($namespaceName: string) : boolean
             public static FindTypesInNamespace ($namespaceName: string) : System.Collections.Generic.List$1<System.Type>
+            public constructor ()
+        }
+        class FloatConvUtil extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static CreateFloatBuffer ($obj: Puerts.JSObject) : System.Array$1<number>
+            public static SetFloatValue ($arr: System.Array, $val: number, $index: number) : void
+            public static SetFloat2Value ($arr: System.Array, $val: Unity.Mathematics.float2, $index: number) : void
+            public static SetFloat3Value ($arr: System.Array, $val: Unity.Mathematics.float3, $index: number) : void
+            public static SetFloat4Value ($arr: System.Array, $val: Unity.Mathematics.float4, $index: number) : void
             public constructor ()
         }
         class CoroutineUtil extends UnityEngine.MonoBehaviour
@@ -585,10 +633,20 @@ declare namespace CS {
         class VisualElementExts extends System.Object
         {
             protected [__keep_incompatibility]: never;
+            public static Q ($e: UnityEngine.UIElements.VisualElement, $type: System.Type, $name?: string, ...classes: string[]) : UnityEngine.UIElements.VisualElement
+            public static Query ($e: UnityEngine.UIElements.VisualElement, $type: System.Type, $name?: string, ...classes: string[]) : UnityEngine.UIElements.UQueryBuilder$1<UnityEngine.UIElements.VisualElement>
             public static Register ($cbeh: UnityEngine.UIElements.CallbackEventHandler, $eventType: System.Type, $handler: UnityEngine.UIElements.EventCallback$1<UnityEngine.UIElements.EventBase>, $useTrickleDown?: UnityEngine.UIElements.TrickleDown) : void
             public static Unregister ($cbeh: UnityEngine.UIElements.CallbackEventHandler, $eventType: System.Type, $handler: UnityEngine.UIElements.EventCallback$1<UnityEngine.UIElements.EventBase>, $useTrickleDown?: UnityEngine.UIElements.TrickleDown) : void
             public static ForceUpdate ($view: UnityEngine.UIElements.VisualElement) : void
         }
+    }
+    namespace OneJS.Dom.Dom {
+        interface RegisterCallbackDelegate
+        { 
+        (ve: UnityEngine.UIElements.VisualElement, callback: UnityEngine.UIElements.EventCallback$1<UnityEngine.UIElements.EventBase>, trickleDown: UnityEngine.UIElements.TrickleDown) : void; 
+        Invoke?: (ve: UnityEngine.UIElements.VisualElement, callback: UnityEngine.UIElements.EventCallback$1<UnityEngine.UIElements.EventBase>, trickleDown: UnityEngine.UIElements.TrickleDown) => void;
+        }
+        var RegisterCallbackDelegate: { new (func: (ve: UnityEngine.UIElements.VisualElement, callback: UnityEngine.UIElements.EventCallback$1<UnityEngine.UIElements.EventBase>, trickleDown: UnityEngine.UIElements.TrickleDown) => void): RegisterCallbackDelegate; }
     }
     namespace OneJS.CustomStyleSheets {
         class CSSSpec extends System.Object
@@ -625,7 +683,7 @@ declare namespace CS {
         {
             protected [__keep_incompatibility]: never;
             public BuildStyleSheet ($asset: UnityEngine.UIElements.StyleSheet, $contents: string) : void
-            public constructor ($scriptEngine: OneJS.ScriptEngine)
+            public constructor ($scriptEngine: OneJS.IScriptEngine)
         }
         class Dimension extends System.ValueType implements System.IEquatable$1<OneJS.CustomStyleSheets.Dimension>
         {
@@ -762,13 +820,5 @@ declare namespace CS {
     namespace OneJS.CustomStyleSheets.Dimension {
         enum Unit
         { Unitless = 0, Pixel = 1, Percent = 2, Second = 3, Millisecond = 4, Degree = 5, Gradian = 6, Radian = 7, Turn = 8 }
-    }
-    namespace OneJS.Dom.Dom {
-        interface RegisterCallbackDelegate
-        { 
-        (ve: UnityEngine.UIElements.VisualElement, callback: UnityEngine.UIElements.EventCallback$1<UnityEngine.UIElements.EventBase>, trickleDown: UnityEngine.UIElements.TrickleDown) : void; 
-        Invoke?: (ve: UnityEngine.UIElements.VisualElement, callback: UnityEngine.UIElements.EventCallback$1<UnityEngine.UIElements.EventBase>, trickleDown: UnityEngine.UIElements.TrickleDown) => void;
-        }
-        var RegisterCallbackDelegate: { new (func: (ve: UnityEngine.UIElements.VisualElement, callback: UnityEngine.UIElements.EventCallback$1<UnityEngine.UIElements.EventBase>, trickleDown: UnityEngine.UIElements.TrickleDown) => void): RegisterCallbackDelegate; }
     }
 }

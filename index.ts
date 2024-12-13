@@ -1,3 +1,4 @@
+/// <reference path="./definitions/index.d.ts" />
 import { DocumentWrapper } from "./dom/document";
 import { DomWrapper } from "./dom/dom";
 

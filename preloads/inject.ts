@@ -1,4 +1,4 @@
-
+/// <reference path="../definitions/index.d.ts" />
 
 export function btoa(text: string): string {
 	// return CS.OneJS.CommonGlobals.btoa(text);

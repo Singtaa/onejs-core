@@ -1,3 +1,4 @@
+/// <reference path="../definitions/index.d.ts" />
 import flatten from "css-flatten"
 import generateComponentId from "./utils/generateComponentId"
 
