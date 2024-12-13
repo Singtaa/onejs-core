@@ -12,7 +12,7 @@ module.exports = () => {
             root.walkRules((rule) => {
                 // Transform class selectors
                 rule.selectors = rule.selectors.map(selector =>
-                    selector.replace(/(\\\.|\\#|\\%|\\:|\\\/|\\\[|\\\]|\\\(|\\\)|\\2c)/g, match => {
+                    selector.replace(/(\\\.|\\#|\\%|\\:|\\\/|\\\[|\\\]|\\\(|\\\)|\\2c|\\&|\\>|\\<|\\\*)/g, match => {
                         switch (match) {
                             case '\\.': return '_d_';
                             case '\\#': return '_n_';
@@ -24,6 +24,10 @@ module.exports = () => {
                             case '\\(': return '_lp_';
                             case '\\)': return '_rp_';
                             case '\\2c': return '_cm_';
+                            case '\\&': return '_amp_';
+                            case '\\>': return '_gt_';
+                            case '\\<': return '_lt_';
+                            case '\\*': return '_ast_';
                             default: return match;
                         }
                     })
