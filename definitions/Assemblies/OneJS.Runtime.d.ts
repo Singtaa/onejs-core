@@ -65,17 +65,21 @@ declare namespace CS {
             public includeGlobalObjects : boolean
             public constructor ()
         }
-        class EngineHost extends System.Object implements System.IDisposable
+        interface IEngineHost {
+            add_onReload ($value: System.Action) : void
+            remove_onReload ($value: System.Action) : void
+            add_onDispose ($value: System.Action) : void
+            remove_onDispose ($value: System.Action) : void
+        }
+        class EngineHost extends System.Object implements System.IDisposable, IEngineHost
         {
             protected [__keep_incompatibility]: never;
-            public add_onReload ($value: OneJS.EngineHost.ActionCallback) : void
-            public remove_onReload ($value: OneJS.EngineHost.ActionCallback) : void
-            public add_onDestroy ($value: OneJS.EngineHost.ActionCallback) : void
-            public remove_onDestroy ($value: OneJS.EngineHost.ActionCallback) : void
+            public add_onReload ($value: System.Action) : void
+            public remove_onReload ($value: System.Action) : void
+            public add_onDispose ($value: System.Action) : void
+            public remove_onDispose ($value: System.Action) : void
             public subscribe ($eventSource: any, $eventName: string, $handler: Function) : System.Action
             public subscribe ($eventName: string, $handler: Function) : System.Action
-            public InvokeOnReload () : void
-            public InvokeOnDestroy () : void
             public Dispose () : void
             public constructor ($engine: OneJS.ScriptEngine)
         }
@@ -445,14 +449,6 @@ declare namespace CS {
             public SetSrc ($src: string) : void
             public constructor ()
         }
-    }
-    namespace OneJS.EngineHost {
-        interface ActionCallback
-        { 
-        () : void; 
-        Invoke?: () => void;
-        }
-        var ActionCallback: { new (func: () => void): ActionCallback; }
     }
     namespace Puerts {
         class GenericDelegate extends System.Object

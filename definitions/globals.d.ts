@@ -12,13 +12,13 @@ declare namespace OneJS {
 declare const onejs: {
     add_onReload(handler: () => void): void
     remove_onReload(handler: () => void): void
-    add_onDestroy(handler: () => void): void
-    remove_onDestroy(handler: () => void): void
+    add_onDispose(handler: () => void): void
+    remove_onDispose(handler: () => void): void
 
-    interop: { // TODO
-        classes: Record<string, any>
-        objects: Record<string, any>
-    }
+    // interop: { // TODO
+    //     classes: Record<string, any>
+    //     objects: Record<string, any>
+    // }
 
     subscribe<T, K extends OneJS.EventKeys<T>>(
         eventSource: T,

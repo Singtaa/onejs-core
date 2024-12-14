@@ -11,3 +11,4 @@ export { parseColor, parseCSSColor, colorStrToF4, namedColor, namedColors } from
 export { palettes } from "./color-palettes"
 // @ts-ignore - prevent `allowImportingTsExtensions` error
 export { parseFloat2, parseFloat3, parseFloat4 } from "./float-parser"
+export { subscribe } from "./subscribe"
