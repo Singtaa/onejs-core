@@ -34,11 +34,14 @@ declare global {
     const cancelAnimationFrame: (id: number) => void
 
     const console: {
-        log: (...args: any[]) => void
-        error: (...args: any[]) => void
-        warn: (...args: any[]) => void
-        info: (...args: any[]) => void
-        debug: (...args: any[]) => void
+        log: (...args: any[]) => void;
+        info: (...args: any[]) => void;
+        warn: (...args: any[]) => void;
+        error: (...args: any[]) => void;
+        trace: (...args: any[]) => void;
+        assert: (condition: boolean, ...args: any[]) => void;
+        time: (label: string) => void;
+        timeEnd: (label: string) => void;
     }
 
     interface Event {
