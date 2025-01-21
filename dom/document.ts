@@ -33,6 +33,7 @@ export class DocumentWrapper {
     }
 
     createElementNS(ns: string, tagName: string, options?: ElementCreationOptions): DomWrapper {
+        tagName = typeof tagName === 'string' ? tagName : 'div'
         return new DomWrapper(this.#doc.createElement(tagName))
     }
 

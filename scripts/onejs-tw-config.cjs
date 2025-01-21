@@ -100,6 +100,16 @@ exports.plugins = [
 
         matchUtilities(
             {
+                duration: (value) => ({ "transition-duration": value }),
+            },
+            {
+                supportsNegativeValues: false,
+                values: theme("duration"),
+            }
+        )
+
+        matchUtilities(
+            {
                 translate: (value) => ({ translate: value }),
                 "translate-x": (value) => ({ translate: `${value} 0` }),
                 "translate-y": (value) => ({ translate: `0 ${value}` }),

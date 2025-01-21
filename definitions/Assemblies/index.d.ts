@@ -1,5 +1,6 @@
 /// <reference path="./mscorlib.d.ts" />
 /// <reference path="./OneJS.Runtime.d.ts" />
+/// <reference path="./OneJS.Runtime.Ext.d.ts" />
 /// <reference path="./OneJS.Samples.d.ts" />
 /// <reference path="./Unity.Mathematics.d.ts" />
 /// <reference path="./UnityEditor.CoreModule.d.ts" />
