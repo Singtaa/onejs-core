@@ -141,6 +141,16 @@ exports.plugins = [
 
         matchUtilities(
             {
+                delay: (value) => ({ "transition-delay": value }),
+            },
+            {
+                supportsNegativeValues: false,
+                values: theme("delay"),
+            }
+        )
+
+        matchUtilities(
+            {
                 translate: (value) => ({ translate: value }),
                 "translate-x": (value) => ({ translate: `${value} 0` }),
                 "translate-y": (value) => ({ translate: `0 ${value}` }),
