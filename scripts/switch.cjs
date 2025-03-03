@@ -127,10 +127,10 @@ async function getOneJSUnityDir() {
 
                                 // Normalize path separators for cross-platform compatibility
                                 const normalizedIncludePath = includePath.replace(/\\/g, '/');
-                                const searchIndex = normalizedIncludePath.indexOf('Assets/OneJS');
+                                const searchIndex = normalizedIncludePath.indexOf('OneJS/Runtime/Engine/ScriptEngine.cs');
 
                                 if (searchIndex !== -1) {
-                                    oneJSPath = normalizedIncludePath.substring(0, searchIndex + 'Assets/OneJS'.length);
+                                    oneJSPath = normalizedIncludePath.substring(0, searchIndex + 'OneJS'.length);
                                     oneJSPath = path.resolve(projectDir, oneJSPath);
                                     return oneJSPath;
                                 }

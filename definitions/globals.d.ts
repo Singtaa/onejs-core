@@ -27,6 +27,8 @@ declare const onejs: {
     ): CS.System.Action
 
     subscribe(eventName: string, handler: () => void): CS.System.Action
+
+    teardown(action: CS.System.Action): void
 }
 
 declare function require(name: string): any

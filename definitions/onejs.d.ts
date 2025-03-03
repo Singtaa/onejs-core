@@ -163,5 +163,8 @@ declare namespace CS.OneJS.Dom {
         whiteSpace: StyleEnum<WhiteSpace> | WhiteSpace | string | null | number;
         width: StyleLength | Length | string | null | number;
         wordSpacing: StyleLength | Length | string | null | number;
+
+        transform: string | null;
+        transition: string | null;
     }
 }
