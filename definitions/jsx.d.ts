@@ -66,6 +66,7 @@ type TransitionStartEvent = CS.UnityEngine.UIElements.TransitionStartEvent;
 type ValidateCommandEvent = CS.UnityEngine.UIElements.ValidateCommandEvent;
 type VectorImage = CS.UnityEngine.UIElements.VectorImage;
 type WheelEvent = CS.UnityEngine.UIElements.WheelEvent;
+type ContextualMenuPopulateEvent = CS.UnityEngine.UIElements.ContextualMenuPopulateEvent;
 
 declare global {
     export namespace JSX {
@@ -129,7 +130,7 @@ declare global {
             onMouseLeaveWindow?: (e: MouseLeaveWindowEvent) => void
             onMouseOver?: (e: MouseOverEvent) => void
             onMouseOut?: (e: MouseOutEvent) => void
-            // onContextualMenuPopulate?: (e: ContextualMenuPopulateEvent) => void
+            onContextualMenuPopulate?: (e: ContextualMenuPopulateEvent) => void
             onNavigationMove?: (e: NavigationMoveEvent) => void
             // onNavigationTab?: (e: NavigationTabEvent) => void
             onNavigationCancel?: (e: NavigationCancelEvent) => void

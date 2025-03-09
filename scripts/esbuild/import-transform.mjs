@@ -47,7 +47,7 @@ import * as path from "path";
  * ```
  * 
  */
-export function importTransformation(options = {}) {
+export function importTransformationPlugin(options = {}) {
     const moduleFilter = options.moduleFilter || (() => true);
     return {
         name: "onejs-import-transform",
@@ -95,7 +95,7 @@ export function importTransformation(options = {}) {
 }
 
 /**
- * Keeping this one for backward-compatibility reasons. Please use `importTransformation` instead.
+ * Keeping this one for backward-compatibility reasons. Please use `importTransformationPlugin` instead.
  */
 export const importTransformPlugin = {
     name: "onejs-import-transform",
