@@ -478,6 +478,9 @@ declare namespace CS {
             public static FindTypesInNamespace ($namespaceName: string) : System.Collections.Generic.List$1<System.Type>
             public constructor ()
         }
+        class TypeUtil {
+            public static GetType(obj: any): System.Type; // More reliable to use this than `obj.GetType()` for puerts blittable types
+        }
         class FloatConvUtil extends System.Object
         {
             protected [__keep_incompatibility]: never;

@@ -68,6 +68,8 @@ type VectorImage = CS.UnityEngine.UIElements.VectorImage;
 type WheelEvent = CS.UnityEngine.UIElements.WheelEvent;
 type ContextualMenuPopulateEvent = CS.UnityEngine.UIElements.ContextualMenuPopulateEvent;
 
+type TwoPaneSplitViewOrientation = CS.UnityEngine.UIElements.TwoPaneSplitViewOrientation;
+
 declare global {
     export namespace JSX {
 
@@ -466,6 +468,12 @@ declare global {
             value?: string
         }
 
+        interface TwoPaneSplitView extends VisualElement {
+            fixedPaneIndex?: number
+            fixedPaneInitialDimension?: number
+            orientation?: TwoPaneSplitViewOrientation
+        }
+
         /**
          * OneJS Elements
          */
@@ -530,6 +538,8 @@ declare global {
             treeview: TreeView
             popupwindow: PopupWindow
             dropdownfield: DropdownField
+
+            "twopane-splitview": TwoPaneSplitView
 
             // /* OneJS Custom */
             img: Img

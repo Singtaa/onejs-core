@@ -44,6 +44,8 @@ declare global {
         nodeType: number
         ve: CS.UnityEngine.UIElements.VisualElement
     }
+    const newCsArray: <T>(type: { new(...args: any[]): T }, count: number) => CS.System.Array
+    const toJsArray: <T>(csArr: CS.System.Array) => T[]
 }
 
 // @ts-ignore
@@ -51,3 +53,5 @@ if (typeof ___document != "undefined") {
     // @ts-ignore
     globalThis.document = new DocumentWrapper(___document)
 }
+
+// puer.$extension(CS.UnityEngine.UIElements.VisualElement, CS.UnityEngine.UIElements.VisualElementExtensions)
