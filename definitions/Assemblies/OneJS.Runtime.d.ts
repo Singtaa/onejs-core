@@ -155,8 +155,8 @@ declare namespace CS {
         class WebApi extends System.Object
         {
             protected [__keep_incompatibility]: never;
-            public getText ($uri: string, $callback: System.Action$1<string>) : UnityEngine.Coroutine
-            public getImage ($url: string, $callback: System.Action$1<UnityEngine.Texture2D>) : UnityEngine.Coroutine
+            public getText ($uri: string, $callback: System.Action$1<string>, $headersJson?: string) : UnityEngine.Coroutine
+            public getImage ($url: string, $callback: System.Action$1<UnityEngine.Texture2D>, $headersJson?: string, $forceRefresh?: boolean) : UnityEngine.Coroutine
             public constructor ()
         }
         class Runner extends UnityEngine.MonoBehaviour

@@ -20,7 +20,7 @@ declare namespace CS.System {
         toJsArray<T>(): T[]
         at<T>(index: number): T
         forEach<T>(callbackfn: (value: T, index: number, array: CSArray) => void): void
-        map<T, U>(callbackfn: (value: T, index: number, array: CSArray) => U): CSArray
+        map<T, U>(type: { new(...args: any[]): U }, callbackfn: (value: T, index: number, array: CSArray) => U): CSArray
         filter<T>(callbackfn: (value: T, index: number, array: CSArray) => boolean): CSArray
         reduce<T>(callbackfn: (previousValue: T, currentValue: T, currentIndex: number, array: CSArray) => T): T
         reduceRight<T>(callbackfn: (previousValue: T, currentValue: T, currentIndex: number, array: CSArray) => T): T

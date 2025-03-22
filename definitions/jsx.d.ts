@@ -318,6 +318,7 @@ declare global {
             "high-limit"?: number
             "min-value"?: number
             "max-value"?: number
+            value?: Vector2
         }
 
         interface EnumField extends BaseField<number> {
