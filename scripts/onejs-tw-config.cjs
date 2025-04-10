@@ -27,6 +27,9 @@ exports.plugins = [
             ".font-normal": {
                 "-unity-font-style": "normal",
             },
+            ".wrap": {
+                "white-space": "normal",
+            },
             ".bold": {
                 "-unity-font-style": "bold",
             },
