@@ -184,6 +184,7 @@ declare global {
             tooltip?: string
             focusable?: boolean
             tabindex?: number
+            usageHints?: CS.UnityEngine.UIElements.UsageHints
             "picking-mode"?: PickingMode
             "view-data-key"?: string
 
