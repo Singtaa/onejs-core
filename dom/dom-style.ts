@@ -7,12 +7,18 @@ export class DomStyleWrapper implements CS.OneJS.Dom.DomStyle {
         this._domStyle = domStyle
 
         return new Proxy(this, {
-            set(target, prop, value) {
-                target.setProperty(prop as string, value);
-                return true;
+            set(target, prop, value, receiver) {
+                if (typeof prop === 'string' && !(prop in target)) {
+                    target.setProperty(prop, value)
+                    return true
+                }
+                return Reflect.set(target, prop, value, receiver)
             },
-            get(target, prop) {
-                return target.getProperty(prop as string);
+            get(target, prop, receiver) {
+                if (typeof prop === 'string' && !(prop in target)) {
+                    return target.getProperty(prop)
+                }
+                return Reflect.get(target, prop, receiver)
             }
         })
     }
