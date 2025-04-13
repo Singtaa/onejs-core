@@ -419,7 +419,7 @@ declare namespace CS {
             public static TryParseColorString ($s: string, $color: $Ref<UnityEngine.Color>) : boolean
             public constructor ($dom: OneJS.Dom.Dom)
         }
-        class Flipbook extends UnityEngine.UIElements.Image implements UnityEngine.UIElements.Experimental.ITransitionAnimations, UnityEngine.UIElements.IVisualElementScheduler, UnityEngine.UIElements.IResolvedStyle, UnityEngine.UIElements.IStylePropertyAnimations, UnityEngine.UIElements.IEventHandler, UnityEngine.UIElements.IExperimentalFeatures, UnityEngine.UIElements.ITransform
+        class Flipbook extends UnityEngine.UIElements.Image implements UnityEngine.UIElements.Experimental.ITransitionAnimations, UnityEngine.UIElements.IVisualElementScheduler, UnityEngine.UIElements.IResolvedStyle, UnityEngine.UIElements.IStylePropertyAnimations, UnityEngine.UIElements.IEventHandler, UnityEngine.UIElements.IExperimentalFeatures
         {
             protected [__keep_incompatibility]: never;
             public get src(): any;
@@ -434,14 +434,14 @@ declare namespace CS {
             public set randomRotation(value: boolean);
             public constructor ()
         }
-        class GradientRect extends UnityEngine.UIElements.VisualElement implements UnityEngine.UIElements.Experimental.ITransitionAnimations, UnityEngine.UIElements.IVisualElementScheduler, UnityEngine.UIElements.IResolvedStyle, UnityEngine.UIElements.IStylePropertyAnimations, UnityEngine.UIElements.IEventHandler, UnityEngine.UIElements.IExperimentalFeatures, UnityEngine.UIElements.ITransform
+        class GradientRect extends UnityEngine.UIElements.VisualElement implements UnityEngine.UIElements.Experimental.ITransitionAnimations, UnityEngine.UIElements.IVisualElementScheduler, UnityEngine.UIElements.IResolvedStyle, UnityEngine.UIElements.IStylePropertyAnimations, UnityEngine.UIElements.IEventHandler, UnityEngine.UIElements.IExperimentalFeatures
         {
             protected [__keep_incompatibility]: never;
             public get Colors(): System.Array$1<UnityEngine.Color>;
             public set Colors(value: System.Array$1<UnityEngine.Color>);
             public constructor ()
         }
-        class Img extends UnityEngine.UIElements.Image implements UnityEngine.UIElements.Experimental.ITransitionAnimations, UnityEngine.UIElements.IVisualElementScheduler, UnityEngine.UIElements.IResolvedStyle, UnityEngine.UIElements.IStylePropertyAnimations, UnityEngine.UIElements.IEventHandler, UnityEngine.UIElements.IExperimentalFeatures, UnityEngine.UIElements.ITransform
+        class Img extends UnityEngine.UIElements.Image implements UnityEngine.UIElements.Experimental.ITransitionAnimations, UnityEngine.UIElements.IVisualElementScheduler, UnityEngine.UIElements.IResolvedStyle, UnityEngine.UIElements.IStylePropertyAnimations, UnityEngine.UIElements.IEventHandler, UnityEngine.UIElements.IExperimentalFeatures
         {
             protected [__keep_incompatibility]: never;
             public get Src(): string;

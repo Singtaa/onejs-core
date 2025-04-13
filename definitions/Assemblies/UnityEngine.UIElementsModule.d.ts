@@ -1487,6 +1487,10 @@ declare namespace CS {
         }
         interface ITransform
         {
+            position: UnityEngine.Vector3
+            rotation: UnityEngine.Quaternion
+            scale: UnityEngine.Vector3
+            matrix: UnityEngine.Matrix4x4
         }
         /** 
         Element that can be bound to a property. For more information, refer to.
