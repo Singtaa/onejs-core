@@ -10,6 +10,8 @@ This is the Core JS Lib for OneJS V2. It contains the following:
 
 ### Math Utils
 
+https://github.com/Singtaa/onejs-core/tree/main/math
+
 ```ts
 import { vec3, quat, mul, add } from 'onejs/math';
 
