@@ -1,7 +1,7 @@
 {
     "name": "onejs-core",
     "description": "The JS part of OneJS, a UI framework and Scripting Engine for Unity.",
-    "version": "1.0.38",
+    "version": "1.0.39",
     "main": "./dist/index.js",
     "types": "./typings.d.ts",
     "dependencies": {
@@ -15,7 +15,7 @@
         "postcss": "^8.4.38",
         "postcss-cli": "^11.0.0",
         "rimraf": "^5.0.7",
-        "tailwindcss": "^3.4.1",
+        "tailwindcss": "^3.4.17",
         "tar": "^7.2.0",
         "tiny-glob": "^0.2.9",
         "xml2js": "^0.6.2"

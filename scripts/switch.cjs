@@ -30,16 +30,26 @@ if (args.length > 0 && args[0].toLowerCase() == "clear") {
             console.log(`Deleted ${downloadedPath}`)
         }
     }
-} else if (args.length > 0 && ["quickjs", "v8", "nodejs"].includes(args[0].toLowerCase())) {
-    const backend = backends.find(b => b.name.toLowerCase() === args[0])
-    const outputDir = "./tmp"
-    Process(backend, outputDir)
+} else if (
+    args.length > 0 &&
+    (["quickjs", "v8", "nodejs"].includes(args[0].toLowerCase()) ||
+     (args[0].toLowerCase().endsWith('.tgz') || /^https?:\/\/.+\.tgz$/i.test(args[0])))
+) {
+    let backend;
+    const outputDir = "./tmp";
+    if (["quickjs", "v8", "nodejs"].includes(args[0].toLowerCase())) {
+        backend = backends.find(b => b.name.toLowerCase() === args[0]);
+    } else {
+        backend = { name: "Custom", tgzUrl: args[0] };
+    }
+    Process(backend, outputDir);
 } else {
-    console.log("Usage: npm run switch <quickjs|v8|nodejs|clear>\n")
+    console.log("Usage: npm run switch <quickjs|v8|nodejs|clear|tgz-url>\n")
     console.log("           quickjs: Switch to QuickJS backend")
     console.log("           v8: Switch to V8 backend")
     console.log("           nodejs: Switch to NodeJS backend")
-    console.log("           clear: Clear all downloaded .tgz files\n")
+    console.log("           clear: Clear all downloaded .tgz files")
+    console.log("           <tgz-url>: Switch using a custom .tgz package URL\n")
 }
 
 async function Process(backend, outputDir) {
