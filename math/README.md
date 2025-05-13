@@ -5,7 +5,7 @@ Convenience functions for working with vectors, quaternions, matrices, etc.
 ## Usage Example
 
 ```typescript
-import { vec3, quat, mul, add } from 'onejs/math';
+import { vec3, quat, mul, add } from 'onejs-core/math';
 
 // Create a position vector
 const position = vec3(1, 2, 3);
