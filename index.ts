@@ -40,9 +40,7 @@ export { emo } from "./styling/index"
 declare global {
     interface Document extends DocumentWrapper { }
     interface Element extends DomWrapper {
-        classname: string
-        nodeType: number
-        ve: CS.UnityEngine.UIElements.VisualElement
+
     }
     const newCsArray: <T>(type: { new(...args: any[]): T }, count: number) => CS.System.Array
     const toJsArray: <T>(csArr: CS.System.Array) => T[]

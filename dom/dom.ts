@@ -34,8 +34,9 @@ export class DomWrapper {
     public get data(): any { return this.dom.data }
     public set data(value: any) { this.dom.data = value }
 
-    public get classname(): string { return this.dom.classname }
-    public set classname(value: string) { this.dom.classname = value }
+    public get className(): string { return this.dom.className }
+    public set className(value: string) { this.dom.className = value }
+    public get classList(): DomTokenList { return this.domTokenList }
 
     /**
      * Not using private fields because of issues with the `#private;` line
@@ -43,6 +44,7 @@ export class DomWrapper {
      */
     dom: CS.OneJS.Dom.Dom
     domStyleWrapper: DomStyleWrapper
+    domTokenList: DomTokenList
 
     cachedChildNodes: DomWrapper[] | null = null
     boundListeners = new WeakMap();
@@ -50,6 +52,7 @@ export class DomWrapper {
     constructor(dom: CS.OneJS.Dom.Dom) {
         this.dom = dom
         this.domStyleWrapper = new DomStyleWrapper(dom.style)
+        this.domTokenList = new DomTokenList(dom)
     }
 
     appendChild(child: DomWrapper) {
@@ -88,13 +91,22 @@ export class DomWrapper {
         this.dom.focus()
     }
 
-    addEventListener(type: string, listener: (event: EventBase) => void, useCapture?: boolean) {
+    addEventListener(type: string, listener: (event: EventBase) => void, options?: boolean | { once?: boolean }) {
         let boundListener = this.boundListeners.get(listener);
         if (!boundListener) {
             boundListener = listener.bind(this);
             this.boundListeners.set(listener, boundListener);
         }
-        this.dom.addEventListener(type, boundListener, useCapture ? true : false)
+
+        if (typeof options === 'object' && options.once) {
+            const onceWrapper = (event: EventBase) => {
+                boundListener(event);
+                this.dom.removeEventListener(type, onceWrapper, false);
+            };
+            this.dom.addEventListener(type, onceWrapper, false);
+        } else {
+            this.dom.addEventListener(type, boundListener, options ? true : false);
+        }
     }
 
     removeEventListener(type: string, listener: (event: EventBase) => void, useCapture?: boolean) {
@@ -212,7 +224,7 @@ function elementMatchesSelector(element: DomWrapper, selectorInfo: SelectorInfo)
 
     // Check classes
     if (selectorInfo.classes.length > 0) {
-        const elementClasses = element.classname.split(' ').filter(c => c);
+        const elementClasses = element.className.split(' ').filter(c => c);
         for (const className of selectorInfo.classes) {
             if (!elementClasses.includes(className)) {
                 return false;
@@ -264,4 +276,71 @@ export function querySelector(root: DomWrapper, selector: string): DomWrapper | 
     }
 
     return traverse(root);
+}
+
+class DomTokenList {
+    dom: CS.OneJS.Dom.Dom
+
+    constructor(dom: CS.OneJS.Dom.Dom) {
+        this.dom = dom
+    }
+
+    _tokens(): string[] {
+        return this.dom.className.trim().split(/\s+/).filter(Boolean)
+    }
+
+    _update(tokens: string[]) {
+        this.dom.className = tokens.join(' ')
+    }
+
+    add(...tokens: string[]) {
+        const set = new Set(this._tokens())
+        tokens.forEach(t => t && set.add(t))
+        this._update(Array.from(set))
+    }
+
+    remove(...tokens: string[]) {
+        const set = new Set(this._tokens())
+        tokens.forEach(t => set.delete(t))
+        this._update(Array.from(set))
+    }
+
+    toggle(token: string, force?: boolean): boolean {
+        if (!token) return false
+        const has = this.contains(token)
+        if (force === true || (!has && force !== false)) {
+            this.add(token)
+            return true
+        }
+        if (has && (force === false || force === undefined)) {
+            this.remove(token)
+            return false
+        }
+        return has
+    }
+
+    contains(token: string): boolean {
+        return this._tokens().includes(token)
+    }
+
+    replace(oldToken: string, newToken: string): boolean {
+        if (!this.contains(oldToken)) return false
+        const tokens = this._tokens().map(t => (t === oldToken ? newToken : t))
+        this._update(tokens)
+        return true
+    }
+
+    toString(): string {
+        return this.dom.className
+    }
+
+    get length(): number { return this._tokens().length }
+    item(index: number): string | null {
+        const t = this._tokens()
+        return index >= 0 && index < t.length ? t[index] : null
+    }
+
+    [Symbol.iterator](): Iterator<string> {
+        return this._tokens()[Symbol.iterator]()
+    }
 }

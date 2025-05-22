@@ -242,8 +242,8 @@ declare namespace CS {
             public get _children(): any;
             public set _children(value: any);
             public get _listeners(): System.Collections.Generic.Dictionary$2<string, UnityEngine.UIElements.EventCallback$1<UnityEngine.UIElements.EventBase>>;
-            public get classname(): string;
-            public set classname(value: string);
+            public get className(): string;
+            public set className(value: string);
             public SetBackgroundColor ($color: UnityEngine.Color) : void
             public clearChildren () : void
             public _addToListeners ($name: string, $callback: UnityEngine.UIElements.EventCallback$1<UnityEngine.UIElements.EventBase>) : void
