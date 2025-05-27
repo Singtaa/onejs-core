@@ -1,13 +1,18 @@
-declare namespace OneJS {
-    class Event<F extends Function> {
-        // Must have at least an unique member, because an empty class behaves like `any`
-        #Invoke(...args: any): any
-    }
+type Instance<T> = T extends new (...a: any) => infer I ? I : never
 
-    type EventKeys<T> = { [k in keyof T]-?: T[k] extends Event<any> ? k : never }[keyof T]
+type EventNames<T> = {
+    [K in keyof T]:
+    K extends `add_${infer E}`
+    ? `remove_${E}` extends keyof T ? E : never
+    : never
+}[keyof T]
 
-    type EventGenericType<T> = T extends Event<infer F> ? F : never
-}
+type Handler<T, E extends string> =
+    `add_${E}` extends keyof T
+    ? T[`add_${E}`] extends (arg: infer A) => any
+    ? A
+    : never
+    : never
 
 declare const onejs: {
     add_onReload(handler: () => void): void
@@ -20,10 +25,20 @@ declare const onejs: {
     //     objects: Record<string, any>
     // }
 
-    subscribe<T, K extends OneJS.EventKeys<T>>(
+    subscribe<T, K extends EventNames<T>>(
         eventSource: T,
         eventName: K,
-        handler: OneJS.EventGenericType<T[K]>
+        handler: Function
+    ): CS.System.Action
+
+    subscribe<
+        C extends new (...a: any) => any,
+        I extends Instance<C>,
+        E extends EventNames<I>
+    >(
+        eventSource: C,
+        eventName: E,
+        handler: Function
     ): CS.System.Action
 
     subscribe(eventName: string, handler: () => void): CS.System.Action
