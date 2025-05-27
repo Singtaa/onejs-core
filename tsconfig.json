@@ -9,6 +9,7 @@
         "jsxFactory": "h",
         "jsxFragmentFactory": "Fragment",
         "skipLibCheck": false,
+        "strictNullChecks": true,
         "forceConsistentCasingInFileNames": true,
         "declaration": true,
         "typeRoots": [ ],
