@@ -30,6 +30,9 @@ exports.plugins = [
             ".wrap": {
                 "white-space": "normal",
             },
+            ".font-bold": {
+                "-unity-font-style": "bold",
+            },
             ".bold": {
                 "-unity-font-style": "bold",
             },
