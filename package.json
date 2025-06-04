@@ -1,7 +1,7 @@
 {
     "name": "onejs-core",
     "description": "The JS part of OneJS, a UI framework and Scripting Engine for Unity.",
-    "version": "2.0.6",
+    "version": "2.0.7",
     "main": "./dist/index.js",
     "types": "./typings.d.ts",
     "bin": {

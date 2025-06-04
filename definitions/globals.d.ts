@@ -19,6 +19,8 @@ declare const onejs: {
     remove_onReload(handler: () => void): void
     add_onDispose(handler: () => void): void
     remove_onDispose(handler: () => void): void
+    add_onError(handler: (ex: CS.System.Exception) => void): void
+    remove_onError(handler: (ex: CS.System.Exception) => void): void
 
     // interop: { // TODO
     //     classes: Record<string, any>
