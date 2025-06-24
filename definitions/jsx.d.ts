@@ -11,6 +11,8 @@ type Bounds = CS.UnityEngine.Bounds;
 type BoundsInt = CS.UnityEngine.BoundsInt;
 type Texture2D = CS.UnityEngine.Texture2D;
 
+type TouchScreenKeyboardType = CS.UnityEngine.TouchScreenKeyboardType;
+
 type AttachToPanelEvent = CS.UnityEngine.UIElements.AttachToPanelEvent;
 type BlurEvent = CS.UnityEngine.UIElements.BlurEvent;
 type ChangeEvent<T> = CS.UnityEngine.UIElements.ChangeEvent<T>;
@@ -340,13 +342,21 @@ declare global {
 
         interface TextInputBaseField<T> extends BaseField<T> {
             text?: string
-            "max-length"?: number
+            "auto-correction"?: boolean
+            "cursor-index"?: number
+            "double-click-selects-word"?: boolean
+            "triple-click-selects-line"?: boolean
+            "emoji-fallback-support"?: boolean
+            "hide-mobile-input"?: boolean
             "is-delayed"?: boolean
             "is-password-field"?: boolean
-            "mask-char"?: string
             "is-read-only"?: boolean
+            "keyboard-type"?: TouchScreenKeyboardType
+            "mask-char"?: string
+            "max-length"?: number
             "select-all-on-focus"?: boolean
             "select-all-on-mouse-up"?: boolean
+            "select-index"?: number
             "vertical-scroller-visibility"?: ScrollerVisibility
         }
 
