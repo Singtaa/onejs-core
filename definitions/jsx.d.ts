@@ -1,76 +1,76 @@
-type Texture = CS.UnityEngine.Texture;
-type Sprite = CS.UnityEngine.Sprite;
-type Rect = CS.UnityEngine.Rect;
-type Vector2 = CS.UnityEngine.Vector2;
-type Vector2Int = CS.UnityEngine.Vector2Int;
-type Vector3 = CS.UnityEngine.Vector3;
-type Vector3Int = CS.UnityEngine.Vector3Int;
-type Vector4 = CS.UnityEngine.Vector4;
-type RectInt = CS.UnityEngine.RectInt;
-type Bounds = CS.UnityEngine.Bounds;
-type BoundsInt = CS.UnityEngine.BoundsInt;
-type Texture2D = CS.UnityEngine.Texture2D;
+type Texture = CS.UnityEngine.Texture
+type Sprite = CS.UnityEngine.Sprite
+type Rect = CS.UnityEngine.Rect
+type Vector2 = CS.UnityEngine.Vector2
+type Vector2Int = CS.UnityEngine.Vector2Int
+type Vector3 = CS.UnityEngine.Vector3
+type Vector3Int = CS.UnityEngine.Vector3Int
+type Vector4 = CS.UnityEngine.Vector4
+type RectInt = CS.UnityEngine.RectInt
+type Bounds = CS.UnityEngine.Bounds
+type BoundsInt = CS.UnityEngine.BoundsInt
+type Texture2D = CS.UnityEngine.Texture2D
 
-type TouchScreenKeyboardType = CS.UnityEngine.TouchScreenKeyboardType;
+type TouchScreenKeyboardType = CS.UnityEngine.TouchScreenKeyboardType
 
-type AttachToPanelEvent = CS.UnityEngine.UIElements.AttachToPanelEvent;
-type BlurEvent = CS.UnityEngine.UIElements.BlurEvent;
-type ChangeEvent<T> = CS.UnityEngine.UIElements.ChangeEvent<T>;
-type ClickEvent = CS.UnityEngine.UIElements.ClickEvent;
-type DetachFromPanelEvent = CS.UnityEngine.UIElements.DetachFromPanelEvent;
-type DragEnterEvent = CS.UnityEngine.UIElements.DragEnterEvent;
-type DragExitedEvent = CS.UnityEngine.UIElements.DragExitedEvent;
-type DragLeaveEvent = CS.UnityEngine.UIElements.DragLeaveEvent;
-type DragPerformEvent = CS.UnityEngine.UIElements.DragPerformEvent;
-type DragUpdatedEvent = CS.UnityEngine.UIElements.DragUpdatedEvent;
-type ExecuteCommandEvent = CS.UnityEngine.UIElements.ExecuteCommandEvent;
-type FocusEvent = CS.UnityEngine.UIElements.FocusEvent;
-type FocusInEvent = CS.UnityEngine.UIElements.FocusInEvent;
-type FocusOutEvent = CS.UnityEngine.UIElements.FocusOutEvent;
-type GeometryChangedEvent = CS.UnityEngine.UIElements.GeometryChangedEvent;
-type InputEvent = CS.UnityEngine.UIElements.InputEvent;
-type KeyDownEvent = CS.UnityEngine.UIElements.KeyDownEvent;
-type KeyUpEvent = CS.UnityEngine.UIElements.KeyUpEvent;
-type MouseCaptureEvent = CS.UnityEngine.UIElements.MouseCaptureEvent;
-type MouseCaptureOutEvent = CS.UnityEngine.UIElements.MouseCaptureOutEvent;
-type MouseDownEvent = CS.UnityEngine.UIElements.MouseDownEvent;
-type MouseEnterEvent = CS.UnityEngine.UIElements.MouseEnterEvent;
-type MouseEnterWindowEvent = CS.UnityEngine.UIElements.MouseEnterWindowEvent;
-type MouseLeaveEvent = CS.UnityEngine.UIElements.MouseLeaveEvent;
-type MouseLeaveWindowEvent = CS.UnityEngine.UIElements.MouseLeaveWindowEvent;
-type MouseMoveEvent = CS.UnityEngine.UIElements.MouseMoveEvent;
-type MouseOutEvent = CS.UnityEngine.UIElements.MouseOutEvent;
-type MouseOverEvent = CS.UnityEngine.UIElements.MouseOverEvent;
-type MouseUpEvent = CS.UnityEngine.UIElements.MouseUpEvent;
-type NavigationCancelEvent = CS.UnityEngine.UIElements.NavigationCancelEvent;
-type NavigationMoveEvent = CS.UnityEngine.UIElements.NavigationMoveEvent;
-type NavigationSubmitEvent = CS.UnityEngine.UIElements.NavigationSubmitEvent;
-type PickingMode = CS.UnityEngine.UIElements.PickingMode;
-type PointerCancelEvent = CS.UnityEngine.UIElements.PointerCancelEvent;
-type PointerCaptureEvent = CS.UnityEngine.UIElements.PointerCaptureEvent;
-type PointerCaptureOutEvent = CS.UnityEngine.UIElements.PointerCaptureOutEvent;
-type PointerDownEvent = CS.UnityEngine.UIElements.PointerDownEvent;
-type PointerEnterEvent = CS.UnityEngine.UIElements.PointerEnterEvent;
-type PointerLeaveEvent = CS.UnityEngine.UIElements.PointerLeaveEvent;
-type PointerMoveEvent = CS.UnityEngine.UIElements.PointerMoveEvent;
-type PointerOutEvent = CS.UnityEngine.UIElements.PointerOutEvent;
-type PointerOverEvent = CS.UnityEngine.UIElements.PointerOverEvent;
-type PointerStationaryEvent = CS.UnityEngine.UIElements.PointerStationaryEvent;
-type PointerUpEvent = CS.UnityEngine.UIElements.PointerUpEvent;
-type ScrollViewMode = CS.UnityEngine.UIElements.ScrollViewMode;
-type ScrollerVisibility = CS.UnityEngine.UIElements.ScrollerVisibility;
-type TouchScrollBehavior = CS.UnityEngine.UIElements.ScrollView.TouchScrollBehavior;
-type TooltipEvent = CS.UnityEngine.UIElements.TooltipEvent;
-type TransitionCancelEvent = CS.UnityEngine.UIElements.TransitionCancelEvent;
-type TransitionEndEvent = CS.UnityEngine.UIElements.TransitionEndEvent;
-type TransitionRunEvent = CS.UnityEngine.UIElements.TransitionRunEvent;
-type TransitionStartEvent = CS.UnityEngine.UIElements.TransitionStartEvent;
-type ValidateCommandEvent = CS.UnityEngine.UIElements.ValidateCommandEvent;
-type VectorImage = CS.UnityEngine.UIElements.VectorImage;
-type WheelEvent = CS.UnityEngine.UIElements.WheelEvent;
-type ContextualMenuPopulateEvent = CS.UnityEngine.UIElements.ContextualMenuPopulateEvent;
+type AttachToPanelEvent = CS.UnityEngine.UIElements.AttachToPanelEvent
+type BlurEvent = CS.UnityEngine.UIElements.BlurEvent
+type ChangeEvent<T> = CS.UnityEngine.UIElements.ChangeEvent<T>
+type ClickEvent = CS.UnityEngine.UIElements.ClickEvent
+type DetachFromPanelEvent = CS.UnityEngine.UIElements.DetachFromPanelEvent
+type DragEnterEvent = CS.UnityEngine.UIElements.DragEnterEvent
+type DragExitedEvent = CS.UnityEngine.UIElements.DragExitedEvent
+type DragLeaveEvent = CS.UnityEngine.UIElements.DragLeaveEvent
+type DragPerformEvent = CS.UnityEngine.UIElements.DragPerformEvent
+type DragUpdatedEvent = CS.UnityEngine.UIElements.DragUpdatedEvent
+type ExecuteCommandEvent = CS.UnityEngine.UIElements.ExecuteCommandEvent
+type FocusEvent = CS.UnityEngine.UIElements.FocusEvent
+type FocusInEvent = CS.UnityEngine.UIElements.FocusInEvent
+type FocusOutEvent = CS.UnityEngine.UIElements.FocusOutEvent
+type GeometryChangedEvent = CS.UnityEngine.UIElements.GeometryChangedEvent
+type InputEvent = CS.UnityEngine.UIElements.InputEvent
+type KeyDownEvent = CS.UnityEngine.UIElements.KeyDownEvent
+type KeyUpEvent = CS.UnityEngine.UIElements.KeyUpEvent
+type MouseCaptureEvent = CS.UnityEngine.UIElements.MouseCaptureEvent
+type MouseCaptureOutEvent = CS.UnityEngine.UIElements.MouseCaptureOutEvent
+type MouseDownEvent = CS.UnityEngine.UIElements.MouseDownEvent
+type MouseEnterEvent = CS.UnityEngine.UIElements.MouseEnterEvent
+type MouseEnterWindowEvent = CS.UnityEngine.UIElements.MouseEnterWindowEvent
+type MouseLeaveEvent = CS.UnityEngine.UIElements.MouseLeaveEvent
+type MouseLeaveWindowEvent = CS.UnityEngine.UIElements.MouseLeaveWindowEvent
+type MouseMoveEvent = CS.UnityEngine.UIElements.MouseMoveEvent
+type MouseOutEvent = CS.UnityEngine.UIElements.MouseOutEvent
+type MouseOverEvent = CS.UnityEngine.UIElements.MouseOverEvent
+type MouseUpEvent = CS.UnityEngine.UIElements.MouseUpEvent
+type NavigationCancelEvent = CS.UnityEngine.UIElements.NavigationCancelEvent
+type NavigationMoveEvent = CS.UnityEngine.UIElements.NavigationMoveEvent
+type NavigationSubmitEvent = CS.UnityEngine.UIElements.NavigationSubmitEvent
+type PickingMode = CS.UnityEngine.UIElements.PickingMode
+type PointerCancelEvent = CS.UnityEngine.UIElements.PointerCancelEvent
+type PointerCaptureEvent = CS.UnityEngine.UIElements.PointerCaptureEvent
+type PointerCaptureOutEvent = CS.UnityEngine.UIElements.PointerCaptureOutEvent
+type PointerDownEvent = CS.UnityEngine.UIElements.PointerDownEvent
+type PointerEnterEvent = CS.UnityEngine.UIElements.PointerEnterEvent
+type PointerLeaveEvent = CS.UnityEngine.UIElements.PointerLeaveEvent
+type PointerMoveEvent = CS.UnityEngine.UIElements.PointerMoveEvent
+type PointerOutEvent = CS.UnityEngine.UIElements.PointerOutEvent
+type PointerOverEvent = CS.UnityEngine.UIElements.PointerOverEvent
+type PointerStationaryEvent = CS.UnityEngine.UIElements.PointerStationaryEvent
+type PointerUpEvent = CS.UnityEngine.UIElements.PointerUpEvent
+type ScrollViewMode = CS.UnityEngine.UIElements.ScrollViewMode
+type ScrollerVisibility = CS.UnityEngine.UIElements.ScrollerVisibility
+type TouchScrollBehavior = CS.UnityEngine.UIElements.ScrollView.TouchScrollBehavior
+type TooltipEvent = CS.UnityEngine.UIElements.TooltipEvent
+type TransitionCancelEvent = CS.UnityEngine.UIElements.TransitionCancelEvent
+type TransitionEndEvent = CS.UnityEngine.UIElements.TransitionEndEvent
+type TransitionRunEvent = CS.UnityEngine.UIElements.TransitionRunEvent
+type TransitionStartEvent = CS.UnityEngine.UIElements.TransitionStartEvent
+type ValidateCommandEvent = CS.UnityEngine.UIElements.ValidateCommandEvent
+type VectorImage = CS.UnityEngine.UIElements.VectorImage
+type WheelEvent = CS.UnityEngine.UIElements.WheelEvent
+type ContextualMenuPopulateEvent = CS.UnityEngine.UIElements.ContextualMenuPopulateEvent
 
-type TwoPaneSplitViewOrientation = CS.UnityEngine.UIElements.TwoPaneSplitViewOrientation;
+type TwoPaneSplitViewOrientation = CS.UnityEngine.UIElements.TwoPaneSplitViewOrientation
 
 declare global {
     export namespace JSX {
@@ -162,11 +162,11 @@ declare global {
 
         type AppendCapture<T> = {
             [K in keyof T as `${Extract<K, string>}Capture`]: T[K]
-        };
+        }
 
-        type RefObject<T> = { current: T | null };
-        type RefCallback<T> = (instance: T | null) => void;
-        type Ref<T> = RefObject<T> | RefCallback<T>;
+        type RefObject<T> = { current: T | null }
+        type RefCallback<T> = (instance: T | null) => void
+        type Ref<T> = RefObject<T> | RefCallback<T>
 
         interface VisualElement extends CommonEvents, AppendCapture<CommonEvents> {
             id?: string
@@ -177,7 +177,7 @@ declare global {
             children?: RecursiveElement
 
             dangerouslySetInnerHTML?: {
-                __html: string;
+                __html: string
             }
 
             name?: string
@@ -186,7 +186,7 @@ declare global {
             tooltip?: string
             focusable?: boolean
             tabindex?: number
-            usageHints?: CS.UnityEngine.UIElements.UsageHints
+            "usage-hints"?: CS.UnityEngine.UIElements.UsageHints
             "picking-mode"?: PickingMode
             "view-data-key"?: string
 
@@ -213,7 +213,7 @@ declare global {
 
         interface TextElement extends VisualElement {
             text?: string
-            enableRichText?: boolean
+            "enable-rich-text"?: boolean
         }
 
         interface Label extends TextElement {
@@ -223,11 +223,11 @@ declare global {
         interface Image extends VisualElementNoChildren {
             image?: Texture
             sprite?: Sprite
-            vectorImage?: VectorImage
-            sourceRect?: Rect
+            "vector-image"?: VectorImage
+            "source-rect"?: Rect
             uv?: Rect
-            scaleMode?: ScaleMode
-            tintColor?: Color
+            "scale-mode"?: ScaleMode
+            "tint-color"?: Color
         }
 
         interface IMGUIContainer extends VisualElementNoChildren {
@@ -283,7 +283,7 @@ declare global {
 
         interface RepeatButton extends TextElement {
             delay?: number
-            interva?: number
+            interval?: number
         }
 
         interface Toggle extends BaseBoolField {
@@ -365,7 +365,7 @@ declare global {
         }
 
         interface TextValueField<T> extends TextInputBaseField<T> {
-            formatString?: string
+            "format-string"?: string
         }
 
         interface IntegerField extends TextValueField<number> {
@@ -482,8 +482,8 @@ declare global {
         }
 
         interface TwoPaneSplitView extends VisualElement {
-            fixedPaneIndex?: number
-            fixedPaneInitialDimension?: number
+            "fixed-pane-index"?: number
+            "fixed-pane-initial-dimension"?: number
             orientation?: TwoPaneSplitViewOrientation
         }
 
@@ -563,8 +563,8 @@ declare global {
     }
 }
 
-export type IntrinsicElements = JSX.IntrinsicElements;
-export type CommonEvents = JSX.CommonEvents;
-export type VisualElement = JSX.VisualElement;
+export type IntrinsicElements = JSX.IntrinsicElements
+export type CommonEvents = JSX.CommonEvents
+export type VisualElement = JSX.VisualElement
 
-export { };
+export { }
