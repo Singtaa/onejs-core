@@ -341,6 +341,7 @@ declare global {
         interface TextInputBaseField<T> extends BaseField<T> {
             text?: string
             "max-length"?: number
+            "is-delayed"?: boolean
             "is-password-field"?: boolean
             "mask-char"?: string
             "is-read-only"?: boolean
