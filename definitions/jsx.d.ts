@@ -17,6 +17,7 @@ type AttachToPanelEvent = CS.UnityEngine.UIElements.AttachToPanelEvent
 type BlurEvent = CS.UnityEngine.UIElements.BlurEvent
 type ChangeEvent<T> = CS.UnityEngine.UIElements.ChangeEvent<T>
 type ClickEvent = CS.UnityEngine.UIElements.ClickEvent
+type CustomStyleResolvedEvent = CS.UnityEngine.UIElements.CustomStyleResolvedEvent
 type DetachFromPanelEvent = CS.UnityEngine.UIElements.DetachFromPanelEvent
 type DragEnterEvent = CS.UnityEngine.UIElements.DragEnterEvent
 type DragExitedEvent = CS.UnityEngine.UIElements.DragExitedEvent
@@ -151,7 +152,7 @@ declare global {
             onPointerLeave?: (e: PointerLeaveEvent) => void
             onPointerOver?: (e: PointerOverEvent) => void
             onPointerOut?: (e: PointerOutEvent) => void
-            // onCustomStyleResolved?: (e: CustomStyleResolvedEvent) => void
+            onCustomStyleResolved?: (e: CustomStyleResolvedEvent) => void
             onTooltip?: (e: TooltipEvent) => void
             onTransitionRun?: (e: TransitionRunEvent) => void
             onTransitionStart?: (e: TransitionStartEvent) => void
