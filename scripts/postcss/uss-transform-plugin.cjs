@@ -5,7 +5,7 @@ module.exports = () => {
         'lg': 1024,
         'xl': 1280,
         'xxl': 1536,
-    };
+    }
     return {
         postcssPlugin: 'uss-transform',
         Once(root, { result }) {
@@ -14,75 +14,79 @@ module.exports = () => {
                 rule.selectors = rule.selectors.map(selector =>
                     selector.replace(/(\\\.|\\#|\\%|\\:|\\\/|\\\[|\\\]|\\\(|\\\)|\\2c|\\&|\\>|\\<|\\\*|\\')/g, match => {
                         switch (match) {
-                            case '\\.': return '_d_';
-                            case '\\#': return '_n_';
-                            case '\\%': return '_p_';
-                            case '\\:': return '_c_';
-                            case '\\/': return '_s_';
-                            case '\\[': return '_lb_';
-                            case '\\]': return '_rb_';
-                            case '\\(': return '_lp_';
-                            case '\\)': return '_rp_';
-                            case '\\2c': return '_cm_';
-                            case '\\&': return '_amp_';
-                            case '\\>': return '_gt_';
-                            case '\\<': return '_lt_';
-                            case '\\*': return '_ast_';
-                            case '\\\'': return '_sq_';
-                            default: return match;
+                            case '\\.': return '_d_'
+                            case '\\#': return '_n_'
+                            case '\\%': return '_p_'
+                            case '\\:': return '_c_'
+                            case '\\/': return '_s_'
+                            case '\\[': return '_lb_'
+                            case '\\]': return '_rb_'
+                            case '\\(': return '_lp_'
+                            case '\\)': return '_rp_'
+                            case '\\2c': return '_cm_'
+                            case '\\&': return '_amp_'
+                            case '\\>': return '_gt_'
+                            case '\\<': return '_lt_'
+                            case '\\*': return '_ast_'
+                            case '\\\'': return '_sq_'
+                            default: return match
                         }
                     })
-                );
-            });
+                )
+            })
 
             // RGB to RGBA conversion
             root.walkDecls(decl => {
                 if (decl.value.includes('rgb(')) {
-                    decl.value = decl.value.replace(/rgb\((.*?) \/\s*(.*?)\)/g, 'rgba($1 $2)');
+                    decl.value = decl.value.replace(/rgb\((.*?) \/\s*(.*?)\)/g, 'rgba($1 $2)')
                 }
-            });
+            })
 
             // Handle hexadecimal colors with alpha value to RGBA conversion
             root.walkDecls(decl => {
                 decl.value = decl.value.replace(/#([A-Fa-f0-9]{8})/g, (match, hex) => {
-                    const r = parseInt(hex.slice(0, 2), 16);
-                    const g = parseInt(hex.slice(2, 4), 16);
-                    const b = parseInt(hex.slice(4, 6), 16);
-                    const a = parseInt(hex.slice(6, 8), 16) / 255;
-                    return `rgba(${r}, ${g}, ${b}, ${a})`;
-                });
-            });
+                    const r = parseInt(hex.slice(0, 2), 16)
+                    const g = parseInt(hex.slice(2, 4), 16)
+                    const b = parseInt(hex.slice(4, 6), 16)
+                    const a = parseInt(hex.slice(6, 8), 16) / 255
+                    return `rgba(${r}, ${g}, ${b}, ${a})`
+                })
+            })
 
             // Media queries transformation
             root.walkAtRules('media', atRule => {
                 // Extract the min-width value from the media query
-                const minWidthMatch = atRule.params.match(/min-width:\s*(\d+)px/);
+                const minWidthMatch = atRule.params.match(/min-width:\s*(\d+)px/)
                 if (minWidthMatch) {
-                    const minWidthValue = parseInt(minWidthMatch[1], 10);
+                    const minWidthValue = parseInt(minWidthMatch[1], 10)
 
                     // Determine the correct breakpoint
-                    let appliedBreakpointName = null;
+                    let appliedBreakpointName = null
                     Object.entries(screenBreakpoints).forEach(([name, value]) => {
                         if (minWidthValue >= value) {
-                            appliedBreakpointName = name;
+                            appliedBreakpointName = name
                         }
-                    });
+                    })
 
                     if (appliedBreakpointName) {
-                        const className = `.onejs-media-${appliedBreakpointName}`;
+                        const className = `.onejs-media-${appliedBreakpointName}`
 
                         // Prepend the class to each rule inside this media query
                         atRule.walkRules(rule => {
-                            rule.selectors = rule.selectors.map(selector => `${className} ${selector}`);
-                        });
+                            rule.selectors = rule.selectors.map(selector =>
+                                selector.startsWith(".root")
+                                    ? selector.replace(/^\.root/, `.root${className}`) 
+                                    : `${className} ${selector}`
+                            )
+                        })
 
                         // Remove the @media rule by replacing it with its contents
-                        atRule.replaceWith(atRule.nodes);
+                        atRule.replaceWith(atRule.nodes)
                     }
                 }
-            });
+            })
         }
-    };
-};
+    }
+}
 
-module.exports.postcss = true;
+module.exports.postcss = true
