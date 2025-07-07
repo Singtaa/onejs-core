@@ -33,15 +33,21 @@ declare global {
     const requestAnimationFrame: (callback: (time: number) => void) => number
     const cancelAnimationFrame: (id: number) => void
 
+    interface Performance {
+        now(): number
+    }
+
+    const performance: Performance
+
     const console: {
-        log: (...args: any[]) => void;
-        info: (...args: any[]) => void;
-        warn: (...args: any[]) => void;
-        error: (...args: any[]) => void;
-        trace: (...args: any[]) => void;
-        assert: (condition: boolean, ...args: any[]) => void;
-        time: (label: string) => void;
-        timeEnd: (label: string) => void;
+        log: (...args: any[]) => void
+        info: (...args: any[]) => void
+        warn: (...args: any[]) => void
+        error: (...args: any[]) => void
+        trace: (...args: any[]) => void
+        assert: (condition: boolean, ...args: any[]) => void
+        time: (label: string) => void
+        timeEnd: (label: string) => void
     }
 
     interface Event {
