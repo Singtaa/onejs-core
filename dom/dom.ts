@@ -213,7 +213,7 @@ function parseSelector(selector: string): SelectorInfo {
 
 function elementMatchesSelector(element: DomWrapper, selectorInfo: SelectorInfo): boolean {
     // Check tag name
-    if (selectorInfo.tag && element.ve.name.toLowerCase() !== selectorInfo.tag) {
+    if (selectorInfo.tag && element.ve.GetType().Name.toLowerCase() !== selectorInfo.tag) {
         return false;
     }
 
