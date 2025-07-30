@@ -1,3 +1,4 @@
+import { Vector2 } from "UnityEngine"
 import { DomWrapper } from "./dom"
 
 interface ElementCreationOptions {
@@ -7,8 +8,8 @@ interface ElementCreationOptions {
 export class DocumentWrapper {
     public get _doc(): CS.OneJS.Dom.Document { return this.#doc }
 
-    #doc: CS.OneJS.Dom.Document;
-    #body: DomWrapper | null;
+    #doc: CS.OneJS.Dom.Document
+    #body: DomWrapper | null
 
     /**
      * The body/root element of the document. Will be null for Editor documents.
@@ -51,6 +52,46 @@ export class DocumentWrapper {
         for (let i = 0; i < doms.Length; i++) {
             res.push(new DomWrapper(doms.get_Item(i)))
         }
-        return res;
+        return res
+    }
+
+    elementFromPoint(x: number, y: number): DomWrapper | null {
+        const root = this.body
+        if (!root) return null
+
+        const hitTest = (node: DomWrapper): DomWrapper | null => {
+            if (!node.ve.worldBound.Contains(new Vector2(x, y))) return null
+
+            // later siblings are painted on top → scan from back to front
+            for (let i = node.childNodes.length - 1; i >= 0; i--) {
+                const hit = hitTest(node.childNodes[i])
+                if (hit) return hit
+            }
+            return node
+        }
+
+        return hitTest(root)
+    }
+
+    elementsFromPoint(x: number, y: number): DomWrapper[] {
+        const root = this.body
+        if (!root) return []
+
+        const hits: DomWrapper[] = []
+
+        const collect = (node: DomWrapper): void => {
+            if (!node.ve.worldBound.Contains(new Vector2(x, y))) return
+
+            // visit children first, from front to back (last child is top‑most)
+            for (let i = node.childNodes.length - 1; i >= 0; i--) {
+                collect(node.childNodes[i])
+            }
+
+            // add the current node itself
+            hits.push(node)
+        }
+
+        collect(root)
+        return hits // ordered front‑to‑back (top‑most first)
     }
 }

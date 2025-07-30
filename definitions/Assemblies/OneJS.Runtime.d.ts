@@ -395,6 +395,7 @@ declare namespace CS {
             public SetTransitionProperty ($value: System.Collections.Generic.List$1<UnityEngine.UIElements.StylePropertyName>) : void
             public SetTransitionTimingFunction ($value: System.Collections.Generic.List$1<UnityEngine.UIElements.EasingFunction>) : void
             public SetTranslate ($value: UnityEngine.UIElements.Translate) : void
+            public SetTranslate (a: number, b: number) : void
             public SetUnityBackgroundImageTintColor ($value: UnityEngine.Color) : void
             public SetUnityBackgroundScaleMode ($value: UnityEngine.ScaleMode) : void
             public SetUnityFont ($value: UnityEngine.Font) : void
