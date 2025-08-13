@@ -26,6 +26,7 @@ declare global {
     }
 
     const document: DocumentWrapper
+    const onejsDocument: DocumentWrapper
     const setTimeout: (callback: () => void, delay?: number) => number
     const clearTimeout: (id: number) => void
     const setInterval: (callback: () => void, delay?: number) => number

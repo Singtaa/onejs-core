@@ -13,9 +13,9 @@ const projectDir = path.resolve(process.cwd(), '..')
 const manifestPath = path.join(projectDir, 'Packages', 'manifest.json')
 
 const backends = [
-    { name: "QuickJS", tgzUrl: "https://github.com/Tencent/puerts/releases/download/Unity_v2.2.1/PuerTS_Quickjs_2.2.1.tgz" },
-    { name: "V8", tgzUrl: "https://github.com/Tencent/puerts/releases/download/Unity_v2.2.1/PuerTS_V8_2.2.1.tgz" },
-    { name: "NodeJS", tgzUrl: "https://github.com/Tencent/puerts/releases/download/Unity_v2.2.1/PuerTS_Nodejs_2.2.1.tgz" }
+    { name: "QuickJS", tgzUrl: "https://github.com/Tencent/puerts/releases/download/Unity_v2.2.2/PuerTS_Quickjs_2.2.2.tgz" },
+    { name: "V8", tgzUrl: "https://github.com/Tencent/puerts/releases/download/Unity_v2.2.2/PuerTS_V8_2.2.2.tgz" },
+    { name: "NodeJS", tgzUrl: "https://github.com/Tencent/puerts/releases/download/Unity_v2.2.2/PuerTS_Nodejs_2.2.2.tgz" }
 ]
 
 const args = process.argv.slice(2)
@@ -64,7 +64,7 @@ async function Process(backend, outputDir) {
         }
         await extractTgz(downloadedPath, outputDir)
 
-        // Safe keep asmdef files
+        // Safe keep asmdef files, et al.
         const onejsDir = await getOneJSUnityDir()
         const a = path.join(onejsDir, 'Puerts/Editor/com.tencent.puerts.core.Editor.asmdef')
         const b = path.join(upmDir, 'Editor/com.tencent.puerts.core.Editor.asmdef')
@@ -72,6 +72,9 @@ async function Process(backend, outputDir) {
         const d = path.join(upmDir, 'Runtime/com.tencent.puerts.core.asmdef')
         await fse.copy(a, b)
         await fse.copy(c, d)
+        const e = path.join(onejsDir, 'Puerts/Runtime/Src/Default/JsEnv.cs')
+        const f = path.join(upmDir, 'Runtime/Src/Default/JsEnv.cs')
+        await fse.copy(e, f)
 
         // Replace OneJS/Puerts with the new one
         const puertsDir = path.join(onejsDir, "Puerts")
