@@ -33,16 +33,16 @@ if (args.length > 0 && args[0].toLowerCase() == "clear") {
 } else if (
     args.length > 0 &&
     (["quickjs", "v8", "nodejs"].includes(args[0].toLowerCase()) ||
-     (args[0].toLowerCase().endsWith('.tgz') || /^https?:\/\/.+\.tgz$/i.test(args[0])))
+        (args[0].toLowerCase().endsWith('.tgz') || /^https?:\/\/.+\.tgz$/i.test(args[0])))
 ) {
-    let backend;
-    const outputDir = "./tmp";
+    let backend
+    const outputDir = "./tmp"
     if (["quickjs", "v8", "nodejs"].includes(args[0].toLowerCase())) {
-        backend = backends.find(b => b.name.toLowerCase() === args[0]);
+        backend = backends.find(b => b.name.toLowerCase() === args[0])
     } else {
-        backend = { name: "Custom", tgzUrl: args[0] };
+        backend = { name: "Custom", tgzUrl: args[0] }
     }
-    Process(backend, outputDir);
+    Process(backend, outputDir)
 } else {
     console.log("Usage: npm run switch <quickjs|v8|nodejs|clear|tgz-url>\n")
     console.log("           quickjs: Switch to QuickJS backend")
@@ -98,130 +98,138 @@ async function Process(backend, outputDir) {
 // }
 
 async function getOneJSUnityDir() {
-    let oneJSPath = null;
+    let oneJSPath = null
 
     // Step 1: Check manifest.json
     if (fs.existsSync(manifestPath)) {
-        const manifestContent = fs.readFileSync(manifestPath, 'utf8');
-        const manifestJson = JSON.parse(manifestContent);
+        const manifestContent = fs.readFileSync(manifestPath, "utf8")
+        let manifestJson
+        try { manifestJson = JSON.parse(manifestContent) } catch {
+            console.error('Could not parse manifest.json at ' + manifestPath)
+            return null
+        }
 
-        const dependencies = manifestJson.dependencies;
-        const oneJSKey = 'com.dragonground.onejs';
+        const dependencies = manifestJson && manifestJson.dependencies
+        const oneJSKeys = ["com.dragonground.onejs", "com.singtaa.onejs"]
 
-        if (dependencies && dependencies[oneJSKey]) {
-            const packagePath = dependencies[oneJSKey]; // e.g., "file:PATH/TO/OneJS"
-            if (packagePath.startsWith('file:')) {
-                oneJSPath = packagePath.substring(5); // Remove "file:" prefix
-                oneJSPath = path.resolve(projectDir, oneJSPath);
-                return oneJSPath;
+        if (dependencies) {
+            for (const key of oneJSKeys) {
+                const packagePath = dependencies[key]
+                if (typeof packagePath === "string") {
+                    const v = packagePath.trim() // e.g., "file:PATH/TO/OneJS"
+                    if (v.startsWith("file:")) {
+                        oneJSPath = path.resolve(projectDir, v.substring(5)) // strip "file:"
+                        return oneJSPath
+                    }
+                }
             }
         }
     }
 
     // Step 2: If not found, parse OneJS.Runtime.csproj
     if (!oneJSPath) {
-        const csprojPath = path.join(projectDir, 'OneJS.Runtime.csproj');
+        const csprojPath = path.join(projectDir, 'OneJS.Runtime.csproj')
 
         if (fs.existsSync(csprojPath)) {
-            const csprojContent = fs.readFileSync(csprojPath, 'utf8');
-            const parser = new xml2js.Parser();
+            const csprojContent = fs.readFileSync(csprojPath, 'utf8')
+            const parser = new xml2js.Parser()
 
             try {
-                const result = await parser.parseStringPromise(csprojContent);
+                const result = await parser.parseStringPromise(csprojContent)
 
-                const project = result.Project;
-                const itemGroups = project.ItemGroup;
+                const project = result.Project
+                const itemGroups = project.ItemGroup
 
                 if (itemGroups && itemGroups.length > 0) {
                     for (const itemGroup of itemGroups) {
                         if (itemGroup.Compile) {
                             for (const compileItem of itemGroup.Compile) {
-                                const includePath = compileItem.$.Include;
+                                const includePath = compileItem.$.Include
 
                                 // Normalize path separators for cross-platform compatibility
-                                const normalizedIncludePath = includePath.replace(/\\/g, '/');
-                                const searchIndex = normalizedIncludePath.indexOf('OneJS/Runtime/Engine/ScriptEngine.cs');
+                                const normalizedIncludePath = includePath.replace(/\\/g, '/')
+                                const searchIndex = normalizedIncludePath.indexOf('OneJS/Runtime/Engine/ScriptEngine.cs')
 
                                 if (searchIndex !== -1) {
-                                    oneJSPath = normalizedIncludePath.substring(0, searchIndex + 'OneJS'.length);
-                                    oneJSPath = path.resolve(projectDir, oneJSPath);
-                                    return oneJSPath;
+                                    oneJSPath = normalizedIncludePath.substring(0, searchIndex + 'OneJS'.length)
+                                    oneJSPath = path.resolve(projectDir, oneJSPath)
+                                    return oneJSPath
                                 }
                             }
                         }
                     }
                 }
 
-                console.error('Could not find OneJS path in csproj file.');
-                return null;
+                console.error('Could not find OneJS path in csproj file.')
+                return null
             } catch (err) {
-                console.error('Error parsing csproj file:', err);
-                return null;
+                console.error('Error parsing csproj file:', err)
+                return null
             }
         } else {
-            console.error('OneJS.Runtime.csproj file does not exist.');
-            return null;
+            console.error('OneJS.Runtime.csproj file does not exist.')
+            return null
         }
     }
 
-    return oneJSPath;
+    return oneJSPath
 }
 
 function ensureDirectoryExistence(filePath) {
-    const dirname = path.dirname(filePath);
+    const dirname = path.dirname(filePath)
     if (fs.existsSync(dirname)) {
-        return true;
+        return true
     }
-    fs.mkdirSync(dirname, { recursive: true });
+    fs.mkdirSync(dirname, { recursive: true })
 }
 
 function getFilenameFromUrl(fileUrl) {
-    const parsedUrl = url.parse(fileUrl);
-    return path.basename(parsedUrl.pathname);
+    const parsedUrl = url.parse(fileUrl)
+    return path.basename(parsedUrl.pathname)
 }
 
 async function downloadFile(fileUrl, outputDir) {
-    const filename = getFilenameFromUrl(fileUrl);
-    const outputLocationPath = path.join(outputDir, filename);
+    const filename = getFilenameFromUrl(fileUrl)
+    const outputLocationPath = path.join(outputDir, filename)
 
-    ensureDirectoryExistence(outputLocationPath);
+    ensureDirectoryExistence(outputLocationPath)
 
     // Check if file exists (keep existing code)
     if (fs.existsSync(outputLocationPath)) {
-        console.log(`Local .tgz found: ${outputLocationPath}`);
-        return outputLocationPath;
+        console.log(`Local .tgz found: ${outputLocationPath}`)
+        return outputLocationPath
     }
 
-    console.log(`Downloading ${filename}`);
-    const response = await fetch(fileUrl);
+    console.log(`Downloading ${filename}`)
+    const response = await fetch(fileUrl)
 
     if (!response.ok) {
-        throw new Error(`Failed to fetch ${fileUrl}: ${response.statusText}`);
+        throw new Error(`Failed to fetch ${fileUrl}: ${response.statusText}`)
     }
 
     // Get the total size for the progress bar
-    const totalSize = parseInt(response.headers.get('content-length'), 10);
-    
+    const totalSize = parseInt(response.headers.get('content-length'), 10)
+
     // Create progress bar
     const progressBar = new ProgressBar('[:bar] :percent ETA: :etas', {
         complete: '=',
         incomplete: ' ',
         width: 40,
         total: totalSize
-    });
+    })
 
-    const fileStream = fs.createWriteStream(outputLocationPath);
+    const fileStream = fs.createWriteStream(outputLocationPath)
     for await (const chunk of response.body) {
-        fileStream.write(chunk);
-        progressBar.tick(chunk.length);
+        fileStream.write(chunk)
+        progressBar.tick(chunk.length)
     }
 
-    fileStream.end();
+    fileStream.end()
 
     return new Promise((resolve, reject) => {
-        fileStream.on('close', () => resolve(outputLocationPath));
-        fileStream.on('error', reject);
-    });
+        fileStream.on('close', () => resolve(outputLocationPath))
+        fileStream.on('error', reject)
+    })
 }
 
 async function extractTgz(filePath, outputDir) {
@@ -229,47 +237,47 @@ async function extractTgz(filePath, outputDir) {
         file: filePath,
         cwd: outputDir,
     })
-    console.log(`Extraction completed.`);
+    console.log(`Extraction completed.`)
 }
 
 
 
 async function checkFileInUse(file) {
     try {
-        const handle = await fsp.open(file, 'r+');
-        await handle.close();
+        const handle = await fsp.open(file, 'r+')
+        await handle.close()
     } catch (err) {
         if (err.code === 'EBUSY' || err.code === 'EPERM' || err.code === 'EACCES') {
-            console.error('File is in use by another program or access is denied:', err);
-            return false;
+            console.error('File is in use by another program or access is denied:', err)
+            return false
         } else {
-            console.error('Cannot access file:', err);
-            return false;
+            console.error('Cannot access file:', err)
+            return false
         }
     }
-    return true;
+    return true
 }
 
 async function checkAllDeletable(currentPath) {
     try {
-        const stats = await fsp.stat(currentPath);
+        const stats = await fsp.stat(currentPath)
 
         if (stats.isDirectory()) {
-            const files = await fsp.readdir(currentPath);
+            const files = await fsp.readdir(currentPath)
 
             for (const file of files) {
-                const deletable = await checkAllDeletable(path.join(currentPath, file));
+                const deletable = await checkAllDeletable(path.join(currentPath, file))
                 if (!deletable) {
-                    return false;
+                    return false
                 }
             }
-            return true;
+            return true
         } else {
-            return await checkFileInUse(currentPath);
+            return await checkFileInUse(currentPath)
         }
     } catch (err) {
-        console.log(`Error accessing: ${currentPath}, ${err}`);
-        return false;
+        console.log(`Error accessing: ${currentPath}, ${err}`)
+        return false
     }
 }
 
