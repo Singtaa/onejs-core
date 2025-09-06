@@ -36,7 +36,7 @@ function findAssetsDir(startDir, explicit) {
         if (fs.existsSync(explicit) && fs.statSync(explicit).isDirectory()) return explicit
         return null
     }
-    let dir = startDir
+    let dir = path.dirname(startDir) // Up a level, preventing `App/assets` getting returned
     const { root } = path.parse(dir)
     while (dir !== root) {
         const probe = path.join(dir, "Assets")
@@ -80,10 +80,17 @@ async function scanComponents(tarPath) {
     await tar.t({
         file: tarPath,
         onentry: (entry) => {
-            const p = entry.path
+            const p = entry.path.replace(/\\/g, "/")
             if (!p.startsWith("comps/")) return
-            const parts = p.split("/").filter(Boolean) // ["comps","button", ...]
-            if (parts.length >= 2) comps.add(parts[1])
+
+            // Only treat entries inside a top-level folder under comps/
+            // e.g. "comps/button/**" → "button"
+            const rest = p.slice("comps/".length)
+            const firstSlash = rest.indexOf("/")
+            if (firstSlash === -1) return // file directly under comps/ → skip
+
+            const top = rest.slice(0, firstSlash)
+            if (top) comps.add(top)
         },
     })
     return comps

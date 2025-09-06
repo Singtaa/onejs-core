@@ -44,6 +44,7 @@ declare global {
     }
     const newCsArray: <T>(type: { new(...args: any[]): T }, count: number) => CS.System.Array
     const toJsArray: <T>(csArr: CS.System.Array) => T[]
+    const toCsArray: <T>(jsArr: T[], type: { new(...args: any[]): T }) => CS.System.Array
 }
 
 if (typeof globalThis.___document != "undefined") {
