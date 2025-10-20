@@ -21191,6 +21191,189 @@ declare namespace CS {
             public set startValue(value: T);
             public constructor ($drivenField: UnityEngine.UIElements.IValueField$1<T>)
         }
+        /** 
+        The filter parameter declaration for a FilterFunctionDefinition.
+        */
+        class FilterParameterDeclaration extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            /** 
+            The parameter name, used for display in the UI Builder.
+            */
+            public get name(): string;
+            public set name(value: string);
+            /** 
+            Default value when interpolating between two filters with missing declarations.
+            */
+            public get interpolationDefaultValue(): UnityEngine.UIElements.FilterParameter;
+            public set interpolationDefaultValue(value: UnityEngine.UIElements.FilterParameter);
+        }
+        /** 
+        Represents a filter parameter for a FilterFunctionDefinition.
+        */
+        class FilterParameter extends System.ValueType implements System.IEquatable$1<UnityEngine.UIElements.FilterParameter>
+        {
+            protected [__keep_incompatibility]: never;
+            /** The type of the filter parameter.
+            */
+            public get type(): UnityEngine.UIElements.FilterParameterType;
+            public set type(value: UnityEngine.UIElements.FilterParameterType);
+            /** The float value of the filter parameter.
+            */
+            public get floatValue(): number;
+            public set floatValue(value: number);
+            /** The color value of the filter parameter.
+            */
+            public get colorValue(): UnityEngine.Color;
+            public set colorValue(value: UnityEngine.Color);
+            public static op_Equality ($a: UnityEngine.UIElements.FilterParameter, $b: UnityEngine.UIElements.FilterParameter) : boolean
+            public static op_Inequality ($a: UnityEngine.UIElements.FilterParameter, $b: UnityEngine.UIElements.FilterParameter) : boolean
+            public Equals ($obj: any) : boolean
+            public Equals ($other: UnityEngine.UIElements.FilterParameter) : boolean
+            public constructor ($value: number)
+            public constructor ($value: UnityEngine.Color)
+        }
+        /** 
+        Represents a filter function definition that holds the parameters and effects of a filter.
+        */
+        class FilterFunctionDefinition extends UnityEngine.ScriptableObject
+        {
+            protected [__keep_incompatibility]: never;
+            /** The name of the filter function used for display.
+            */
+            public get filterName(): string;
+            public set filterName(value: string);
+            /** The description of the function parameters.
+            */
+            public get parameters(): System.Array$1<UnityEngine.UIElements.FilterParameterDeclaration>;
+            public set parameters(value: System.Array$1<UnityEngine.UIElements.FilterParameterDeclaration>);
+            /** The post-processing effects applied by the filter function.
+            */
+            public get passes(): System.Array$1<UnityEngine.UIElements.PostProcessingPass>;
+            public set passes(value: System.Array$1<UnityEngine.UIElements.PostProcessingPass>);
+            public constructor ()
+        }
+        /** 
+        Represents a post-processing effect that can be applied to a visual element.
+        This is used as part of a FilterFunctionDefinition.
+        */
+        class PostProcessingPass extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            /** The material to use for the effect.
+            */
+            public get material(): UnityEngine.Material;
+            public set material(value: UnityEngine.Material);
+            /** The pass index to use in the material.
+            */
+            public get passIndex(): number;
+            public set passIndex(value: number);
+            /** The parameter bindings for the effect.
+            */
+            public get parameterBindings(): System.Array$1<UnityEngine.UIElements.ParameterBinding>;
+            public set parameterBindings(value: System.Array$1<UnityEngine.UIElements.ParameterBinding>);
+            /** The extra margins, in points, required for the effect to write to destination texture.
+            */
+            public get writeMargins(): UnityEngine.UIElements.PostProcessingMargins;
+            public set writeMargins(value: UnityEngine.UIElements.PostProcessingMargins);
+            /** The optional callback to prepare the material property block for the effect.
+            */
+            public get prepareMaterialPropertyBlockCallback(): UnityEngine.UIElements.PostProcessingPass.PrepareMaterialPropertyBlockDelegate;
+            public set prepareMaterialPropertyBlockCallback(value: UnityEngine.UIElements.PostProcessingPass.PrepareMaterialPropertyBlockDelegate);
+            /** The optional callback to compute the required read margins for the effect.
+            */
+            public get computeRequiredReadMarginsCallback(): UnityEngine.UIElements.PostProcessingPass.ComputeRequiredMarginsDelegate;
+            public set computeRequiredReadMarginsCallback(value: UnityEngine.UIElements.PostProcessingPass.ComputeRequiredMarginsDelegate);
+            /** The optional callback to compute the required write margins for the effect.
+            */
+            public get computeRequiredWriteMarginsCallback(): UnityEngine.UIElements.PostProcessingPass.ComputeRequiredMarginsDelegate;
+            public set computeRequiredWriteMarginsCallback(value: UnityEngine.UIElements.PostProcessingPass.ComputeRequiredMarginsDelegate);
+        }
+        /** 
+        Represents a binding of a parameter index to a post-processing material property.
+        */
+        class ParameterBinding extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            /** The index of the parameter in the filter function.
+            */
+            public get index(): number;
+            public set index(value: number);
+            /** The name of the material property.
+            */
+            public get name(): string;
+            public set name(value: string);
+        }
+        /** 
+        The post-processing margins required by a FilterFunction.
+        */
+        class PostProcessingMargins extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            /** The left margin value.
+            */
+            public get left(): number;
+            public set left(value: number);
+            /** The top margin value.
+            */
+            public get top(): number;
+            public set top(value: number);
+            /** The right margin value.
+            */
+            public get right(): number;
+            public set right(value: number);
+            /** The bottom margin value.
+            */
+            public get bottom(): number;
+            public set bottom(value: number);
+        }
+        /** 
+        Represents a filter function that holds the definition and parameters of a filter.
+        */
+        class FilterFunction extends System.ValueType implements System.IEquatable$1<UnityEngine.UIElements.FilterFunction>
+        {
+            protected [__keep_incompatibility]: never;
+            /** 
+            The type of the filter function.
+            */
+            public get type(): UnityEngine.UIElements.FilterFunctionType;
+            public set type(value: UnityEngine.UIElements.FilterFunctionType);
+            /** The number of parameters in the filter function.
+            */
+            public get parameterCount(): number;
+            /** 
+            The custom filter function definition, when the filter function type is FilterFunctionType.Custom.
+            */
+            public get customDefinition(): UnityEngine.UIElements.FilterFunctionDefinition;
+            public set customDefinition(value: UnityEngine.UIElements.FilterFunctionDefinition);
+            /** 
+            Adds a parameter to the filter function.
+            * @param $p The parameter to add.
+            */
+            public AddParameter ($p: UnityEngine.UIElements.FilterParameter) : void
+            /** 
+            Sets a parameter to the filter function at the provided index.
+            * @param $index The parameter index.
+            * @param $p The parameter to set.
+            */
+            public SetParameter ($index: number, $p: UnityEngine.UIElements.FilterParameter) : void
+            /** 
+            Gets the parameter at the specified index.
+            * @param $index The parameter index.
+            * @returns The filter parameter at the provided index. 
+            */
+            public GetParameter ($index: number) : UnityEngine.UIElements.FilterParameter
+            /** 
+            Clears all parameters from the filter function.
+            */
+            public ClearParameters () : void
+            public static op_Equality ($lhs: UnityEngine.UIElements.FilterFunction, $rhs: UnityEngine.UIElements.FilterFunction) : boolean
+            public static op_Inequality ($lhs: UnityEngine.UIElements.FilterFunction, $rhs: UnityEngine.UIElements.FilterFunction) : boolean
+            public Equals ($other: UnityEngine.UIElements.FilterFunction) : boolean
+            public Equals ($obj: any) : boolean
+            public constructor ($type: UnityEngine.UIElements.FilterFunctionType)
+            public constructor ($filterDef: UnityEngine.UIElements.FilterFunctionDefinition)
+        }
         interface IFocusRing
         {
             /** 
@@ -22110,6 +22293,16 @@ declare namespace CS {
             public Equals ($obj: any) : boolean
             public constructor ($mode: UnityEngine.UIElements.EasingMode)
         }
+        /** 
+        The filter function type for a FilterFunction .
+        */
+        enum FilterFunctionType
+        { None = 0, Custom = 1, Tint = 2, Opacity = 3, Invert = 4, Grayscale = 5, Sepia = 6, Blur = 7, Contrast = 8, HueRotate = 9, Count = 10 }
+        /** 
+        The type of a filter parameter.
+        */
+        enum FilterParameterType
+        { Float = 0, Color = 1 }
         /** 
         Describes a VisualElement font.
         */

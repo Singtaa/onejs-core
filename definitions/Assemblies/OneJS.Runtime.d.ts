@@ -356,6 +356,8 @@ declare namespace CS {
             public SetColor ($value: UnityEngine.Color) : void
             public SetCursor ($value: UnityEngine.UIElements.Cursor) : void
             public SetDisplay ($value: UnityEngine.UIElements.DisplayStyle) : void
+            public SetFilter ($value: System.Collections.Generic.List$1<UnityEngine.UIElements.FilterFunction>) : void
+            public SetFilter ($value: UnityEngine.UIElements.FilterFunction) : void
             public SetFlexBasis ($value: UnityEngine.UIElements.StyleLength) : void
             public SetFlexDirection ($value: UnityEngine.UIElements.FlexDirection) : void
             public SetFlexGrow ($value: number) : void

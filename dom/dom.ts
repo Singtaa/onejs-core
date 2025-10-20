@@ -1,4 +1,4 @@
-import { EventBase } from "UnityEngine/UIElements";
+import { EventBase } from "UnityEngine/UIElements"
 import { DomStyleWrapper } from "./dom-style"
 
 export class DomWrapper {
@@ -6,21 +6,21 @@ export class DomWrapper {
     public get ve(): CS.UnityEngine.UIElements.VisualElement { return this.dom.ve }
     public get childNodes(): DomWrapper[] {
         if (this.cachedChildNodes) return this.cachedChildNodes
-        this.cachedChildNodes = new Array(this.dom.childNodes.Length) as DomWrapper[];
-        var i = this.dom.childNodes.Length;
+        this.cachedChildNodes = new Array(this.dom.childNodes.Length) as DomWrapper[]
+        var i = this.dom.childNodes.Length
         while (i--) {
-            this.cachedChildNodes[i] = new DomWrapper(this.dom.childNodes.get_Item(i));
+            this.cachedChildNodes[i] = new DomWrapper(this.dom.childNodes.get_Item(i))
         }
         return this.cachedChildNodes
     }
     public get firstChild(): DomWrapper | null {
-        return this.dom.firstChild ? new DomWrapper(this.dom.firstChild) : null;
+        return this.dom.firstChild ? new DomWrapper(this.dom.firstChild) : null
     }
     public get parentNode(): DomWrapper | null {
-        return this.dom.parentNode ? new DomWrapper(this.dom.parentNode) : null;
+        return this.dom.parentNode ? new DomWrapper(this.dom.parentNode) : null
     }
     public get nextSibling(): DomWrapper | null {
-        return this.dom.nextSibling ? new DomWrapper(this.dom.nextSibling) : null;
+        return this.dom.nextSibling ? new DomWrapper(this.dom.nextSibling) : null
     }
 
     public get nodeType(): number { return this.dom.nodeType }
@@ -55,10 +55,13 @@ export class DomWrapper {
         this.domTokenList = new DomTokenList(dom)
     }
 
+    // MARK: Manipulation
+
     appendChild(child: DomWrapper) {
         if (!child) return
         this.dom.appendChild(child.dom)
         this.cachedChildNodes = null
+        return child
     }
 
     removeChild(child: DomWrapper) {
@@ -77,44 +80,15 @@ export class DomWrapper {
         this.cachedChildNodes = null
     }
 
-    contains(child: DomWrapper) {
-        if (!child) return false
-        return this.dom.contains(child._dom)
+    before(other: DomWrapper) { // TODO: variable length args
+        if (this.parentNode) {
+            this.parentNode.insertBefore(other, this)
+        }
     }
 
     clearChildren() {
         this.dom.clearChildren()
         this.cachedChildNodes = null
-    }
-
-    focus() {
-        this.dom.focus()
-    }
-
-    addEventListener(type: string, listener: (event: EventBase) => void, options?: boolean | { once?: boolean }) {
-        let boundListener = this.boundListeners.get(listener);
-        if (!boundListener) {
-            boundListener = listener.bind(this);
-            this.boundListeners.set(listener, boundListener);
-        }
-
-        if (typeof options === 'object' && options.once) {
-            const onceWrapper = (event: EventBase) => {
-                boundListener(event);
-                this.dom.removeEventListener(type, onceWrapper, false);
-            };
-            this.dom.addEventListener(type, onceWrapper, false);
-        } else {
-            this.dom.addEventListener(type, boundListener, options ? true : false);
-        }
-    }
-
-    removeEventListener(type: string, listener: (event: EventBase) => void, useCapture?: boolean) {
-        const boundListener = this.boundListeners.get(listener);
-        if (boundListener) {
-            this.dom.removeEventListener(type, boundListener, useCapture ? true : false)
-            this.boundListeners.delete(listener); // isn't strictly necessary for WeakMap, but still good practice
-        }
     }
 
     setAttribute(name: string, value: any) {
@@ -123,6 +97,63 @@ export class DomWrapper {
 
     removeAttribute(name: string) {
         this.dom.removeAttribute(name)
+    }
+
+    // MARK: Node.prototype
+
+    append(child: DomWrapper) {
+        if (!child) return
+        this.dom.appendChild(child.dom)
+        this.cachedChildNodes = null
+    }
+
+    cloneNode(deep: boolean = false): DomWrapper {
+        return this
+    }
+
+    remove() {
+        if (this.parentNode) {
+            this.parentNode.removeChild(this)
+        }
+    }
+
+    // MARK: Misc
+
+    contains(child: DomWrapper) {
+        if (!child) return false
+        return this.dom.contains(child._dom)
+    }
+
+    focus() {
+        this.dom.focus()
+    }
+
+    // MARK: Event
+
+    addEventListener(type: string, listener: (event: EventBase) => void, options?: boolean | { once?: boolean }) {
+        let boundListener = this.boundListeners.get(listener)
+        if (!boundListener) {
+            boundListener = listener.bind(this)
+            this.boundListeners.set(listener, boundListener)
+        }
+
+        if (typeof options === 'object' && options.once) {
+            const onceWrapper = (event: EventBase) => {
+                boundListener(event)
+                this.dom.removeEventListener(type, onceWrapper, false)
+            }
+            this.dom.addEventListener(type, onceWrapper, false)
+        } else {
+            this.dom.addEventListener(type, boundListener, options ? true : false)
+        }
+    }
+
+    removeEventListener(type: string, listener: (event: EventBase) => void, useCapture?: boolean) {
+        const boundListener = this.boundListeners.get(listener)
+        if (boundListener) {
+            this.dom.removeEventListener(type, boundListener, useCapture ? true : false)
+            this.boundListeners.delete(listener) // isn't strictly necessary for WeakMap, but still good practice
+        }
     }
 
     /**
@@ -134,21 +165,21 @@ export class DomWrapper {
      * - Combinations: 'div.myClass#myId'
      */
     querySelectorAll(selector: string): DomWrapper[] {
-        const selectorInfo = parseSelector(selector);
-        const results: DomWrapper[] = [];
+        const selectorInfo = parseSelector(selector)
+        const results: DomWrapper[] = []
 
         function traverse(element: DomWrapper) {
             if (elementMatchesSelector(element, selectorInfo)) {
-                results.push(element);
+                results.push(element)
             }
 
             for (const child of element.childNodes) {
-                traverse(child);
+                traverse(child)
             }
         }
 
-        traverse(this);
-        return results;
+        traverse(this)
+        return results
     }
 
     /**
@@ -156,126 +187,126 @@ export class DomWrapper {
      * Supports the same basic selectors as querySelectorAll.
      */
     querySelector(selector: string): DomWrapper | null {
-        const selectorInfo = parseSelector(selector);
+        const selectorInfo = parseSelector(selector)
 
         function traverse(element: DomWrapper): DomWrapper | null {
             if (elementMatchesSelector(element, selectorInfo)) {
-                return element;
+                return element
             }
 
             for (const child of element.childNodes) {
-                const match = traverse(child);
+                const match = traverse(child)
                 if (match) {
-                    return match;
+                    return match
                 }
             }
 
-            return null;
+            return null
         }
 
-        return traverse(this);
+        return traverse(this)
     }
 }
 
 interface SelectorInfo {
-    tag?: string;
-    id?: string;
-    classes: string[];
+    tag?: string
+    id?: string
+    classes: string[]
 }
 
 function parseSelector(selector: string): SelectorInfo {
     const selectorInfo: SelectorInfo = {
         classes: []
-    };
+    }
 
     // Handle ID
-    const idMatch = selector.match(/#([^.#\s]+)/);
+    const idMatch = selector.match(/#([^.#\s]+)/)
     if (idMatch) {
-        selectorInfo.id = idMatch[1];
-        selector = selector.replace(idMatch[0], '');
+        selectorInfo.id = idMatch[1]
+        selector = selector.replace(idMatch[0], '')
     }
 
     // Handle classes
-    const classMatches = selector.match(/\.([^.#\s]+)/g);
+    const classMatches = selector.match(/\.([^.#\s]+)/g)
     if (classMatches) {
-        selectorInfo.classes = classMatches.map(c => c.substring(1));
-        selector = selector.replace(/\.[^.#\s]+/g, '');
+        selectorInfo.classes = classMatches.map(c => c.substring(1))
+        selector = selector.replace(/\.[^.#\s]+/g, '')
     }
 
     // Handle tag name (what's left after removing id and classes)
-    const tagName = selector.trim();
+    const tagName = selector.trim()
     if (tagName) {
-        selectorInfo.tag = tagName.toLowerCase();
+        selectorInfo.tag = tagName.toLowerCase()
     }
 
-    return selectorInfo;
+    return selectorInfo
 }
 
 function elementMatchesSelector(element: DomWrapper, selectorInfo: SelectorInfo): boolean {
     // Check tag name
     if (selectorInfo.tag && element.ve.GetType().Name.toLowerCase() !== selectorInfo.tag) {
-        return false;
+        return false
     }
 
     // Check ID
     if (selectorInfo.id && element.Id !== selectorInfo.id) {
-        return false;
+        return false
     }
 
     // Check classes
     if (selectorInfo.classes.length > 0) {
-        const elementClasses = element.className.split(' ').filter(c => c);
+        const elementClasses = element.className.split(' ').filter(c => c)
         for (const className of selectorInfo.classes) {
             if (!elementClasses.includes(className)) {
-                return false;
+                return false
             }
         }
     }
 
-    return true;
+    return true
 }
 
 export function querySelectorAll(root: DomWrapper, selector: string): DomWrapper[] {
-    const results: DomWrapper[] = [];
-    const selectorInfo = parseSelector(selector);
+    const results: DomWrapper[] = []
+    const selectorInfo = parseSelector(selector)
 
     function traverse(element: DomWrapper) {
         // Check if current element matches
         if (elementMatchesSelector(element, selectorInfo)) {
-            results.push(element);
+            results.push(element)
         }
 
         // Recursively check children
         for (const child of element.childNodes) {
-            traverse(child);
+            traverse(child)
         }
     }
 
-    traverse(root);
-    return results;
+    traverse(root)
+    return results
 }
 
 export function querySelector(root: DomWrapper, selector: string): DomWrapper | null {
-    const selectorInfo = parseSelector(selector);
+    const selectorInfo = parseSelector(selector)
 
     function traverse(element: DomWrapper): DomWrapper | null {
         // Check if current element matches
         if (elementMatchesSelector(element, selectorInfo)) {
-            return element;
+            return element
         }
 
         // Recursively check children
         for (const child of element.childNodes) {
-            const match = traverse(child);
+            const match = traverse(child)
             if (match) {
-                return match;
+                return match
             }
         }
 
-        return null;
+        return null
     }
 
-    return traverse(root);
+    return traverse(root)
 }
 
 class DomTokenList {

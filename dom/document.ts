@@ -1,5 +1,6 @@
 import { Vector2 } from "UnityEngine"
 import { DomWrapper } from "./dom"
+import { EventBase } from "UnityEngine/UIElements"
 
 interface ElementCreationOptions {
     is?: string
@@ -29,6 +30,8 @@ export class DocumentWrapper {
         this.#doc.clearRuntimeStyleSheets()
     }
 
+    // MARK: Create
+
     createElement(tagName: string, options?: ElementCreationOptions): DomWrapper {
         return new DomWrapper(this.#doc.createElement(tagName))
     }
@@ -41,6 +44,12 @@ export class DocumentWrapper {
     createTextNode(text: string): DomWrapper {
         return new DomWrapper(this.#doc.createTextNode(text))
     }
+
+    createDocumentFragment(): DomWrapper {
+        return this.createElement("div")
+    }
+
+    // MARK: Query
 
     getElementById(id: string): DomWrapper {
         return new DomWrapper(this.#doc.getElementById(id))
@@ -93,5 +102,15 @@ export class DocumentWrapper {
 
         collect(root)
         return hits // ordered front‑to‑back (top‑most first)
+    }
+
+    // MARK: Event
+
+    addEventListener(type: string, listener: (event: EventBase) => void, options?: boolean | { once?: boolean }) {
+        this.body?.addEventListener(type, listener, options)
+    }
+
+    removeEventListener(type: string, listener: (event: EventBase) => void, useCapture?: boolean) {
+        this.body?.removeEventListener(type, listener, useCapture)
     }
 }
