@@ -71,6 +71,7 @@ type OverflowClipBox = CS.UnityEngine.UIElements.OverflowClipBox;
 type Visibility = CS.UnityEngine.UIElements.Visibility;
 type WhiteSpace = CS.UnityEngine.UIElements.WhiteSpace;
 type TextOverflowPosition = CS.UnityEngine.UIElements.TextOverflowPosition;
+type FilterFunction = CS.UnityEngine.UIElements.FilterFunction;
 
 declare namespace CS.OneJS.Dom {
 
@@ -104,6 +105,7 @@ declare namespace CS.OneJS.Dom {
         color: StyleColor | Color | string | null | number[] | float4;
         cursor: StyleCursor | Cursor | null;
         display: StyleEnum<DisplayStyle> | DisplayStyle | string | null | number;
+        filter: StyleList<FilterFunction> | FilterFunction | string | null;
         flexBasis: StyleLength | Length | string | null | number;
         flexDirection: StyleEnum<FlexDirection> | FlexDirection | string | null | number;
         flexGrow: StyleFloat | number | string | null;
