@@ -10,7 +10,7 @@ export function hashAndAddRuntimeUSS(style: string) {
         return compId
     style = `.${compId} {${style}}`
     style = flatten(style)
-    document.addRuntimeUSS(style)
+    globalThis.___document.addRuntimeUSS(style)
     _pastCompIds.add(compId)
 
     return compId

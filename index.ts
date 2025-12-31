@@ -50,7 +50,8 @@ declare global {
 if (typeof globalThis.___document != "undefined") {
     // @ts-ignore
     globalThis.onejsDocument = new DocumentWrapper(globalThis.___document)
-    if (!globalThis.ONEJS_WEBGL) {
+    // @ts-ignore
+    if (!globalThis.ONEJS_WEBGL && !globalThis.document) {
         // @ts-ignore
         globalThis.document = globalThis.onejsDocument
     }
