@@ -3,7 +3,6 @@ const tar = require('tar')
 const url = require('url')
 const path = require('path')
 const fse = require('fs-extra')
-const xml2js = require('xml2js')
 const { rimraf } = require('rimraf')
 const ProgressBar = require('progress')
 
@@ -66,6 +65,9 @@ async function Process(backend, outputDir) {
 
         // Safe keep asmdef files, et al.
         const onejsDir = await getOneJSUnityDir()
+        if (!onejsDir) {
+            throw new Error('Could not locate the OneJS Unity package directory. See messages above for details.')
+        }
         const a = path.join(onejsDir, 'Puerts/Editor/com.tencent.puerts.core.Editor.asmdef')
         const b = path.join(upmDir, 'Editor/com.tencent.puerts.core.Editor.asmdef')
         const c = path.join(onejsDir, 'Puerts/Runtime/com.tencent.puerts.core.asmdef')
@@ -98,9 +100,9 @@ async function Process(backend, outputDir) {
 // }
 
 async function getOneJSUnityDir() {
-    let oneJSPath = null
+    const oneJSKeys = ["com.dragonground.onejs", "com.singtaa.onejs"]
 
-    // Step 1: Check manifest.json
+    // Step 1: Check manifest.json for local (file:) paths
     if (fs.existsSync(manifestPath)) {
         const manifestContent = fs.readFileSync(manifestPath, "utf8")
         let manifestJson
@@ -110,69 +112,67 @@ async function getOneJSUnityDir() {
         }
 
         const dependencies = manifestJson && manifestJson.dependencies
-        const oneJSKeys = ["com.dragonground.onejs", "com.singtaa.onejs"]
 
         if (dependencies) {
             for (const key of oneJSKeys) {
                 const packagePath = dependencies[key]
                 if (typeof packagePath === "string") {
-                    const v = packagePath.trim() // e.g., "file:PATH/TO/OneJS"
+                    const v = packagePath.trim()
                     if (v.startsWith("file:")) {
-                        oneJSPath = path.resolve(projectDir, v.substring(5)) // strip "file:"
-                        return oneJSPath
+                        // Local path dependency, e.g., "file:PATH/TO/OneJS"
+                        return path.resolve(projectDir, v.substring(5))
                     }
+                }
+            }
+        }
+
+        // Step 2: Check Library/PackageCache for Git URL or registry dependencies
+        const packageCacheDir = path.join(projectDir, 'Library', 'PackageCache')
+        if (dependencies && fs.existsSync(packageCacheDir)) {
+            for (const key of oneJSKeys) {
+                if (typeof dependencies[key] === "string") {
+                    const found = findPackageInCache(packageCacheDir, key)
+                    if (found) return found
                 }
             }
         }
     }
 
-    // Step 2: If not found, parse OneJS.Runtime.csproj
-    if (!oneJSPath) {
-        const csprojPath = path.join(projectDir, 'OneJS.Runtime.csproj')
-
-        if (fs.existsSync(csprojPath)) {
-            const csprojContent = fs.readFileSync(csprojPath, 'utf8')
-            const parser = new xml2js.Parser()
-
-            try {
-                const result = await parser.parseStringPromise(csprojContent)
-
-                const project = result.Project
-                const itemGroups = project.ItemGroup
-
-                if (itemGroups && itemGroups.length > 0) {
-                    for (const itemGroup of itemGroups) {
-                        if (itemGroup.Compile) {
-                            for (const compileItem of itemGroup.Compile) {
-                                const includePath = compileItem.$.Include
-
-                                // Normalize path separators for cross-platform compatibility
-                                const normalizedIncludePath = includePath.replace(/\\/g, '/')
-                                const searchIndex = normalizedIncludePath.indexOf('OneJS/Runtime/Engine/ScriptEngine.cs')
-
-                                if (searchIndex !== -1) {
-                                    oneJSPath = normalizedIncludePath.substring(0, searchIndex + 'OneJS'.length)
-                                    oneJSPath = path.resolve(projectDir, oneJSPath)
-                                    return oneJSPath
-                                }
-                            }
-                        }
-                    }
-                }
-
-                console.error('Could not find OneJS path in csproj file.')
-                return null
-            } catch (err) {
-                console.error('Error parsing csproj file:', err)
-                return null
-            }
-        } else {
-            console.error('OneJS.Runtime.csproj file does not exist.')
-            return null
+    // Step 3: Last resort - scan PackageCache even without manifest entry
+    const packageCacheDir = path.join(projectDir, 'Library', 'PackageCache')
+    if (fs.existsSync(packageCacheDir)) {
+        for (const key of oneJSKeys) {
+            const found = findPackageInCache(packageCacheDir, key)
+            if (found) return found
         }
     }
 
-    return oneJSPath
+    console.error(
+        'Could not find OneJS package directory.\n' +
+        'Please make sure OneJS is installed in your Unity project via one of:\n' +
+        '  - A local path (file:) dependency in Packages/manifest.json\n' +
+        '  - A Git URL dependency in Packages/manifest.json\n' +
+        '  - The Unity Package Manager registry\n' +
+        'And that this script is run from the OneJS npm project inside the Unity project.'
+    )
+    return null
+}
+
+function findPackageInCache(packageCacheDir, packageName) {
+    try {
+        const entries = fs.readdirSync(packageCacheDir)
+        for (const entry of entries) {
+            if (entry.startsWith(packageName + '@') || entry === packageName) {
+                const candidatePath = path.join(packageCacheDir, entry)
+                if (fs.statSync(candidatePath).isDirectory()) {
+                    return candidatePath
+                }
+            }
+        }
+    } catch (err) {
+        // PackageCache not readable, skip
+    }
+    return null
 }
 
 function ensureDirectoryExistence(filePath) {
