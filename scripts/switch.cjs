@@ -12,9 +12,9 @@ const projectDir = path.resolve(process.cwd(), '..')
 const manifestPath = path.join(projectDir, 'Packages', 'manifest.json')
 
 const backends = [
-    { name: "QuickJS", tgzUrl: "https://github.com/Tencent/puerts/releases/download/Unity_v2.2.2/PuerTS_Quickjs_2.2.2.tgz" },
-    { name: "V8", tgzUrl: "https://github.com/Tencent/puerts/releases/download/Unity_v2.2.2/PuerTS_V8_2.2.2.tgz" },
-    { name: "NodeJS", tgzUrl: "https://github.com/Tencent/puerts/releases/download/Unity_v2.2.2/PuerTS_Nodejs_2.2.2.tgz" }
+    { name: "QuickJS", tgzUrl: "https://github.com/Tencent/puerts/releases/download/Unity_v2.2.2_16kb/PuerTS_Quickjs_2.2.2_16kb.tgz" },
+    { name: "V8", tgzUrl: "https://github.com/Tencent/puerts/releases/download/Unity_v2.2.2_16kb/PuerTS_V8_2.2.2_16kb.tgz" },
+    { name: "NodeJS", tgzUrl: "https://github.com/Tencent/puerts/releases/download/Unity_v2.2.2_16kb/PuerTS_Nodejs_2.2.2_16kb.tgz" }
 ]
 
 const args = process.argv.slice(2)
