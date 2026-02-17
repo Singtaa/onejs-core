@@ -147,12 +147,43 @@ async function getOneJSUnityDir() {
         }
     }
 
+    // Step 4: Check for embedded packages in Packages/ directory
+    const packagesDir = path.join(projectDir, 'Packages')
+    if (fs.existsSync(packagesDir)) {
+        for (const key of oneJSKeys) {
+            const embeddedPath = path.join(packagesDir, key)
+            if (fs.existsSync(embeddedPath) && fs.statSync(embeddedPath).isDirectory()) {
+                return embeddedPath
+            }
+        }
+    }
+
+    // Step 5: Parse .csproj to find OneJS path (handles packages in Assets/)
+    const csprojPath = path.join(projectDir, 'OneJS.Runtime.csproj')
+    if (fs.existsSync(csprojPath)) {
+        try {
+            const content = fs.readFileSync(csprojPath, 'utf8')
+            const match = content.match(/Include="([^"]*?[/\\]Runtime[/\\]Engine[/\\]ScriptEngine\.cs)"/)
+            if (match) {
+                const includePath = match[1].replace(/\\/g, '/')
+                const idx = includePath.indexOf('/Runtime/Engine/ScriptEngine.cs')
+                if (idx !== -1) {
+                    return path.resolve(projectDir, includePath.substring(0, idx))
+                }
+            }
+        } catch (err) {
+            // .csproj not readable, skip
+        }
+    }
+
     console.error(
         'Could not find OneJS package directory.\n' +
         'Please make sure OneJS is installed in your Unity project via one of:\n' +
         '  - A local path (file:) dependency in Packages/manifest.json\n' +
         '  - A Git URL dependency in Packages/manifest.json\n' +
         '  - The Unity Package Manager registry\n' +
+        '  - An embedded package in the Packages/ directory\n' +
+        '  - A package in the Assets/ directory (requires Unity to generate .csproj files)\n' +
         'And that this script is run from the OneJS npm project inside the Unity project.'
     )
     return null
